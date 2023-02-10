@@ -77,6 +77,11 @@
 			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-envers</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>ucu</groupId>
+			<artifactId>mis-solution</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

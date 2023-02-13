@@ -1,4 +1,4 @@
-package csu.config;
+package csu.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,9 +7,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import csu.exception.ResourceNotFoundException;
 import csu.model.general.User;
 import csu.repository.general.UserRepository;
-import csu.security.UserPrincipal;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

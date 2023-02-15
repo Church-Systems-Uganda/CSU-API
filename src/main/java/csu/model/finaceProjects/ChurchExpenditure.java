@@ -25,50 +25,55 @@ public class ChurchExpenditure {
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "church_id", nullable = true)
 	private Church church;
-
-
-	public ChurchExpenditure(Project project, Church church) {
+    
+    
+    
+    public ChurchExpenditure(Project project, Church church, String expenditureType) {
 		super();
 		this.project = project;
 		this.church = church;
+		ExpenditureType = expenditureType;
 	}
-
 
 	public ChurchExpenditure() {
 		super();
 	}
 
-
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
 	public Project getProject() {
 		return project;
 	}
-
 
 	public void setProject(Project project) {
 		this.project = project;
 	}
 
-
 	public Church getChurch() {
 		return church;
 	}
 
-
 	public void setChurch(Church church) {
 		this.church = church;
 	}
-    
-    
+
+	public String getExpenditureType() {
+		return ExpenditureType;
+	}
+
+	public void setExpenditureType(String expenditureType) {
+		ExpenditureType = expenditureType;
+	}
+
+	private String ExpenditureType;
+
+
     
     
 }

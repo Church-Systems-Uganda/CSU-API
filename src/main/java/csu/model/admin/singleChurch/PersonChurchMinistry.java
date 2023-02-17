@@ -1,5 +1,6 @@
 package csu.model.admin.singleChurch;
 
+import csu.model.membership.Ministry;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,10 +19,10 @@ public class PersonChurchMinistry {
 
     private String Status;
 
-     //add ministry class here
-    // @ManyToOne(fetch = FetchType.LAZY)
-	// @JoinColumn(name = "ministry_id", nullable = true)
-    // private Ministry ministry;
+   
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ministry_id", nullable = true)
+    private Ministry ministry;
      
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "personChurch_id", nullable = true)
@@ -35,10 +36,10 @@ public class PersonChurchMinistry {
 		super();
 	}
 
-	public PersonChurchMinistry(String status, /*  Ministry ministry,*/ PersonChurch personChurch/* ,Department department*/ ) {
+	public PersonChurchMinistry(String status,   Ministry ministry, PersonChurch personChurch/* ,Department department*/ ) {
 		super();
 		Status = status;
-		// this.ministry = ministry;
+		this.ministry = ministry;
 		this.personChurch = personChurch;
 		// this.department = department;
 	}

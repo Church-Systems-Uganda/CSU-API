@@ -3,6 +3,7 @@ package csu.model.admin.singleChurch;
 import java.util.Date;
 
 import csu.model.audit.DateAudit;
+import csu.model.membership.Ministry;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -25,11 +26,9 @@ public class ChurchLeadership  extends DateAudit{
 	@JoinColumn(name = "churchHierrachy_id", nullable = true)
     private ChurchHierrachy churchHierrachy;
 
-
-    // add ministry class here
-    // @ManyToOne(fetch = FetchType.LAZY)
-	// @JoinColumn(name = "ministry_id", nullable = true)
-    //  private Ministry ministry;
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ministry_id", nullable = true)
+    private Ministry ministry;
 
     private String Status;
 
@@ -39,11 +38,11 @@ public class ChurchLeadership  extends DateAudit{
     @NotNull
     private Date toDate;
 
-	public ChurchLeadership(ChurchHierrachy churchHierrachy, /*Ministry ministry,*/ String status, @NotNull Date fromDate,
+	public ChurchLeadership(ChurchHierrachy churchHierrachy, Ministry ministry, String status, @NotNull Date fromDate,
 			@NotNull Date toDate) {
 		super();
 		this.churchHierrachy = churchHierrachy;
-		// this.ministry = ministry;
+		 this.ministry = ministry;
 		Status = status;
 		this.fromDate = fromDate;
 		this.toDate = toDate;
@@ -69,13 +68,13 @@ public class ChurchLeadership  extends DateAudit{
 		this.churchHierrachy = churchHierrachy;
 	}
 
-	// public Ministry getMinistry() {
-	// 	return ministry;
-	// }
+	public Ministry getMinistry() {
+		return ministry;
+	}
 
-	// public void setMinistry(Ministry ministry) {
-	// 	this.ministry = ministry;
-	// }
+	public void setMinistry(Ministry ministry) {
+		this.ministry = ministry;
+	}
 
 	public String getStatus() {
 		return Status;

@@ -42,6 +42,10 @@ public class Affliation extends UserDateAudit {
 		this.shortName = shortName;
 	}
 
+	public Affliation(@NotBlank @Size(max = 100) String name) {
+		this.name = name;
+	}
+
 	public Long getId() {
 		return id;
 	}

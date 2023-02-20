@@ -8,4 +8,6 @@ import csu.model.admin.Affliation;
 
 public interface AffiliationRepository extends JpaRepository<Affliation, Long> {
 	Optional<Affliation> findByName(String name);
+
+	Boolean existsByName(String name);
 }

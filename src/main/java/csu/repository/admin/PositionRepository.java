@@ -6,5 +6,5 @@ import csu.model.admin.Position;
 
 public interface PositionRepository extends JpaRepository<Position,Long> {
 
-	
+	Boolean existsByName(String name);
 }

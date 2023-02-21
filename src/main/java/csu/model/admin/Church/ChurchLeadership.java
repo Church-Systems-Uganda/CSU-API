@@ -1,4 +1,4 @@
-package csu.model.admin.singleChurch;
+package csu.model.admin.Church;
 
 import java.util.Date;
 

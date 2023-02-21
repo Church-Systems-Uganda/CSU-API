@@ -1,4 +1,4 @@
-package csu.model.admin.singleChurch;
+package csu.model.admin.Church;
 
 import csu.model.admin.Position;
 import csu.model.audit.DateAudit;

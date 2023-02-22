@@ -1,41 +1,24 @@
-package csu.model.membership;
+package csu.payload.membership.ministy;
 
 import csu.model.admin.Church;
-import csu.model.audit.DateAudit;
-
-import jakarta.persistence.Entity;
-
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 
+public class MinistryPayload {
 
-@Entity
-@Table(name = "ministry", uniqueConstraints = { @UniqueConstraint(columnNames = { "name" }) })
-
-public class Ministry extends DateAudit{
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	private Long id;
     private String name;
-
-     
+    
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "church_id", nullable = true)
     private Church church;
 
-	public Ministry(String name, Church church) {
-		super();
-		
-		this.name = name;
-	}
-
-	public Ministry() {
+	public MinistryPayload() {
 		super();
 	}
 
@@ -55,21 +38,13 @@ public class Ministry extends DateAudit{
 		this.name = name;
 	}
 
-    public void setChurch(Church church) {
-		this.church = church;
-	}
-
 	public Church getChurch() {
 		return church;
 	}
+
+	public void setChurch(Church church) {
+		this.church = church;
+	}
     
-
-
-
-
-
-
-
-
     
 }

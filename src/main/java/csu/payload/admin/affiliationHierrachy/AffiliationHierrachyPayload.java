@@ -1,9 +1,7 @@
-package csu.model.admin;
+package csu.payload.admin.affiliationHierrachy;
 
-
-
-import csu.model.audit.UserDateAudit;
-import jakarta.persistence.Entity;
+import csu.model.admin.Affliation;
+import csu.model.admin.Position;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,11 +10,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 
-@Entity
-public class AffiliationHierrachy extends UserDateAudit {
+public class AffiliationHierrachyPayload {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
@@ -31,16 +26,8 @@ public class AffiliationHierrachy extends UserDateAudit {
 	@JoinColumn(name = "position_id", nullable = true)
 	private Position levelHead;
 
-	public AffiliationHierrachy() {
+	public AffiliationHierrachyPayload() {
 		super();
-	}
-
-	public AffiliationHierrachy(@NotNull Affliation affliation, String name, Integer level, Position levelHead) {
-		super();
-		this.affliation = affliation;
-		this.name = name;
-		this.level = level;
-		this.levelHead = levelHead;
 	}
 
 	public Long getId() {

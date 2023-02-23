@@ -35,7 +35,6 @@ public class PositionController {
 		return positionService.createPosition(request);
 	}
 	
-
 	@PostMapping("/delete-position")
 	public ResponseEntity<?> deletePosition(@RequestBody PositionRequest request) {
 

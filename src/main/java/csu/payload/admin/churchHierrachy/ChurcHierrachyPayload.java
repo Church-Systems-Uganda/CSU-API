@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-public class ChurcHierracyPayload {
+public class ChurcHierrachyPayload {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,7 +23,7 @@ public class ChurcHierracyPayload {
 	
 	
 	
-	public ChurcHierracyPayload() {
+	public ChurcHierrachyPayload() {
 		super();
 	}
 

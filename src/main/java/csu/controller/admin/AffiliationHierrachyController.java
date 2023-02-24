@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import csu.payload.admin.affiliationHierrachy.AffiliationHierrachyPayload;
-import csu.payload.admin.position.PositionPayload;
+
 import csu.services.admin.AffiliationHierrachyService;
 
 @RestController
@@ -20,7 +20,7 @@ public class AffiliationHierrachyController {
 	@Autowired
 	AffiliationHierrachyService  affiliationHierrachyService;
 	
-	@GetMapping("/affiliationHierrachy")
+	@GetMapping("/affiliation_Hierrachy")
 	public List<AffiliationHierrachyPayload> getAllAffiliationHierrachy() {
 		return affiliationHierrachyService.getAllAffiliationHierrachy();
 	}

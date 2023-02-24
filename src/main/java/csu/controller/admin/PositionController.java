@@ -29,12 +29,12 @@ public class PositionController {
 		return positionService.getAllPositions();
 	}
 
-	@PostMapping("/create-position")
-	public ResponseEntity<?> createPosition(@Valid @RequestBody PositionRequest request){
-		
-		return positionService.createPosition(request);
-	}
-	
+//	@PostMapping("/create-position")
+//	public ResponseEntity<?> createPosition(@Valid @RequestBody PositionRequest request){
+//		
+//		return positionService.createPosition(request);
+//	}
+//	
 	@PostMapping("/delete-position")
 	public ResponseEntity<?> deletePosition(@RequestBody PositionRequest request) {
 

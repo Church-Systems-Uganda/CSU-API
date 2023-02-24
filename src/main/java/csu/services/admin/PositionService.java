@@ -41,38 +41,38 @@ public class PositionService {
 
 	// create position
 
-	public ResponseEntity<?> createPosition(PositionRequest request) {
-		//check whether get value is not null
-		if(request.getName() != null) {
-			//check if it exixts
-			
-			if(positionRepository.existsByName(request.getName()){
-				//if true
-				return new ResponseEntity<>(new ApiResponse(false, "Position Exists"), HttpStatus.BAD_REQUEST);
-			}
-			 // in case of edditing 
-			Optional<Position> existingPosition = request.getId() != null
-					? positionRepository.findById(request.getId())
-					: Optional.empty();
-			
-			//get that position if present
-			Position position = existingPosition.isPresent() ? existingPosition.get()
-					: new Position (request.getName(),request.getShortName());
-			
-			position.setShortName(request.getShortName() != null ? request.getShortName() : null);
-
-			//save 
-			Position result = positionRepository.save(position);
-
-			
-			if (result != null) {
-				return new ResponseEntity<>(new ApiResponse(true, "Position Created"), HttpStatus.OK);
-			}
-			
-			//incase of any error
-			return new ResponseEntity<>(new ApiResponse(false, "Error while processing request"), HttpStatus.BAD_REQUEST);
-		}
-	}
+//	public ResponseEntity<?> createPosition(PositionRequest request) {
+//		//check whether get value is not null
+//		if(request.getName() != null) {
+//			//check if it exixts
+//			
+//			if(positionRepository.existsByName(request.getName()){
+//				//if true
+//				return new ResponseEntity<>(new ApiResponse(false, "Position Exists"), HttpStatus.BAD_REQUEST);
+//			}
+//			 // in case of edditing 
+//			Optional<Position> existingPosition = request.getId() != null
+//					? positionRepository.findById(request.getId())
+//					: Optional.empty();
+//			
+//			//get that position if present
+//			Position position = existingPosition.isPresent() ? existingPosition.get()
+//					: new Position (request.getName(),request.getShortName());
+//			
+//			position.setShortName(request.getShortName() != null ? request.getShortName() : null);
+//
+//			//save 
+//			Position result = positionRepository.save(position);
+//
+//			
+//			if (result != null) {
+//				return new ResponseEntity<>(new ApiResponse(true, "Position Created"), HttpStatus.OK);
+//			}
+//			
+//			//incase of any error
+//			return new ResponseEntity<>(new ApiResponse(false, "Error while processing request"), HttpStatus.BAD_REQUEST);
+//		}
+//	}
 
 	
 	//delete Position

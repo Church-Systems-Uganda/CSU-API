@@ -6,6 +6,6 @@ import csu.model.admin.AffiliationHierrachy;
 
 public interface AffiliationHierrachyRepository  extends JpaRepository<AffiliationHierrachy,Long>{
 
-	
+	Boolean existsByName(String name);
 	
 }

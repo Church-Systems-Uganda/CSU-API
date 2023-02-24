@@ -15,7 +15,7 @@ import csu.model.membership.Ministry;
 import csu.payload.membership.ministy.MinistryPayload;
 import csu.payload.membership.ministy.MinistryRequest;
 import csu.repository.membership.MinistryRepository;
-import csu.services.admin.ApiResponse;
+import ucu.mis.payload.ApiResponse;
 
 @Service
 public class MinistryService {

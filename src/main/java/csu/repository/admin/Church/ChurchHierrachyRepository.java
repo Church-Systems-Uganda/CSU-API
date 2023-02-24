@@ -6,4 +6,8 @@ import csu.model.admin.Church.ChurchHierrachy;
 
 public interface ChurchHierrachyRepository extends JpaRepository<ChurchHierrachy, Long> {
 
+
+	Boolean existsByName(String name);
+	
+
 }

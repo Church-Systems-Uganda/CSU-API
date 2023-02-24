@@ -1,3 +1,13 @@
+package csu.payload.admin.churchHierrachy;
+
+import csu.model.admin.Position;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 public class ChurcHierracyPayload {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,7 +21,9 @@ public class ChurcHierracyPayload {
     private Position levelHead;
 
 	
-	public ChurchHierrachyPayload() {
+	
+	
+	public ChurcHierracyPayload() {
 		super();
 	}
 

@@ -1,3 +1,10 @@
+package csu.payload.admin.churchHierrachy;
+
+import csu.model.admin.Position;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 public class ChurchHierrachyRequest {
    
     private Long id;

@@ -9,20 +9,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 public class ChurcHierrachyPayload {
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+ 
     private Long id;
 
-    
     private long Tier;
     
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "position_id", nullable = true)
     private Position levelHead;
 
-	
-	
-	
 	public ChurcHierrachyPayload() {
 		super();
 	}

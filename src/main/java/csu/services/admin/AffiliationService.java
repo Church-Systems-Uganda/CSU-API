@@ -49,13 +49,13 @@ public class AffiliationService {
 
 		if (request.getName() != null) {
 
-			if (affiliationRepository.existsByName(request.getName())) {
-				return new ResponseEntity<>(new ApiResponse(false, "Affilication Exists"), HttpStatus.BAD_REQUEST);
-			}
-
 			Optional<Affliation> existingAffliation = request.getId() != null
 					? affiliationRepository.findById(request.getId())
 					: Optional.empty();
+
+			if (!existingAffliation.isPresent() && affiliationRepository.existsByName(request.getName())) {
+				return new ResponseEntity<>(new ApiResponse(false, "Affilication Exists"), HttpStatus.BAD_REQUEST);
+			}
 
 			Affliation afflition = existingAffliation.isPresent() ? existingAffliation.get()
 					: new Affliation(request.getName());

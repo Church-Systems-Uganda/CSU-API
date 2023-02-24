@@ -58,8 +58,9 @@ public class AffiliationService {
 			}
 
 			Affliation afflition = existingAffliation.isPresent() ? existingAffliation.get()
-					: new Affliation(request.getName());
-
+					: new Affliation();
+			
+			afflition.setName(request.getName());
 			afflition.setShortName(request.getShortName() != null ? request.getShortName() : null);
 
 			Affliation result = affiliationRepository.save(afflition);

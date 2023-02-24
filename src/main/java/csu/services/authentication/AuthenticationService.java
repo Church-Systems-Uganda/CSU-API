@@ -9,16 +9,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import csu.exception.AppException;
+import csu.model.general.Person;
 import csu.model.general.Role;
 import csu.model.general.RoleName;
 import csu.model.general.User;
 import csu.payload.authentication.SignUpRequest;
+import csu.payload.general.ApiResponse;
+import csu.repository.general.PersonRepository;
 import csu.repository.general.RoleRepository;
 import csu.repository.general.UserRepository;
-import ucu.mis.payload.ApiResponse;
 
 @Service
 public class AuthenticationService {
+
+	@Autowired
+	PersonRepository personRepository;
 
 	@Autowired
 	UserRepository userRepository;
@@ -30,8 +35,6 @@ public class AuthenticationService {
 	RoleRepository roleRepository;
 
 	public ResponseEntity<?> registerUser(SignUpRequest signUpRequest) {
-		
-		System.out.println("Weclome to the Service");
 
 		if (userRepository.existsByUsername(signUpRequest.getUsername())
 				|| userRepository.existsByEmail(signUpRequest.getEmail())) {
@@ -39,23 +42,30 @@ public class AuthenticationService {
 					HttpStatus.BAD_REQUEST);
 		}
 
-		User user = new User(signUpRequest.getUsername(), signUpRequest.getEmail(), signUpRequest.getPassword());
+		Person person = new Person(signUpRequest.getFirstname(), signUpRequest.getSurname());
 
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		Person savedPerson = personRepository.save(person);
 
-		Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-				.orElseThrow(() -> new AppException("User Role not set."));
+		if (savedPerson != null) {
 
-		//user.setRoles(Collections.singleton(userRole));
-		
-		System.out.println("All Set");
+			User user = new User(signUpRequest.getUsername(), signUpRequest.getEmail());
 
-		User result = userRepository.save(user);
+			user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
 
-		if (result != null) {
-			
-			System.out.println("Saved ");
-			return new ResponseEntity<>(new ApiResponse(true, "Successful"), HttpStatus.OK);
+			Role userRole = roleRepository
+					.findByName(signUpRequest.getRoleName() != null ? signUpRequest.getRoleName() : RoleName.ROLE_USER)
+					.orElseThrow(() -> new AppException("User Role not set."));
+
+			user.setRoles(Collections.singleton(userRole));
+
+			User result = userRepository.save(user);
+
+			if (result != null) {
+
+				System.out.println("Saved ");
+				return new ResponseEntity<>(new ApiResponse(true, "Successful"), HttpStatus.OK);
+			}
+
 		}
 
 		return new ResponseEntity<>(new ApiResponse(true, "Not Saved"), HttpStatus.BAD_REQUEST);

@@ -13,8 +13,8 @@ import csu.model.admin.Position;
 import csu.payload.admin.affiliation.AffiliationRequest;
 import csu.payload.admin.position.PositionPayload;
 import csu.payload.admin.position.PositionRequest;
+import csu.payload.general.ApiResponse;
 import csu.repository.admin.PositionRepository;
-import ucu.mis.payload.ApiResponse;
 
 @Service
 public class PositionService {

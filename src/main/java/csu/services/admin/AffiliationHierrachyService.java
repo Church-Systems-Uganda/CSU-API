@@ -15,8 +15,8 @@ import csu.payload.admin.affiliation.AffiliationPayload;
 import csu.payload.admin.affiliation.AffiliationRequest;
 import csu.payload.admin.affiliationHierrachy.AffiliationHierrachyPayload;
 import csu.payload.admin.affiliationHierrachy.AffiliationHierrachyRequest;
+import csu.payload.general.ApiResponse;
 import csu.repository.admin.AffiliationHierrachyRepository;
-import ucu.mis.payload.ApiResponse;
 
 @Service
 public class AffiliationHierrachyService {

@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import csu.model.admin.Affliation;
 import csu.payload.admin.affiliation.AffiliationPayload;
 import csu.payload.admin.affiliation.AffiliationRequest;
+import csu.payload.general.ApiResponse;
 import csu.repository.admin.AffiliationRepository;
-import ucu.mis.payload.ApiResponse;
 
 @Service
 public class AffiliationService {

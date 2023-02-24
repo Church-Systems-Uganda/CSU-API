@@ -9,41 +9,38 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-
 import csu.model.membership.Ministry;
-
+import csu.payload.general.ApiResponse;
 import csu.payload.membership.ministy.MinistryPayload;
 import csu.payload.membership.ministy.MinistryRequest;
 import csu.repository.membership.MinistryRepository;
-import ucu.mis.payload.ApiResponse;
 
 @Service
 public class MinistryService {
 
 	@Autowired
 	MinistryRepository ministryRepository;
-	
-	public List<MinistryPayload>  getAllMinistries(){
+
+	public List<MinistryPayload> getAllMinistries() {
 		List<MinistryPayload> ministries = new ArrayList<>();
-		
-		for(Ministry ministry :ministryRepository.findAll() ) {
-			
+
+		for (Ministry ministry : ministryRepository.findAll()) {
+
 			MinistryPayload ministryPayload = new MinistryPayload();
-			
+
 			ministryPayload.setId(ministry.getId());
 			ministryPayload.setName(ministry.getName());
 			ministryPayload.setChurch(ministry.getChurch());
-			
+
 			ministries.add(ministryPayload);
 		}
-		
+
 		return ministries;
-		
-		
+
 	}
-	
-	//create 
-	
+
+	// create
+
 	public ResponseEntity<?> createMinistry(MinistryRequest request) {
 
 		if (request.getName() != null) {
@@ -52,14 +49,11 @@ public class MinistryService {
 				return new ResponseEntity<>(new ApiResponse(false, "Ministry Exists"), HttpStatus.BAD_REQUEST);
 			}
 
-			Optional<Ministry> existingMinistry = request.getId() != null
-					? ministryRepository.findById(request.getId())
+			Optional<Ministry> existingMinistry = request.getId() != null ? ministryRepository.findById(request.getId())
 					: Optional.empty();
 
 			Ministry ministry = existingMinistry.isPresent() ? existingMinistry.get()
-					: new Ministry(request.getName(),request.getChurch());
-
-			
+					: new Ministry(request.getName(), request.getChurch());
 
 			Ministry result = ministryRepository.save(ministry);
 
@@ -72,6 +66,5 @@ public class MinistryService {
 		return new ResponseEntity<>(new ApiResponse(false, "Ministry Not Created"), HttpStatus.BAD_REQUEST);
 
 	}
-	
-	
+
 }

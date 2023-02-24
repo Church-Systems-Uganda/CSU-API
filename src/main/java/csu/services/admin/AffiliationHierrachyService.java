@@ -20,16 +20,14 @@ import csu.repository.admin.AffiliationHierrachyRepository;
 @Service
 public class AffiliationHierrachyService {
 
-	
 	@Autowired
-	AffiliationHierrachyRepository  affiliationHierrachyRepository;
-	
-	 
+	AffiliationHierrachyRepository affiliationHierrachyRepository;
+
 	public List<AffiliationHierrachyPayload> getAllAffiliationHierrachy() {
 
-		List<AffiliationHierrachyPayload> affiliations= new ArrayList<>();
+		List<AffiliationHierrachyPayload> affiliations = new ArrayList<>();
 
-		for (AffiliationHierrachy affiliationHierrachy :  affiliationHierrachyRepository.findAll()) {
+		for (AffiliationHierrachy affiliationHierrachy : affiliationHierrachyRepository.findAll()) {
 
 			AffiliationHierrachyPayload payload = new AffiliationHierrachyPayload();
 
@@ -37,7 +35,6 @@ public class AffiliationHierrachyService {
 			payload.setLevelHead(affiliationHierrachy.getLevelHead());
 			payload.setLevel(affiliationHierrachy.getLevel());
 			payload.setName(affiliationHierrachy.getName());
-			
 
 			affiliations.add(payload);
 
@@ -45,5 +42,26 @@ public class AffiliationHierrachyService {
 		return affiliations;
 	}
 
-	
+	// create
+
+	// delete
+
+	public ResponseEntity<?> deleteAffiliationHierrachy(AffiliationHierrachyRequest request) {
+
+		if (request.getId() != null) {
+
+			try {
+				affiliationHierrachyRepository.deleteById(request.getId());
+
+				return new ResponseEntity<>(new ApiResponse(true, "affiliationHierrachy Deleted"), HttpStatus.OK);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
+		}
+
+		return new ResponseEntity<>(new ApiResponse(false, "affiliationHierrachy Not Deleted"), HttpStatus.BAD_REQUEST);
+
+	}
+
 }

@@ -23,7 +23,7 @@ public class MinistryController {
 	@Autowired
 	MinistryService ministryService;
 
-	//get all ministries
+	//get all ministriy
 
 	@GetMapping("/getMinistries")
 	public List<MinistryPayload> getAllMinistries() {

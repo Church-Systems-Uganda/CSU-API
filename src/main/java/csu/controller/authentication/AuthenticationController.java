@@ -18,7 +18,10 @@ public class AuthenticationController {
 
 	@Autowired
 	AuthenticationService authenticationService;
-
+	
+	/*
+	 * Creating a new User
+	 */
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
 		return authenticationService.registerUser(signUpRequest);

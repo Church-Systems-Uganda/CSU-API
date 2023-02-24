@@ -35,7 +35,10 @@ public class AuthenticationService {
 	RoleRepository roleRepository;
 
 	public ResponseEntity<?> registerUser(SignUpRequest signUpRequest) {
-
+		
+		/*
+		 * Checking if user with the same email or username is already in the system
+		 */
 		if (userRepository.existsByUsername(signUpRequest.getUsername())
 				|| userRepository.existsByEmail(signUpRequest.getEmail())) {
 			return new ResponseEntity(new ApiResponse(false, "Username or Email is already taken!"),
@@ -57,13 +60,24 @@ public class AuthenticationService {
 					.orElseThrow(() -> new AppException("User Role not set."));
 
 			user.setRoles(Collections.singleton(userRole));
+			user.setPerson(savedPerson);
 
-			User result = userRepository.save(user);
+			User result = null;
+
+			try {
+				result = userRepository.save(user);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 
 			if (result != null) {
 
-				System.out.println("Saved ");
 				return new ResponseEntity<>(new ApiResponse(true, "Successful"), HttpStatus.OK);
+			} else {
+				personRepository.delete(savedPerson);
+
+				return new ResponseEntity<>(new ApiResponse(true, "Didnt save User therefore deleted person"),
+						HttpStatus.BAD_REQUEST);
 			}
 
 		}

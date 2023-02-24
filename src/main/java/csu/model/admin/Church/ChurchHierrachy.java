@@ -12,18 +12,19 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "churchHierrahcy") 
+@Table(name = "churchHierrahcy")
 public class ChurchHierrachy extends DateAudit {
-    @Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	private Long id;
+	
+	private String name;
 
-    
-    private long Tier;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
+	private long Tier;
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "position_id", nullable = true)
-    private Position levelHead;
+	private Position levelHead;
 
 	public ChurchHierrachy(long tier, Position levelHead) {
 		super();
@@ -58,7 +59,13 @@ public class ChurchHierrachy extends DateAudit {
 	public void setLevelHead(Position levelHead) {
 		this.levelHead = levelHead;
 	}
-    
-    
-    
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }

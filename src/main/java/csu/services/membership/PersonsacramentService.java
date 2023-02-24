@@ -64,7 +64,7 @@ public class PersonsacramentService {
 
 		}
 
-		return new ResponseEntity<>(new ApiResponse(false, "Affilication Not Created"), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(new ApiResponse(false, "Personsacrament Not Created"), HttpStatus.BAD_REQUEST);
 
 	}
 

@@ -5,19 +5,27 @@ import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import csu.exception.AppException;
 import csu.model.general.Person;
 import csu.model.general.Role;
 import csu.model.general.RoleName;
 import csu.model.general.User;
+import csu.payload.authentication.JwtAuthenticationResponse;
+import csu.payload.authentication.LoginRequest;
 import csu.payload.authentication.SignUpRequest;
 import csu.payload.general.ApiResponse;
 import csu.repository.general.PersonRepository;
 import csu.repository.general.RoleRepository;
 import csu.repository.general.UserRepository;
+import csu.security.JwtTokenProvider;
 
 @Service
 public class AuthenticationService {
@@ -34,8 +42,14 @@ public class AuthenticationService {
 	@Autowired
 	RoleRepository roleRepository;
 
+	@Autowired
+	AuthenticationManager authenticationManager;
+
+	@Autowired
+	JwtTokenProvider tokenProvider;
+
 	public ResponseEntity<?> registerUser(SignUpRequest signUpRequest) {
-		
+
 		/*
 		 * Checking if user with the same email or username is already in the system
 		 */
@@ -83,5 +97,20 @@ public class AuthenticationService {
 		}
 
 		return new ResponseEntity<>(new ApiResponse(true, "Not Saved"), HttpStatus.BAD_REQUEST);
+	}
+
+	/*
+	 * Authenticate User
+	 */
+	public ResponseEntity<?> authenticateUser(LoginRequest loginRequest) {
+
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginRequest.getUsernameOrEmail(), loginRequest.getPassword()));
+
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+
+		String jwt = tokenProvider.generateToken(authentication);
+		return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+
 	}
 }

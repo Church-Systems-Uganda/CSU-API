@@ -2,7 +2,7 @@ package csu.payload.membership.personsacrament;
 
 import java.sql.Date;
 
-import csu.model.admin.Church;
+import csu.model.admin.AffiliationChurch;
 import csu.model.general.Person;
 import csu.model.membership.Sacrament;
 import jakarta.persistence.FetchType;
@@ -24,7 +24,7 @@ public class PersonsacramentPayload {
     private Sacrament sacrement;
 
     @JoinColumn(name = "church_id", nullable = true)
-    private Church church;
+    private AffiliationChurch church;
 
     
 
@@ -80,11 +80,11 @@ public class PersonsacramentPayload {
         this.sacrement = sacrement;
     }
 
-    public Church getChurch() {
+    public AffiliationChurch getChurch() {
         return church;
     }
 
-    public void setChurch(Church church) {
+    public void setChurch(AffiliationChurch church) {
         this.church = church;
     }
 

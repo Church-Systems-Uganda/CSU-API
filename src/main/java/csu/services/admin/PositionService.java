@@ -14,6 +14,7 @@ import csu.payload.admin.affiliation.AffiliationRequest;
 import csu.payload.admin.position.PositionPayload;
 import csu.payload.admin.position.PositionRequest;
 import csu.repository.admin.PositionRepository;
+import ucu.mis.payload.ApiResponse;
 
 @Service
 public class PositionService {
@@ -60,12 +61,10 @@ public class PositionService {
 			if (result != null) {
 				return new ResponseEntity<>(new ApiResponse(true, "Position Created"), HttpStatus.OK);
 			}
-			return new ResponseEntity<>(new ApiResponse(false, "Error while processing request"),
-					HttpStatus.BAD_REQUEST);
+
 		}
-
+		return new ResponseEntity<>(new ApiResponse(false, "Error while processing request"), HttpStatus.BAD_REQUEST);
 	}
-
 
 	// delete Position
 

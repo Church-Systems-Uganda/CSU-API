@@ -1,6 +1,6 @@
 package csu.model.membership;
 
-import csu.model.admin.Church;
+import csu.model.admin.AffiliationChurch;
 import csu.model.audit.DateAudit;
 
 import jakarta.persistence.Entity;
@@ -27,9 +27,9 @@ public class Ministry extends DateAudit{
      
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "church_id", nullable = true)
-    private Church church;
+    private AffiliationChurch church;
 
-	public Ministry(String name, Church church) {
+	public Ministry(String name, AffiliationChurch church) {
 		super();
 		
 		this.name = name;
@@ -55,11 +55,11 @@ public class Ministry extends DateAudit{
 		this.name = name;
 	}
 
-    public void setChurch(Church church) {
+    public void setChurch(AffiliationChurch church) {
 		this.church = church;
 	}
 
-	public Church getChurch() {
+	public AffiliationChurch getChurch() {
 		return church;
 	}
     

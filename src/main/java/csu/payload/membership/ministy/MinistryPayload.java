@@ -1,6 +1,6 @@
 package csu.payload.membership.ministy;
 
-import csu.model.admin.Church;
+import csu.model.admin.AffiliationChurch;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +16,7 @@ public class MinistryPayload {
     
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "church_id", nullable = true)
-    private Church church;
+    private AffiliationChurch church;
 
 	public MinistryPayload() {
 		super();
@@ -38,11 +38,11 @@ public class MinistryPayload {
 		this.name = name;
 	}
 
-	public Church getChurch() {
+	public AffiliationChurch getChurch() {
 		return church;
 	}
 
-	public void setChurch(Church church) {
+	public void setChurch(AffiliationChurch church) {
 		this.church = church;
 	}
     

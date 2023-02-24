@@ -1,6 +1,6 @@
 package csu.payload.membership.ministy;
 
-import csu.model.admin.Church;
+import csu.model.admin.AffiliationChurch;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -13,10 +13,10 @@ public class MinistryRequest {
     
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "church_id", nullable = true)
-    private Church church;
+    private AffiliationChurch church;
 
 	
-	public MinistryRequest(Long id, String name, Church church) {
+	public MinistryRequest(Long id, String name, AffiliationChurch church) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -39,11 +39,11 @@ public class MinistryRequest {
 		this.name = name;
 	}
 
-	public Church getChurch() {
+	public AffiliationChurch getChurch() {
 		return church;
 	}
 
-	public void setChurch(Church church) {
+	public void setChurch(AffiliationChurch church) {
 		this.church = church;
 	}
     

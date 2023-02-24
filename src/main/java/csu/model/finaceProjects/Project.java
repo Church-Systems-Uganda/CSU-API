@@ -1,6 +1,6 @@
 package csu.model.finaceProjects;
 
-import csu.model.admin.Church;
+import csu.model.admin.AffiliationChurch;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,13 +20,13 @@ public class Project{
     
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "church_id", nullable = true)
-    private Church church;
+    private AffiliationChurch church;
 
 	public Project() {
 		super();
 	}
 
-	public Project(Church church) {
+	public Project(AffiliationChurch church) {
 		super();
 		this.church = church;
 	}
@@ -39,11 +39,11 @@ public class Project{
 		this.id = id;
 	}
 
-	public Church getChurch() {
+	public AffiliationChurch getChurch() {
 		return church;
 	}
 
-	public void setChurch(Church church) {
+	public void setChurch(AffiliationChurch church) {
 		this.church = church;
 	}
 

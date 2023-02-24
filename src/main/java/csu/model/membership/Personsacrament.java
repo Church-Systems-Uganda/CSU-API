@@ -2,7 +2,7 @@ package csu.model.membership;
 
 import java.sql.Date;
 
-import csu.model.admin.Church;
+import csu.model.admin.AffiliationChurch;
 import csu.model.audit.DateAudit;
 import csu.model.general.Person;
 import jakarta.persistence.Entity;
@@ -35,9 +35,9 @@ public class Personsacrament extends DateAudit{
     private Sacrament sacrement;
 
     @JoinColumn(name = "church_id", nullable = true)
-    private Church church;
+    private AffiliationChurch church;
 
-    public Personsacrament(String name, Date date, String tier, Person person, Sacrament sacrement, Church church) {
+    public Personsacrament(String name, Date date, String tier, Person person, Sacrament sacrement, AffiliationChurch church) {
         this.name = name;
         this.date = date;
         this.tier = tier;
@@ -94,11 +94,11 @@ public class Personsacrament extends DateAudit{
         this.sacrement = sacrement;
     }
 
-    public Church getChurch() {
+    public AffiliationChurch getChurch() {
         return church;
     }
 
-    public void setChurch(Church church) {
+    public void setChurch(AffiliationChurch church) {
         this.church = church;
     }
     

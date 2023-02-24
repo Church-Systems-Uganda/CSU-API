@@ -16,7 +16,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "churches", uniqueConstraints = { @UniqueConstraint(columnNames = { "name" }) })
-public class Church extends UserDateAudit {
+public class AffiliationChurch extends UserDateAudit {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,9 +32,9 @@ public class Church extends UserDateAudit {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "church_id", nullable = true)
-	private Church church;
+	private AffiliationChurch church;
 
-	public Church() {
+	public AffiliationChurch() {
 		super();
 	}
 
@@ -62,11 +62,11 @@ public class Church extends UserDateAudit {
 		this.affiliationHierrachy = affiliationHierrachy;
 	}
 
-	public Church getChurch() {
+	public AffiliationChurch getChurch() {
 		return church;
 	}
 
-	public void setChurch(Church church) {
+	public void setChurch(AffiliationChurch church) {
 		this.church = church;
 	}
 

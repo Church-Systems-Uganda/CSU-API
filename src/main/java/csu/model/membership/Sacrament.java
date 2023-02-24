@@ -1,7 +1,7 @@
 package csu.model.membership;
 
 import csu.model.admin.Affliation;
-import csu.model.admin.Church;
+import csu.model.admin.AffiliationChurch;
 import csu.model.audit.DateAudit;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

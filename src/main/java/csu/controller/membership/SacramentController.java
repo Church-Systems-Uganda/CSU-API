@@ -15,21 +15,20 @@ import csu.services.membership.SacramentService;
 @RequestMapping("/api/Ministry")
 
 public class SacramentController {
-	
+
 //create service
-	
-	@Autowired 
-	SacramentService sacramentService;
-	
-	//get all the Sacaraments
-	
+
+	@Autowired
+	private SacramentService sacramentService;
+
+	// get all the Sacaraments
+
 	@GetMapping("/getSacraments")
-	
+
 //	payload
-	
+
 	public List<SacramentPayload> getAllSacraments() {
 		return sacramentService.getAllSacraments();
 	}
-	
-	
+
 }

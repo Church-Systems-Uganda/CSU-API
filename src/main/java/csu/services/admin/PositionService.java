@@ -9,9 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import csu.model.admin.Affliation;
+
 import csu.model.admin.Position;
-import csu.payload.admin.affiliation.AffiliationRequest;
+
 import csu.payload.admin.position.PositionPayload;
 import csu.payload.admin.position.PositionRequest;
 import csu.payload.general.ApiResponse;

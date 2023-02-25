@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import csu.payload.admin.affiliation.AffiliationRequest;
+
 import csu.payload.membership.ministy.MinistryPayload;
 import csu.payload.membership.ministy.MinistryRequest;
 import csu.services.membership.MinistryService;
@@ -38,6 +38,7 @@ public class MinistryController {
 		return ministryService.createMinistry(request);
 
 	}
+	
 	//delete function
     @PostMapping("/delete-ministry")
     public ResponseEntity<?> deleteMinistry(@RequestBody MinistryRequest request) {

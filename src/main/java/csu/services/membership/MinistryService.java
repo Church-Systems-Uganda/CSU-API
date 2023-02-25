@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-
 import csu.model.membership.Ministry;
 
 import csu.payload.general.ApiResponse;
@@ -22,7 +21,9 @@ public class MinistryService {
 
 	@Autowired
 	MinistryRepository ministryRepository;
-
+	
+//getMinistries
+	
 	public List<MinistryPayload> getAllMinistries() {
 		List<MinistryPayload> ministries = new ArrayList<>();
 
@@ -40,6 +41,7 @@ public class MinistryService {
 		return ministries;
 
 	}
+	
 
 	// create
 
@@ -47,19 +49,17 @@ public class MinistryService {
 
 		if (request.getName() != null) {
 
-			Optional<Ministry> existingMinistry = request.getId() != null
-					? ministryRepository.findById(request.getId())
+			Optional<Ministry> existingMinistry = request.getId() != null ? ministryRepository.findById(request.getId())
 					: Optional.empty();
 
 			if (!existingMinistry.isPresent() && ministryRepository.existsByName(request.getName())) {
 				return new ResponseEntity<>(new ApiResponse(false, "Ministry Exists"), HttpStatus.BAD_REQUEST);
 			}
 
-			Ministry ministry = existingMinistry.isPresent() ? existingMinistry.get()
-					: new Ministry();
-			
+			Ministry ministry = existingMinistry.isPresent() ? existingMinistry.get() : new Ministry();
+
 			ministry.setName(request.getName());
-			
+
 			Ministry result = ministryRepository.save(ministry);
 
 			if (result != null) {
@@ -69,6 +69,26 @@ public class MinistryService {
 		}
 
 		return new ResponseEntity<>(new ApiResponse(false, "Ministry Not Created"), HttpStatus.BAD_REQUEST);
+
+	}
+	
+
+	// delete
+	public ResponseEntity<?> deleteMinistry(MinistryRequest request) {
+
+		if (request.getId() != null) {
+
+			try {
+				ministryRepository.deleteById(request.getId());
+
+				return new ResponseEntity<>(new ApiResponse(true, "Minstry Deleted"), HttpStatus.OK);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
+		}
+
+		return new ResponseEntity<>(new ApiResponse(false, "Error while processing request"), HttpStatus.BAD_REQUEST);
 
 	}
 

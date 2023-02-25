@@ -72,11 +72,6 @@ public class ChurchHierrachyService {
 	}
 
 	
-	
-	
-	
-	
-	
 	// delete
 
 	public ResponseEntity<?> deleteChurchHierrachy(ChurchHierrachyRequest request) {

@@ -39,12 +39,12 @@ public class MinistryController {
 
 	}
 	//delete function
-	@PostMapping("/delete-ministry")
-	public ResponseEntity<?> deleteMinistry(@RequestBody MinistryRequest request) {
-
-		return ministryService.deleteMinistry(request);
-
-	}
-	
+//	@PostMapping("/delete-ministry")
+//	public ResponseEntity<?> deleteMinistry(@RequestBody MinistryRequest request) {
+//
+//		return ministryService.deleteMinistry(request);
+//
+//	}
+//	
 		
 	}

@@ -16,13 +16,22 @@ public class ChurchHierrachyRequest {
 	@JoinColumn(name = "position_id", nullable = true)
     private Position levelHead;
 
-	public ChurchHierrachyRequest(long tier, Position levelHead) {
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public ChurchHierrachyRequest(long tier, Position levelHead, String name) {
 		super();
 		Tier = tier;
 		this.levelHead = levelHead;
+		this.name = name;
 	}
-
-	
 
 	public Long getId() {
 		return id;

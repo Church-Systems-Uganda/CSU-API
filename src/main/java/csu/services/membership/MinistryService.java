@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+
 import csu.model.membership.Ministry;
+
 import csu.payload.general.ApiResponse;
 import csu.payload.membership.ministy.MinistryPayload;
 import csu.payload.membership.ministy.MinistryRequest;
@@ -45,20 +47,23 @@ public class MinistryService {
 
 		if (request.getName() != null) {
 
-			if (ministryRepository.existsByName(request.getName())) {
+			Optional<Ministry> existingMinistry = request.getId() != null
+					? ministryRepository.findById(request.getId())
+					: Optional.empty();
+
+			if (!existingMinistry.isPresent() && ministryRepository.existsByName(request.getName())) {
 				return new ResponseEntity<>(new ApiResponse(false, "Ministry Exists"), HttpStatus.BAD_REQUEST);
 			}
 
-			Optional<Ministry> existingMinistry = request.getId() != null ? ministryRepository.findById(request.getId())
-					: Optional.empty();
-
 			Ministry ministry = existingMinistry.isPresent() ? existingMinistry.get()
-					: new Ministry(request.getName(), request.getChurch());
-
+					: new Ministry();
+			
+			ministry.setName(request.getName());
+			
 			Ministry result = ministryRepository.save(ministry);
 
 			if (result != null) {
-				return new ResponseEntity<>(new ApiResponse(true, "Ministry Created"), HttpStatus.OK);
+				return new ResponseEntity<>(new ApiResponse(true, "MinistryCreated"), HttpStatus.OK);
 			}
 
 		}

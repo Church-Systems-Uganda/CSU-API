@@ -2,6 +2,7 @@ package csu.services.admin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,13 +21,11 @@ import csu.repository.admin.AffiliationChurchRepository;
 @Service
 public class AffiliationChurchService {
 
-	
 	@Autowired
 	AffiliationChurchRepository affiliationChurchRepository;
-	
-	
-	//get all churches
-	
+
+	// get all churches
+
 	public List<AffiliationChurchPayload> getAllChurches() {
 
 		List<AffiliationChurchPayload> church = new ArrayList<>();
@@ -38,15 +37,47 @@ public class AffiliationChurchService {
 			payload.setId(affiliationChurch.getId());
 			payload.setAffiliationHierrachy(affiliationChurch.getAffiliationHierrachy());
 			payload.setName(affiliationChurch.getName());
-			
+
 			church.add(payload);
 
 		}
 		return church;
 	}
 
-	
-	//delete churches
+//	// church creation
+//	public ResponseEntity<?> createChurch(AffiliationHierrachyRequest request) {
+//
+//		if (request.getName() != null) {
+//
+//			Optional<AffiliationChurch> existingAffiliationChurch = request.getId() != null
+//					? affiliationChurchRepository.findById(request.getId())
+//					: Optional.empty();
+//
+//			if (!existingAffiliationChurch.isPresent() && affiliationChurchRepository.existsByName(request.getName())) {
+//				return new ResponseEntity<>(new ApiResponse(false, "church Exists"), HttpStatus.BAD_REQUEST);
+//			}
+//
+//			AffiliationChurch affiliationChurch = existingAffiliationChurch.isPresent() ? existingAffiliationChurch.get()
+//					: new AffiliationChurch();
+//			
+//			affiliationChurch.setName(request.getName());
+//
+//					
+//			AffiliationHierrachy result = affiliationHierrachyRepository.save(affiliationHierrachy);
+//
+//			if (result != null) {
+//				return new ResponseEntity<>(new ApiResponse(true, "affiliationHierrachy Created"), HttpStatus.OK);
+//			}
+//
+//		}
+//
+//		return new ResponseEntity<>(new ApiResponse(false, "affiliationHierrachy Not Created"), HttpStatus.BAD_REQUEST);
+//
+//	}
+//
+//	
+
+	// delete churches
 	public ResponseEntity<?> deleteAffiliationChurch(AffiliationChurchRequest request) {
 
 		if (request.getId() != null) {

@@ -36,7 +36,7 @@ public class AffiliationHierrachy extends UserDateAudit {
 	}
 
 	public AffiliationHierrachy(@NotNull Affliation affliation, String name, Integer level, Position levelHead) {
-		super();
+
 		this.affliation = affliation;
 		this.name = name;
 		this.level = level;

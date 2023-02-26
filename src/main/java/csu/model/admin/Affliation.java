@@ -37,7 +37,7 @@ public class Affliation extends UserDateAudit {
 	}
 
 	public Affliation(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName) {
-		super();
+	
 		this.name = name;
 		this.shortName = shortName;
 	}

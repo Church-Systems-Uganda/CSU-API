@@ -91,5 +91,7 @@ public class MinistryService {
 		return new ResponseEntity<>(new ApiResponse(false, "Error while processing request"), HttpStatus.BAD_REQUEST);
 
 	}
+	
+	//crude operations
 
 }

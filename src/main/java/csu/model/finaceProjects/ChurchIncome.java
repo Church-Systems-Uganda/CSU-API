@@ -38,36 +38,36 @@ public class ChurchIncome {
 		this.church = church;
 		this.date = date;
 	}
-//	public Long getId() {
-//		return id;
-//	}
-//	public void setId(Long id) {
-//		this.id = id;
-//	}
-//	public String getIncometype() {
-//		return incometype;
-//	}
-//	public void setIncometype(String incometype) {
-//		this.incometype = incometype;
-//	}
-//	public String getActivityname() {
-//		return activityname;
-//	}
-//	public void setActivityname(String activityname) {
-//		this.activityname = activityname;
-//	}
-//	public AffiliationChurch getChurch() {
-//		return church;
-//	}
-//	public void setChurch(AffiliationChurch church) {
-//		this.church = church;
-//	}
-//	public LocalDate getDate() {
-//		return date;
-//	}
-//	public void setDate(LocalDate date) {
-//		this.date = date;
-//	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getIncometype() {
+		return incometype;
+	}
+	public void setIncometype(String incometype) {
+		this.incometype = incometype;
+	}
+	public String getActivityname() {
+		return activityname;
+	}
+	public void setActivityname(String activityname) {
+		this.activityname = activityname;
+	}
+	public AffiliationChurch getChurch() {
+		return church;
+	}
+	public void setChurch(AffiliationChurch church) {
+		this.church = church;
+	}
+	public LocalDate getDate() {
+		return date;
+	}
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 
 	
 }

@@ -25,7 +25,7 @@ public class PersonsacramentController {
 	PersonsacramentService personsacramentService;
 	
 	
-	//create a function to get all personsacraments
+	//create a function to get all person sacraments
 	
 	@GetMapping("/getPersonscraments")
 	public List<PersonsacramentPayload> getAllPersonsacraments() {
@@ -33,7 +33,7 @@ public class PersonsacramentController {
 	}
 	
 	
-	//create a fucntion to create personsacraments
+	//create a function to create person sacraments
 
 	@PostMapping("/create-Personscraments")
 	public ResponseEntity<?> createPersonsacrament(@Valid @RequestBody PersonsacramentRequest request) {

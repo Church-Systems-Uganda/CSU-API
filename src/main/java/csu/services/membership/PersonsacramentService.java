@@ -40,32 +40,33 @@ public class PersonsacramentService {
 	}
 
 	// create information part for the payload
-	public ResponseEntity<?> createPersonsacrament(PersonsacramentRequest request) {
+	
+	// create
+
+	public ResponseEntity<?> createMinistry(PersonsacramentRequest request) {
 
 		if (request.getName() != null) {
 
-			if (personsacramentRepository.existsByName(request.getName())) {
-				return new ResponseEntity<>(new ApiResponse(false, "Personsacrament Exists"), HttpStatus.BAD_REQUEST);
-			}
-
-			Optional<Personsacrament> existingPersonsacrament = request.getId() != null
-					? personsacramentRepository.findById(request.getId())
+			Optional<Personsacrament> existingPersonsacrament = request.getId() != null ? personsacramentRepository.findById(request.getId())
 					: Optional.empty();
 
-			Personsacrament personsacrament = existingPersonsacrament.isPresent() ? existingPersonsacrament.get()
-					: new Personsacrament(request.getName(), request.getDate(), request.getTier(), request.getPerson(),
-							request.getSacrement(), request.getChurch());
+			if (!existingPersonsacrament.isPresent() && personsacramentRepository.existsByName(request.getName())) {
+				return new ResponseEntity<>(new ApiResponse(false, "Sacrament Exists"), HttpStatus.BAD_REQUEST);
+			}
+
+			Personsacrament personsacrament = existingPersonsacrament.isPresent() ? existingPersonsacrament.get() : new Personsacrament();
+
+			personsacrament.setName(request.getName());
 
 			Personsacrament result = personsacramentRepository.save(personsacrament);
 
 			if (result != null) {
-				return new ResponseEntity<>(new ApiResponse(true, "Personsacrament Created"), HttpStatus.OK);
+				return new ResponseEntity<>(new ApiResponse(true, "Sacrament Created"), HttpStatus.OK);
 			}
 
 		}
 
-		return new ResponseEntity<>(new ApiResponse(false, "Personsacrament Not Created"), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(new ApiResponse(false, "PersonSacrament  Not Created"), HttpStatus.BAD_REQUEST);
 
 	}
-
 }

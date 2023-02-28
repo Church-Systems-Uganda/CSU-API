@@ -54,9 +54,15 @@ public class PersonsacramentService {
 				return new ResponseEntity<>(new ApiResponse(false, "Sacrament Exists"), HttpStatus.BAD_REQUEST);
 			}
 
-			Personsacrament personsacrament = existingPersonsacrament.isPresent() ? existingPersonsacrament.get() : new Personsacrament();
+			Personsacrament personsacrament = existingPersonsacrament.isPresent() ? existingPersonsacrament.get() : new Personsacrament(null, null, null, null, null, null);
 
 			personsacrament.setName(request.getName());
+			personsacrament.setChurch(request.getChurch());
+			personsacrament.setDate(request.getDate());
+			personsacrament.setSacrement(request.getSacrement());
+			personsacrament.setPerson(request.getPerson());
+			personsacrament.setTier(request.getTier());
+			
 
 			Personsacrament result = personsacramentRepository.save(personsacrament);
 
@@ -67,6 +73,25 @@ public class PersonsacramentService {
 		}
 
 		return new ResponseEntity<>(new ApiResponse(false, "PersonSacrament  Not Created"), HttpStatus.BAD_REQUEST);
+
+	}
+
+	// delete
+	public ResponseEntity<?> deletePersonsacrament(PersonsacramentRequest request) {
+
+		if (request.getId() != null) {
+
+			try {
+				personsacramentRepository.deleteById(request.getId());
+
+				return new ResponseEntity<>(new ApiResponse(true, "Sacrament Deleted"), HttpStatus.OK);
+			} catch (Exception e) {
+				
+			}
+
+		}
+
+		return new ResponseEntity<>(new ApiResponse(false, "Error while processing request"), HttpStatus.BAD_REQUEST);
 
 	}
 }

@@ -30,5 +30,11 @@ public class SacramentController {
 	public List<SacramentPayload> getAllSacraments() {
 		return sacramentService.getAllSacraments();
 	}
+	
+	
+	
+	
+	
+	
 
 }

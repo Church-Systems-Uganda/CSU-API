@@ -18,6 +18,7 @@ import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/api/Ministry")
+
 public class MinistryController {
 
 	@Autowired

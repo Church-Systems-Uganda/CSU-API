@@ -38,9 +38,16 @@ public class PersonsacramentController {
 	@PostMapping("/create-Personscraments")
 	public ResponseEntity<?> createPersonsacrament(@Valid @RequestBody PersonsacramentRequest request) {
 
-		return personsacramentService.createPersonsacrament(request);
+		return personsacramentService.createMinistry(request);
 
 	}
 
+	//delete function
+	
+    @PostMapping("/delete-ministry")
+    public ResponseEntity<?> deletePersonsacrament(@RequestBody MinistryRequest request) {
 
+	return personsacramentService.deletePersonsacrament(null);
+
+	}
 }

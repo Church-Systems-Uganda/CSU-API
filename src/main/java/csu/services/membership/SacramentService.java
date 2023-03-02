@@ -71,7 +71,25 @@ public class SacramentService {
 		return new ResponseEntity<>(new ApiResponse(false, "Sacrament Not Created"), HttpStatus.BAD_REQUEST);
 
 	}
-	
+
+	// delete
+	public ResponseEntity<?> deleteSacrament(SacramentRequest request) {
+
+		if (request.getId() != null) {
+
+			try {
+				sacramentRepository.deleteById(request.getId());
+
+				return new ResponseEntity<>(new ApiResponse(true, "Sacrament Deleted"), HttpStatus.OK);
+			} catch (Exception e) {
+				
+			}
+
+		}
+
+		return new ResponseEntity<>(new ApiResponse(false, "Error while processing request"), HttpStatus.BAD_REQUEST);
+
+	}
 
 	
 

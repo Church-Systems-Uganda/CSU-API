@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import csu.payload.membership.ministy.MinistryPayload;
+
 import csu.payload.membership.sacrament.SacramentPayload;
 import csu.payload.membership.sacrament.SacramentRequest;
 import csu.services.membership.SacramentService;
@@ -49,6 +49,15 @@ public class SacramentController {
 	public ResponseEntity<?> createSacrament(@Valid @RequestBody SacramentRequest request) {
 
 		return sacramentService.createSacrament(request);
+
+	}
+
+	//delete function
+	
+    @PostMapping("/delete-ministry")
+    public ResponseEntity<?> deleteSacrament(@RequestBody SacramentRequest request) {
+
+	return sacramentService.deleteSacrament(request);
 
 	}
 	

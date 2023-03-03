@@ -17,7 +17,7 @@ import csu.services.membership.MinistryService;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/api/Ministry")
+@RequestMapping("/api/Membership")
 
 public class MinistryController {
 

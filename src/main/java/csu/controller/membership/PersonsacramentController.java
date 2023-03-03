@@ -17,7 +17,7 @@ import jakarta.validation.Valid;
 
 @Controller
 
-@RequestMapping("/api/Ministry")
+@RequestMapping("/api/Membership")
 
 public class PersonsacramentController {
 	
@@ -44,8 +44,8 @@ public class PersonsacramentController {
 
 	//delete function
 	
-    @PostMapping("/delete-ministry")
-    public ResponseEntity<?> deletePersonsacrament(@RequestBody MinistryRequest request) {
+    @PostMapping("/delete-personscraments")
+    public ResponseEntity<?> deletePersonsacrament(@RequestBody PersonsacramentRequest request) {
 
 	return personsacramentService.deletePersonsacrament(null);
 

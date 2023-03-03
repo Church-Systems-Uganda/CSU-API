@@ -61,8 +61,7 @@ public class PositionService {
 			Position position = existingPosition.isPresent() ? existingPosition.get()
 					: new Position();
 			
-			
-			
+//			position.setId(request.getId());
 			position.setName(request.getName());
 			position.setShortName(request.getShortName() != null ? request.getShortName() : null);
 //			position.setCreatedAt();

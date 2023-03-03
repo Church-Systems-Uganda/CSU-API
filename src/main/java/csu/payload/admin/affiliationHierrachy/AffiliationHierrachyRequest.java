@@ -26,9 +26,10 @@ public class AffiliationHierrachyRequest {
 	@JoinColumn(name = "position_id", nullable = true)
 	private Position levelHead;
 
-
-	public AffiliationHierrachyRequest(@NotNull Affliation affliation, String name, Integer level, Position levelHead) {
+	public AffiliationHierrachyRequest(Long id, @NotNull Affliation affliation, String name, Integer level,
+			Position levelHead) {
 		super();
+		this.id = id;
 		this.affliation = affliation;
 		this.name = name;
 		this.level = level;

@@ -36,11 +36,16 @@ public class Affliation extends UserDateAudit {
 		super();
 	}
 
-	public Affliation(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName) {
-	
+	public Affliation(Long id, @NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
+			Set<AffiliationHierrachy> affiliationHierrachies) {
+		
+		this.id = id;
 		this.name = name;
 		this.shortName = shortName;
+		this.affiliationHierrachies = affiliationHierrachies;
 	}
+
+
 
 	public Affliation(@NotBlank @Size(max = 100) String name) {
 		this.name = name;

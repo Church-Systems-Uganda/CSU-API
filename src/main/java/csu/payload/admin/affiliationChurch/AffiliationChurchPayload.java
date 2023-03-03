@@ -41,6 +41,7 @@ public class AffiliationChurchPayload {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 
 	public AffiliationHierrachy getAffiliationHierrachy() {
 		return affiliationHierrachy;

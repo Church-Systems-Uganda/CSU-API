@@ -48,6 +48,7 @@ public class AffiliationHierrachyService {
 	public ResponseEntity<?> createAffiliationHierrachy(AffiliationHierrachyRequest request) {
 
 		if (request.getName() != null) {
+			System.out.println(" not empty");
 
 			Optional<AffiliationHierrachy> existingffiliationHierrachy = request.getId() != null
 					? affiliationHierrachyRepository.findById(request.getId())
@@ -58,12 +59,16 @@ public class AffiliationHierrachyService {
 			}
 
 			AffiliationHierrachy affiliationHierrachy = existingffiliationHierrachy.isPresent() ? existingffiliationHierrachy.get()
-					: new AffiliationHierrachy(request.getAffliation(), request.getName(), request.getLevel(),request.getLevelHead());
-			
+					: new AffiliationHierrachy( );
+			affiliationHierrachy.setAffliation(request.getAffliation());
+			affiliationHierrachy.setName(request.getName());
+			affiliationHierrachy.setLevel(request.getLevel());
+			affiliationHierrachy.setLevelHead(request.getLevelHead());
 			
 			AffiliationHierrachy result = affiliationHierrachyRepository.save(affiliationHierrachy);
 
 			if (result != null) {
+				System.out.println(" saved");
 				return new ResponseEntity<>(new ApiResponse(true, "affiliationHierrachy Created"), HttpStatus.OK);
 			}
 

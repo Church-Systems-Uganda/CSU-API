@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import csu.payload.admin.affiliation.AffiliationRequest;
 import csu.payload.admin.position.PositionPayload;
@@ -16,7 +17,7 @@ import csu.payload.admin.position.PositionRequest;
 import csu.services.admin.PositionService;
 import jakarta.validation.Valid;
 
-@Controller
+@RestController
 @RequestMapping("/api/admin")
 
 public class PositionController {

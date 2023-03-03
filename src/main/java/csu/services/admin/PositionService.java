@@ -1,5 +1,6 @@
 package csu.services.admin;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +31,9 @@ public class PositionService {
 		List<PositionPayload> positions = new ArrayList<>();
 
 		for (Position position : positionRepository.findAll()) {
+			
 			PositionPayload payload = new PositionPayload();
+			
 			payload.setId(position.getId());
 			payload.setName(position.getName());
 			payload.setShortName(position.getShortName());
@@ -40,6 +43,7 @@ public class PositionService {
 
 		return positions;
 	}
+	
 
 	public ResponseEntity<?> createPosition(PositionRequest request) {
 
@@ -50,15 +54,19 @@ public class PositionService {
 					: Optional.empty();
 
 			if (!existingPosition.isPresent() && positionRepository.existsByName(request.getName())) {
+				System.out.println("Position Exists");
 				return new ResponseEntity<>(new ApiResponse(false, "Position Exists"), HttpStatus.BAD_REQUEST);
 			}
 
 			Position position = existingPosition.isPresent() ? existingPosition.get()
 					: new Position();
 			
+			
+			
 			position.setName(request.getName());
 			position.setShortName(request.getShortName() != null ? request.getShortName() : null);
-
+//			position.setCreatedAt();
+			
 			Position result = positionRepository.save(position);
 
 			if (result != null) {

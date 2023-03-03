@@ -60,6 +60,7 @@ public class AffiliationHierrachyService {
 
 			AffiliationHierrachy affiliationHierrachy = existingffiliationHierrachy.isPresent() ? existingffiliationHierrachy.get()
 					: new AffiliationHierrachy( );
+			
 			affiliationHierrachy.setAffliation(request.getAffliation());
 			affiliationHierrachy.setName(request.getName());
 			affiliationHierrachy.setLevel(request.getLevel());

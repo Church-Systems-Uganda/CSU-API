@@ -1,6 +1,6 @@
 package csu.repository.financeProject;
 
 public
- interface churchRepository {
+ interface ChurchExpenditureRepository {
     
 }

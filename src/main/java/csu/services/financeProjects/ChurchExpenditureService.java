@@ -1,5 +1,5 @@
-package csu.services.financeServices;
+package csu.services.financeProjects;
 
-public class chruchServices {
+public class ChurchExpenditureService {
     
 }

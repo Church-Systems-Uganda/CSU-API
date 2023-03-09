@@ -9,11 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import csu.model.admin.Position;
+
 import csu.model.admin.Church.ChurchHierrachy;
 import csu.payload.admin.churchHierrachy.ChurcHierrachyPayload;
 import csu.payload.admin.churchHierrachy.ChurchHierrachyRequest;
-import csu.payload.admin.position.PositionRequest;
+
 import csu.payload.general.ApiResponse;
 import csu.repository.admin.Church.ChurchHierrachyRepository;
 

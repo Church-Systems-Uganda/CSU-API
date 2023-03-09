@@ -59,7 +59,7 @@ public class AuthenticationService {
 					HttpStatus.BAD_REQUEST);
 		}
 
-		Person person = new Person(signUpRequest.getFirstname(), signUpRequest.getSurname());
+		Person person = new Person(signUpRequest.getFirstname(), signUpRequest.getSurname(), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
 		Person savedPerson = personRepository.save(person);
 

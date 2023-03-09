@@ -10,8 +10,6 @@ import jakarta.validation.constraints.NotNull;
 
 public class AffiliationHierrachyRequest {
 
-	
-	
 	private Long id;
 
 	@NotNull
@@ -28,7 +26,7 @@ public class AffiliationHierrachyRequest {
 
 	public AffiliationHierrachyRequest(Long id, @NotNull Affliation affliation, String name, Integer level,
 			Position levelHead) {
-		super();
+		
 		this.id = id;
 		this.affliation = affliation;
 		this.name = name;

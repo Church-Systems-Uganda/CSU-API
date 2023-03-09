@@ -37,7 +37,7 @@ public class PositionService {
 			payload.setId(position.getId());
 			payload.setName(position.getName());
 			payload.setShortName(position.getShortName());
-
+		
 			positions.add(payload);
 		}
 

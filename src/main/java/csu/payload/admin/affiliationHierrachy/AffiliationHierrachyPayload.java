@@ -1,5 +1,8 @@
 package csu.payload.admin.affiliationHierrachy;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import csu.model.admin.Affliation;
 import csu.model.admin.Position;
 import jakarta.persistence.FetchType;
@@ -7,27 +10,29 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 
 public class AffiliationHierrachyPayload {
 
+	
 	private Long id;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Affliation affliation;
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "affiliation_id")
+	@JoinColumn(name="affiliationHierrachy")
+	private Set<Affliation> affliation = new HashSet();
 
 	private String name;
 
 	private Integer level;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "position_id", nullable = true)
 	private Position levelHead;
 
 	public AffiliationHierrachyPayload() {
-		super();
 	}
 
 	public Long getId() {
@@ -38,11 +43,11 @@ public class AffiliationHierrachyPayload {
 		this.id = id;
 	}
 
-	public Affliation getAffliation() {
+	public Set<Affliation> getAffliation() {
 		return affliation;
 	}
 
-	public void setAffliation(Affliation affliation) {
+	public void setAffliation(Set<Affliation> affliation) {
 		this.affliation = affliation;
 	}
 

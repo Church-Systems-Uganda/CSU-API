@@ -28,6 +28,7 @@ public class Position extends DateAudit {
 	public Position() {
 		super();
 	}
+	
 
 	public Position(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName) {
 		this.name = name;

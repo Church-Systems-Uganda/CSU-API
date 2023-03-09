@@ -1,10 +1,14 @@
 package csu.payload.admin.affiliationHierrachy;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import csu.model.admin.Affliation;
 import csu.model.admin.Position;
 import jakarta.persistence.FetchType;
 
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,26 +17,26 @@ public class AffiliationHierrachyRequest {
 	private Long id;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Affliation affliation;
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "affiliation_id")
+	@JoinColumn(name="affiliationHierrachy")
+	private Set<Affliation> affliation = new HashSet();
 
 	private String name;
 
 	private Integer level;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "position_id", nullable = true)
-	private Position levelHead;
 
-	public AffiliationHierrachyRequest(Long id, @NotNull Affliation affliation, String name, Integer level,
-			Position levelHead) {
-		
-		this.id = id;
+	
+	public AffiliationHierrachyRequest(Set<Affliation> affliation, String name, Integer level, Position levelHead) {
 		this.affliation = affliation;
 		this.name = name;
 		this.level = level;
 		this.levelHead = levelHead;
 	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "position_id", nullable = true)
+	private Position levelHead;
 
 	public Long getId() {
 		return id;
@@ -42,11 +46,11 @@ public class AffiliationHierrachyRequest {
 		this.id = id;
 	}
 
-	public Affliation getAffliation() {
+	public Set<Affliation> getAffliation() {
 		return affliation;
 	}
 
-	public void setAffliation(Affliation affliation) {
+	public void setAffliation(Set<Affliation> affliation) {
 		this.affliation = affliation;
 	}
 
@@ -73,5 +77,7 @@ public class AffiliationHierrachyRequest {
 	public void setLevelHead(Position levelHead) {
 		this.levelHead = levelHead;
 	}
+
+	
 
 }

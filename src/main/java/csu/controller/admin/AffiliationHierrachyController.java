@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import csu.payload.admin.affiliationHierrachy.AffiliationHierrachyPayload;
 import csu.payload.admin.affiliationHierrachy.AffiliationHierrachyRequest;
-import csu.payload.admin.position.PositionRequest;
+
 import csu.services.admin.AffiliationHierrachyService;
 import jakarta.validation.Valid;
 
@@ -31,10 +32,14 @@ public class AffiliationHierrachyController {
 	}
 
 	
-	@PostMapping("/create-AffiliationHierrachy")
-	public ResponseEntity<?> createPosition(@Valid @RequestBody AffiliationHierrachyRequest request){
+	@PostMapping("/create-AffiliationHierrachy/{affiliation_id}/{position_id}")
+	public ResponseEntity<?> createAffiliationHierachy(
+			@PathVariable long affiliation_id,
+			@PathVariable long position_id,
+	
+	@Valid @RequestBody AffiliationHierrachyRequest request){
 		
-		return affiliationHierrachyService.createAffiliationHierrachy(request);
+		return affiliationHierrachyService.createAffiliationHierrachy(affiliation_id,position_id,request);
 	}
 	
 	@PostMapping("/delete-AffiliationHierrachy")

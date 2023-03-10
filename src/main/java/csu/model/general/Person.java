@@ -68,8 +68,13 @@ public class Person extends DateAudit {
     private String emergencyContactName;
     
 	private String emergencyContactPhoneNumber;
+	
 
-    public Person(@NotBlank @Size(max = 100) String firstname, @NotBlank @Size(max = 100) String surname,
+    public Person() {
+		super();
+	}
+
+	public Person(@NotBlank @Size(max = 100) String firstname, @NotBlank @Size(max = 100) String surname,
             String phoneNumber, String address, String city, String state, String country, String postalCode,
             String gender, String dateOfBirth, String maritalStatus, String spouseName, Integer numberOfChildren,
             String occupation, String employer, String jobTitle, Double height, Double weight, String bloodType,

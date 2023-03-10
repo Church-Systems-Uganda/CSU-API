@@ -31,17 +31,7 @@ public class AffiliationHierrachyController {
 		return affiliationHierrachyService.getAllAffiliationHierrachy();
 	}
 
-	
-//	@PostMapping("/create-AffiliationHierrachy/{affiliation_id}/{position_id}")
-//	public ResponseEntity<?> createAffiliationHierachy(
-//			@PathVariable long affiliation_id,
-//			@PathVariable long position_id,
-//	
-//	@Valid @RequestBody AffiliationHierrachyRequest request){
-//		
-//		return affiliationHierrachyService.createAffiliationHierrachy(affiliation_id,position_id,request);
-//	}
-//	
+
 	@PostMapping("/delete-AffiliationHierrachy")
 	public ResponseEntity<?> deletePosition(@RequestBody AffiliationHierrachyRequest request) {
 

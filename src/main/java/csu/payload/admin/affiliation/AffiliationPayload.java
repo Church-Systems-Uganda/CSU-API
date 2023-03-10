@@ -1,5 +1,12 @@
 package csu.payload.admin.affiliation;
 
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import csu.model.admin.AffiliationHierrachy;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Size;
 
 public class AffiliationPayload {
@@ -15,6 +22,12 @@ public class AffiliationPayload {
 	public AffiliationPayload() {
 		super();
 	}
+
+	
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "affliation", fetch = FetchType.LAZY)
+	private Set<AffiliationHierrachy> affiliationHierrachies;
 
 	public Long getId() {
 		return id;

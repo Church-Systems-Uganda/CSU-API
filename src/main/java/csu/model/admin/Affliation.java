@@ -32,8 +32,11 @@ public class Affliation extends UserDateAudit {
 	@Size(max = 50)
 	private String shortName;
 
+	
+	//mean one affiliation can have many hierrachies
+	
 	@JsonIgnore
-	@ManyToMany(mappedBy = "affliation", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "affliation", fetch = FetchType.LAZY)
 	private Set<AffiliationHierrachy> affiliationHierrachies;
 
 	public Affliation() {
@@ -43,17 +46,12 @@ public class Affliation extends UserDateAudit {
 	public Affliation( @NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
 			Set<AffiliationHierrachy> affiliationHierrachies) {
 		
-		
 		this.name = name;
 		this.shortName = shortName;
 		this.affiliationHierrachies = affiliationHierrachies;
 	}
 
-	public Affliation(@NotBlank @Size(max = 100) String name) {
-		this.name = name;
-	}
-
-	public Set<Affliation> getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -85,4 +83,5 @@ public class Affliation extends UserDateAudit {
 		this.affiliationHierrachies = affiliationHierrachies;
 	}
 
+	
 }

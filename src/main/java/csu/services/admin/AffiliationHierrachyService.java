@@ -49,8 +49,6 @@ public class AffiliationHierrachyService {
 	public ResponseEntity<?> createAffiliationHierrachy(AffiliationHierrachyRequest request) {
 
 		if (request.getName() != null) {
-			System.out.println(" not empty");
-
 			Optional<AffiliationHierrachy> existingffiliationHierrachy = request.getId() != null
 					? affiliationHierrachyRepository.findById(request.getId())
 					: Optional.empty();

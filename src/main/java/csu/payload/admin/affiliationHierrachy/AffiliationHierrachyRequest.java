@@ -9,6 +9,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
 
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
@@ -18,26 +19,29 @@ public class AffiliationHierrachyRequest {
 	private Long id;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="affiliationHierrachy")
-	private Set<Affliation> affliation = new HashSet<Affliation>();
+	@ManyToOne(fetch = FetchType.LAZY,cascade = { CascadeType.ALL })
+    @JoinColumn(name = "affiliation_id", nullable = false)
+	private Affliation affliation;
 
 	private String name;
 
 	private Integer level;
 
+	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	@JoinTable(name = "hierarchy_position", joinColumns = { @JoinColumn(name = "hierarchy_id") }, inverseJoinColumns = {
+	@JoinColumn(name = "position_id") })
+	private Set<Position> levelHead = new HashSet<>();
 
 	
-	public AffiliationHierrachyRequest(Set<Affliation> affliation, String name, Integer level, Position levelHead) {
+	
+	public AffiliationHierrachyRequest(@NotNull Affliation affliation, String name, Integer level,
+			Set<Position> levelHead) {
+		super();
 		this.affliation = affliation;
 		this.name = name;
 		this.level = level;
 		this.levelHead = levelHead;
 	}
-
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "position_id", nullable = true)
-	private Position levelHead;
 
 	public Long getId() {
 		return id;
@@ -47,11 +51,11 @@ public class AffiliationHierrachyRequest {
 		this.id = id;
 	}
 
-	public Set<Affliation> getAffliation() {
+	public Affliation getAffliation() {
 		return affliation;
 	}
 
-	public void setAffliation(Set<Affliation> affliation) {
+	public void setAffliation(Affliation affliation) {
 		this.affliation = affliation;
 	}
 
@@ -71,14 +75,14 @@ public class AffiliationHierrachyRequest {
 		this.level = level;
 	}
 
-	public Position getLevelHead() {
+	public Set<Position> getLevelHead() {
 		return levelHead;
 	}
 
-	public void setLevelHead(Position levelHead) {
+	public void setLevelHead(Set<Position> levelHead) {
 		this.levelHead = levelHead;
 	}
-
+	
 	
 
 }

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import csu.model.admin.Affliation;
 import csu.model.admin.Position;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,9 +21,9 @@ public class AffiliationHierrachyPayload {
 	private Long id;
 
 	@NotNull
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "affiliation_id")
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="affiliationHierrachy")
-	private Set<Affliation> affliation = new HashSet();
+	private Set<Affliation> affliation = new HashSet<Affliation>();
 
 	private String name;
 

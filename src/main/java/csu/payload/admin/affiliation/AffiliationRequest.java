@@ -5,6 +5,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import csu.model.admin.AffiliationHierrachy;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
@@ -24,7 +25,7 @@ public class AffiliationRequest {
 	
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "affliation", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "affliation", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<AffiliationHierrachy> affiliationHierrachies;
 
 

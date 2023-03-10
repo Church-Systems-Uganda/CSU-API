@@ -1,6 +1,12 @@
 package csu.payload.admin.position;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
+import csu.model.admin.AffiliationHierrachy;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -15,8 +21,9 @@ public class PositionPayload {
 
 	@Size(max = 50)
 	private String shortName;
-	
-	
+
+	 @ManyToMany(mappedBy = "positions",fetch = FetchType.LAZY)
+	 private Set<AffiliationHierrachy> hierarchies = new HashSet<AffiliationHierrachy>();
 
 	public PositionPayload() {
 		super();
@@ -45,7 +52,16 @@ public class PositionPayload {
 	public void setShortName(String shortName) {
 		this.shortName = shortName;
 	}
+
+	public Set<AffiliationHierrachy> getHierarchies() {
+		return hierarchies;
+	}
+
+	public void setHierarchies(Set<AffiliationHierrachy> hierarchies) {
+		this.hierarchies = hierarchies;
+	}
 	
+
 	
 	
 }

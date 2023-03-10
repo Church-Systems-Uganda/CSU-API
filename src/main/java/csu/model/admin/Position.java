@@ -40,7 +40,7 @@ public class Position extends DateAudit {
 
 	public Position(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
 			Set<AffiliationHierrachy> hierarchies) {
-		super();
+	
 		this.name = name;
 		this.shortName = shortName;
 		this.hierarchies = hierarchies;

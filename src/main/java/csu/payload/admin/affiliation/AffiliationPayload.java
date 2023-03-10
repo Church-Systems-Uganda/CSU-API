@@ -8,26 +8,29 @@ import csu.model.admin.AffiliationHierrachy;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public class AffiliationPayload {
 
 	private Long id;
-	
+
+	@NotBlank
 	@Size(max = 100)
 	private String name;
 
 	@Size(max = 50)
 	private String shortName;
 
+	// mean one affiliation can have many hierrachies
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "affiliation", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<AffiliationHierrachy> affiliationHierrachy;
+
 	public AffiliationPayload() {
 		super();
 	}
-
-	
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "affliation", fetch = FetchType.LAZY, cascade = CascadeType.ALL)	private Set<AffiliationHierrachy> affiliationHierrachies;
 
 	public Long getId() {
 		return id;
@@ -52,6 +55,14 @@ public class AffiliationPayload {
 	public void setShortName(String shortName) {
 		this.shortName = shortName;
 	}
-	
 
+	public Set<AffiliationHierrachy> getAffiliationHierrachy() {
+		return affiliationHierrachy;
+	}
+
+	public void setAffiliationHierrachy(Set<AffiliationHierrachy> affiliationHierrachy) {
+		this.affiliationHierrachy = affiliationHierrachy;
+	}
+
+	
 }

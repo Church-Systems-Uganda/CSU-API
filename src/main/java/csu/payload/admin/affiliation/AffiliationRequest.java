@@ -8,83 +8,69 @@ import csu.model.admin.AffiliationHierrachy;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class AffiliationRequest {
 	
 	private Long id;
-	
-	@NotNull
+	@NotBlank
 	@Size(max = 100)
 	private String name;
 
 	@Size(max = 50)
 	private String shortName;
 
-	
-	
+	// mean one affiliation can have many hierrachies
+
 	@JsonIgnore
-	@OneToMany(mappedBy = "affliation", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<AffiliationHierrachy> affiliationHierrachies;
+	@OneToMany(mappedBy = "affiliation", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<AffiliationHierrachy> affiliationHierrachy;
 
-
-
-	public AffiliationRequest(@NotNull @Size(max = 100) String name, @Size(max = 50) String shortName,
-			Set<AffiliationHierrachy> affiliationHierrachies) {
+	
+	
+	public AffiliationRequest(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
+			Set<AffiliationHierrachy> affiliationHierrachy) {
 		super();
 		this.name = name;
 		this.shortName = shortName;
-		this.affiliationHierrachies = affiliationHierrachies;
+		this.affiliationHierrachy = affiliationHierrachy;
 	}
-
-
 
 	public Long getId() {
 		return id;
 	}
 
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	public String getName() {
 		return name;
 	}
 
-
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
 
 	public String getShortName() {
 		return shortName;
 	}
 
-
-
 	public void setShortName(String shortName) {
 		this.shortName = shortName;
 	}
 
-
-
-	public Set<AffiliationHierrachy> getAffiliationHierrachies() {
-		return affiliationHierrachies;
+	public Set<AffiliationHierrachy> getAffiliationHierrachy() {
+		return affiliationHierrachy;
 	}
 
-
-
-	public void setAffiliationHierrachies(Set<AffiliationHierrachy> affiliationHierrachies) {
-		this.affiliationHierrachies = affiliationHierrachies;
+	public void setAffiliationHierrachy(Set<AffiliationHierrachy> affiliationHierrachy) {
+		this.affiliationHierrachy = affiliationHierrachy;
 	}
+
 
 	
+
 }

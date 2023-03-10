@@ -2,12 +2,16 @@ package csu.model.admin;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import csu.model.audit.UserDateAudit;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -29,26 +33,22 @@ public class Affliation extends UserDateAudit {
 	@Size(max = 50)
 	private String shortName;
 
-	@OneToMany(mappedBy = "affliation", fetch = FetchType.LAZY)
-	private Set<AffiliationHierrachy> affiliationHierrachies;
+	// mean one affiliation can have many hierrachies
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<AffiliationHierrachy> affiliationHierrachy;
 
 	public Affliation() {
 		super();
 	}
 
-	public Affliation(Long id, @NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
-			Set<AffiliationHierrachy> affiliationHierrachies) {
-		
-		this.id = id;
+	public Affliation(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
+			Set<AffiliationHierrachy> affiliationHierrachy) {
+
 		this.name = name;
 		this.shortName = shortName;
-		this.affiliationHierrachies = affiliationHierrachies;
-	}
-
-
-
-	public Affliation(@NotBlank @Size(max = 100) String name) {
-		this.name = name;
+		this.affiliationHierrachy = affiliationHierrachy;
 	}
 
 	public Long getId() {
@@ -75,12 +75,24 @@ public class Affliation extends UserDateAudit {
 		this.shortName = shortName;
 	}
 
-	public Set<AffiliationHierrachy> getAffiliationHierrachies() {
-		return affiliationHierrachies;
+	public Set<AffiliationHierrachy> getAffiliationHierrachy() {
+		return affiliationHierrachy;
 	}
 
-	public void setAffiliationHierrachies(Set<AffiliationHierrachy> affiliationHierrachies) {
-		this.affiliationHierrachies = affiliationHierrachies;
+	public void setAffiliationHierrachy(Set<AffiliationHierrachy> affiliationHierrachy) {
+		this.affiliationHierrachy = affiliationHierrachy;
 	}
 
+	
+	// add helper methods to add and remove hierarchies
+    public void addHierarchy(AffiliationHierrachy fetchedHierachy) {
+    	affiliationHierrachy.add(fetchedHierachy);
+    	fetchedHierachy.setAffliation(this);
+    }
+
+    public void removeHierarchy(AffiliationHierrachy fetchedHierachy) {
+    	affiliationHierrachy.remove(fetchedHierachy);
+    	fetchedHierachy.setAffliation(null);
+    }
+	
 }

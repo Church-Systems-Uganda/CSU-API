@@ -1,23 +1,49 @@
 package csu.payload.admin.affiliation;
 
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import csu.model.admin.AffiliationHierrachy;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class AffiliationRequest {
 	
 	private Long id;
-	
-	@NotNull
+	@NotBlank
 	@Size(max = 100)
 	private String name;
 
 	@Size(max = 50)
 	private String shortName;
 
-	public AffiliationRequest(@Size(max = 100) String name, @Size(max = 50) String shortName) {
+	// mean one affiliation can have many hierrachies
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "affiliation_id", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<AffiliationHierrachy> affiliationHierrachy;
+
+	
+	
+	public AffiliationRequest(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
+			Set<AffiliationHierrachy> affiliationHierrachy) {
 		super();
 		this.name = name;
 		this.shortName = shortName;
+		this.affiliationHierrachy = affiliationHierrachy;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -36,12 +62,15 @@ public class AffiliationRequest {
 		this.shortName = shortName;
 	}
 
-	public Long getId() {
-		return id;
+	public Set<AffiliationHierrachy> getAffiliationHierrachy() {
+		return affiliationHierrachy;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setAffiliationHierrachy(Set<AffiliationHierrachy> affiliationHierrachy) {
+		this.affiliationHierrachy = affiliationHierrachy;
 	}
+
+
+	
 
 }

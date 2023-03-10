@@ -1,6 +1,7 @@
 package csu.model.finaceProjects;
 
 import csu.model.admin.AffiliationChurch;
+import csu.payload.financeProjects.churchExpenditure.ChurchExpenditurePayload;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -72,6 +73,11 @@ public class ChurchExpenditure {
 	}
 
 	private String ExpenditureType;
+
+
+
+	public void add(ChurchExpenditurePayload churchExpenditurePayload) {
+	}
 
 
     

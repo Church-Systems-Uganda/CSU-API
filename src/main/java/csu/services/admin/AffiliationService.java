@@ -62,9 +62,10 @@ public class AffiliationService {
 			
 			afflition.setName(request.getName());
 			afflition.setShortName(request.getShortName() != null ? request.getShortName() : null);
-			
 			//get AffiliationHierrachies else set to null
-			afflition.setAffiliationHierrachies(request.getAffiliationHierrachies()!= null ? request.getAffiliationHierrachies(): null);
+			afflition.setAffiliationHierrachy(request.getAffiliationHierrachy() != null ? request.getAffiliationHierrachy(): null);
+			
+		
 			
 			Affliation result = affiliationRepository.save(afflition);
 

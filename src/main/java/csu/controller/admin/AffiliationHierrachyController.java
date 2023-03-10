@@ -32,6 +32,13 @@ public class AffiliationHierrachyController {
 	}
 
 
+	
+	@PostMapping("/create-AffiliationHierrachy")
+	public ResponseEntity<?> createAffiliationHierrachy(@Valid @RequestBody AffiliationHierrachyRequest request) {
+	    return affiliationHierrachyService.createAffiliationHierrachy(request);
+	}
+	
+
 	@PostMapping("/delete-AffiliationHierrachy")
 	public ResponseEntity<?> deletePosition(@RequestBody AffiliationHierrachyRequest request) {
 

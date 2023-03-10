@@ -36,7 +36,7 @@ public class Affliation extends UserDateAudit {
 	// mean one affiliation can have many hierrachies
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "affiliation", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<AffiliationHierrachy> affiliationHierrachy;
 
 	public Affliation() {

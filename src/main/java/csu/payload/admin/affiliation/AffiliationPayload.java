@@ -25,7 +25,7 @@ public class AffiliationPayload {
 	// mean one affiliation can have many hierrachies
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "affiliation", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "affiliation_id", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<AffiliationHierrachy> affiliationHierrachy;
 
 	public AffiliationPayload() {

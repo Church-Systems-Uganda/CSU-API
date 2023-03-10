@@ -30,7 +30,7 @@ public class Position extends DateAudit {
 	@Size(max = 50)
 	private String shortName;
 
-	 @ManyToMany(mappedBy = "positions",fetch = FetchType.LAZY)
+	 @ManyToMany(mappedBy = "levelHead")
 	 private Set<AffiliationHierrachy> hierarchies = new HashSet<AffiliationHierrachy>();
 	 
 	public Position() {

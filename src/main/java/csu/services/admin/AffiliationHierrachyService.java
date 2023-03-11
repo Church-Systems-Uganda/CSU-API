@@ -140,6 +140,8 @@ public class AffiliationHierrachyService {
 
 		return affiliations;
 	}
+	
+	
 
 	public ResponseEntity<?> createAffiliationHierrachy(AffiliationHierrachyRequest request) {
 		if (request.getName() == null) {
@@ -165,12 +167,17 @@ public class AffiliationHierrachyService {
 		affiliationHierrachy.setName(request.getName());
 		affiliationHierrachy.setLevel(request.getLevel());
 		affiliationHierrachy.setLevelHead(request.getLevelHead());
+		
 
 		affiliationHierrachyRepository.save(affiliationHierrachy);
 
 		return new ResponseEntity<>(new ApiResponse(true, "Affiliation Hierrachy created"), HttpStatus.OK);
 	}
 
+	
+	
+	
+	
 	public ResponseEntity<?> deleteAffiliationHierrachy(AffiliationHierrachyRequest request) {
 		if (request.getId() == null) {
 			return new ResponseEntity<>(new ApiResponse(false, "Id is required"), HttpStatus.BAD_REQUEST);

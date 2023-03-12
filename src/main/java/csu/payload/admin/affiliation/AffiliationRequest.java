@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import csu.model.admin.AffiliationChurch;
 import csu.model.admin.AffiliationHierrachy;
 import csu.model.admin.Position;
 import jakarta.persistence.CascadeType;
@@ -34,14 +35,28 @@ public class AffiliationRequest {
 
 	@ManyToMany(mappedBy = "affiliations")
 	private Set<Position> position = new HashSet<>();
+	
+
+	@OneToMany(mappedBy = "affiliation", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<AffiliationChurch> churches = new HashSet<>();
+
 
 	public AffiliationRequest(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
-			Set<AffiliationHierrachy> affiliationHierrachy, Set<Position> position) {
+			Set<AffiliationHierrachy> affiliationHierrachy, Set<Position> position, Set<AffiliationChurch> churches) {
 		super();
 		this.name = name;
 		this.shortName = shortName;
 		this.affiliationHierrachy = affiliationHierrachy;
 		this.position = position;
+		this.churches = churches;
+	}
+
+	public Set<AffiliationChurch> getChurches() {
+		return churches;
+	}
+
+	public void setChurches(Set<AffiliationChurch> churches) {
+		this.churches = churches;
 	}
 
 	public Long getId() {

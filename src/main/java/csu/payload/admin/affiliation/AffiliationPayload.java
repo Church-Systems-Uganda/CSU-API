@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import csu.model.admin.AffiliationChurch;
 import csu.model.admin.AffiliationHierrachy;
 import csu.model.admin.Position;
 import jakarta.persistence.CascadeType;
@@ -34,6 +35,9 @@ public class AffiliationPayload {
 	@ManyToMany(mappedBy = "affiliations")
 	private Set<Position> position = new HashSet<>();
 
+	@OneToMany(mappedBy = "affiliation", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<AffiliationChurch> churches = new HashSet<>();
+
 	public AffiliationPayload() {
 		super();
 	}
@@ -44,6 +48,14 @@ public class AffiliationPayload {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Set<AffiliationChurch> getChurches() {
+		return churches;
+	}
+
+	public void setChurches(Set<AffiliationChurch> churches) {
+		this.churches = churches;
 	}
 
 	public String getName() {

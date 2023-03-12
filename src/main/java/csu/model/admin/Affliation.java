@@ -43,18 +43,24 @@ public class Affliation extends UserDateAudit {
 	@ManyToMany(mappedBy = "affiliations")
 	private Set<Position> position = new HashSet<>();
 	
+	@OneToMany(mappedBy = "affiliation", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<AffiliationChurch> churches = new HashSet<>();
+	
 	public Affliation() {
 		super();
 	}
 
+
 	public Affliation(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
-			Set<AffiliationHierrachy> affiliationHierrachy, Set<Position> position) {
+			Set<AffiliationHierrachy> affiliationHierrachy, Set<Position> position, Set<AffiliationChurch> churches) {
 		super();
 		this.name = name;
 		this.shortName = shortName;
 		this.affiliationHierrachy = affiliationHierrachy;
 		this.position = position;
+		this.churches = churches;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -96,5 +102,36 @@ public class Affliation extends UserDateAudit {
 		this.position = position;
 	}
 
+
+	public Set<AffiliationChurch> getChurches() {
+		return churches;
+	}
+
+
+	public void setChurches(Set<AffiliationChurch> churches) {
+		this.churches = churches;
+	}
+
+	
+	
+//	  public void addHierarchy(AffiliationHierrachy hierarchy) {
+//	        this.affiliationHierrachy.add(hierarchy);
+//	        hierarchy.setAffliation(this);
+//	    }
+//	    
+//	    public void removeHierarchy(AffiliationHierrachy hierarchy) {
+//	        this.affiliationHierrachy.remove(hierarchy);
+//	        hierarchy.setAffliation(null);
+//	    }
+//	    
+//	    public void addChurch(AffiliationChurch church) {
+//	        this.churches.add(church);
+//	        church.setAffiliationHierrachy(this);
+//	    }
+//	    
+//	    public void removeChurch(AffiliationChurch church) {
+//	        this.churches.remove(church);
+//	        church.setAffiliationHierrachy(null);
+//	    }
 	
 }

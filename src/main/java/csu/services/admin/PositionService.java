@@ -44,39 +44,39 @@ public class PositionService {
 		return positions;
 	}
 	
-
-	public ResponseEntity<?> createPosition(PositionRequest request) {
-
-		if (request.getName() != null) {
-
-			Optional<Position> existingPosition = request.getId() != null
-					? positionRepository.findById(request.getId())
-					: Optional.empty();
-
-			if (!existingPosition.isPresent() && positionRepository.existsByName(request.getName())) {
-				System.out.println("Position Exists");
-				return new ResponseEntity<>(new ApiResponse(false, "Position Exists"), HttpStatus.BAD_REQUEST);
-			}
-
-			Position position = existingPosition.isPresent() ? existingPosition.get()
-					: new Position();
-			
-//			position.setId(request.getId());
-			position.setName(request.getName());
-			position.setShortName(request.getShortName() != null ? request.getShortName() : null);
-//			position.setCreatedAt();
-			
-			Position result = positionRepository.save(position);
-
-			if (result != null) {
-				return new ResponseEntity<>(new ApiResponse(true, "position Created"), HttpStatus.OK);
-			}
-
-		}
-
-		return new ResponseEntity<>(new ApiResponse(false, "position Not Created"), HttpStatus.BAD_REQUEST);
-
-	}
+//
+//	public ResponseEntity<?> createPosition(PositionRequest request) {
+//
+//		if (request.getName() != null) {
+//
+//			Optional<Position> existingPosition = request.getId() != null
+//					? positionRepository.findById(request.getId())
+//					: Optional.empty();
+//
+//			if (!existingPosition.isPresent() && positionRepository.existsByName(request.getName())) {
+//				System.out.println("Position Exists");
+//				return new ResponseEntity<>(new ApiResponse(false, "Position Exists"), HttpStatus.BAD_REQUEST);
+//			}
+//
+//			Position position = existingPosition.isPresent() ? existingPosition.get()
+//					: new Position();
+//			
+////			position.setId(request.getId());
+//			position.setName(request.getName());
+//			position.setShortName(request.getShortName() != null ? request.getShortName() : null);
+////			position.setCreatedAt();
+//			
+//			Position result = positionRepository.save(position);
+//
+//			if (result != null) {
+//				return new ResponseEntity<>(new ApiResponse(true, "position Created"), HttpStatus.OK);
+//			}
+//
+//		}
+//
+//		return new ResponseEntity<>(new ApiResponse(false, "position Not Created"), HttpStatus.BAD_REQUEST);
+//
+//	}
 
 	
 	

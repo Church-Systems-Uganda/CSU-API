@@ -9,7 +9,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
@@ -30,71 +32,68 @@ public class Position extends DateAudit {
 	@Size(max = 50)
 	private String shortName;
 
-	 @ManyToMany(mappedBy = "levelHead")
-	 private Set<AffiliationHierrachy> hierarchy = new HashSet<AffiliationHierrachy>();
+	 @ManyToOne(fetch = FetchType.LAZY)
+	 @JoinColumn(name = "hierarchy_id", nullable=false)
+	 private AffiliationHierrachy hierarchy;
 	 
+	 @ManyToMany(mappedBy = "levelHead")
+	 private Set<Affliation> affiliations = new HashSet<>();
+	 
+	 
+	
 	public Position() {
 		super();
 	}
-	
 
 	public Position(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
-			Set<AffiliationHierrachy> hierarchies) {
+			AffiliationHierrachy hierarchy, Set<Affliation> affiliations) {
 	
 		this.name = name;
 		this.shortName = shortName;
-		this.hierarchies = hierarchies;
+		this.hierarchy = hierarchy;
+		this.affiliations = affiliations;
 	}
-
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public String getShortName() {
 		return shortName;
 	}
 
-
 	public void setShortName(String shortName) {
 		this.shortName = shortName;
 	}
 
-
-	public Set<AffiliationHierrachy> getHierarchies() {
-		return hierarchies;
+	public AffiliationHierrachy getHierarchy() {
+		return hierarchy;
 	}
 
-
-	public void setHierarchies(Set<AffiliationHierrachy> hierarchies) {
-		this.hierarchies = hierarchies;
+	public void setHierarchy(AffiliationHierrachy hierarchy) {
+		this.hierarchy = hierarchy;
 	}
 
+	public Set<Affliation> getAffiliations() {
+		return affiliations;
+	}
 
-	//adds the hierachy to position
-	public void addHierarchy(AffiliationHierrachy hierarchy) {
-	    hierarchies.add(hierarchy);
-	    hierarchy.getLevelHead().add(this);
+	public void setAffiliations(Set<Affliation> affiliations) {
+		this.affiliations = affiliations;
 	}
-	//removes the hierachy to position
-	public void RemoveHierarchy(AffiliationHierrachy hierarchy) {
-	    hierarchies.remove(hierarchy);
-	    hierarchy.getLevelHead().remove(this);
-	}
+	
+
+
 }

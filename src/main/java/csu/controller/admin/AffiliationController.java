@@ -27,12 +27,12 @@ public class AffiliationController {
 		return affiliationService.getAllAffiliations();
 	}
 
-	@PostMapping("/create-affiliation")
-	public ResponseEntity<?> createAffliation(@Valid @RequestBody AffiliationRequest request) {
-
-		return affiliationService.createAffliation(request);
-
-	}
+//	@PostMapping("/create-affiliation")
+//	public ResponseEntity<?> createAffliation(@Valid @RequestBody AffiliationRequest request) {
+//
+//		return affiliationService.createAffliation(request);
+//
+//	}
 
 	@PostMapping("/delete-affiliation")
 	public ResponseEntity<?> deleteAffliation(@RequestBody AffiliationRequest request) {

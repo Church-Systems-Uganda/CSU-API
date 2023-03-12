@@ -26,6 +26,10 @@ public class AffiliationChurch extends UserDateAudit {
 	@Size(max = 100)
 	private String name;
 
+	//church affiliation, a single church belongs to one affiliation
+	@OneToOne(cascade = CascadeType.All)
+private Affliation churchAffiliation;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "affiliation_hierrachy_id", nullable = false)
 	private AffiliationHierrachy affiliationHierrachy;

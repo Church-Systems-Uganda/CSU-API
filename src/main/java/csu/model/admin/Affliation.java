@@ -1,5 +1,6 @@
 package csu.model.admin;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -36,19 +37,23 @@ public class Affliation extends UserDateAudit {
 	// mean one affiliation can have many hierrachies
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "affiliation", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<AffiliationHierrachy> affiliationHierrachy;
 
+	@ManyToMany(mappedBy = "affiliations")
+	private Set<Position> position = new HashSet<>();
+	
 	public Affliation() {
 		super();
 	}
 
 	public Affliation(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
-			Set<AffiliationHierrachy> affiliationHierrachy) {
-
+			Set<AffiliationHierrachy> affiliationHierrachy, Set<Position> position) {
+		super();
 		this.name = name;
 		this.shortName = shortName;
 		this.affiliationHierrachy = affiliationHierrachy;
+		this.position = position;
 	}
 
 	public Long getId() {
@@ -83,16 +88,13 @@ public class Affliation extends UserDateAudit {
 		this.affiliationHierrachy = affiliationHierrachy;
 	}
 
-	
-	// add helper methods to add and remove hierarchies
-    public void addHierarchy(AffiliationHierrachy fetchedHierachy) {
-    	affiliationHierrachy.add(fetchedHierachy);
-    	fetchedHierachy.setAffliation(this);
-    }
+	public Set<Position> getPosition() {
+		return position;
+	}
 
-    public void removeHierarchy(AffiliationHierrachy fetchedHierachy) {
-    	affiliationHierrachy.remove(fetchedHierachy);
-    	fetchedHierachy.setAffliation(null);
-    }
+	public void setPosition(Set<Position> position) {
+		this.position = position;
+	}
+
 	
 }

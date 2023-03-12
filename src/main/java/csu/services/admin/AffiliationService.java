@@ -45,39 +45,39 @@ public class AffiliationService {
 	/*
 	 * Creating an affiliation
 	 */
-	public ResponseEntity<?> createAffliation(AffiliationRequest request) {
-
-		if (request.getName() != null) {
-
-			Optional<Affliation> existingAffliation = request.getId() != null
-					? affiliationRepository.findById(request.getId())
-					: Optional.empty();
-
-			if (!existingAffliation.isPresent() && affiliationRepository.existsByName(request.getName())) {
-				return new ResponseEntity<>(new ApiResponse(false, "Affilication Exists"), HttpStatus.BAD_REQUEST);
-			}
-
-			Affliation afflition = existingAffliation.isPresent() ? existingAffliation.get()
-					: new Affliation();
-			
-			afflition.setName(request.getName());
-			afflition.setShortName(request.getShortName() != null ? request.getShortName() : null);
-			//get AffiliationHierrachies else set to null
-			afflition.setAffiliationHierrachy(request.getAffiliationHierrachy() != null ? request.getAffiliationHierrachy(): null);
-			
-		
-			
-			Affliation result = affiliationRepository.save(afflition);
-
-			if (result != null) {
-				return new ResponseEntity<>(new ApiResponse(true, "Affilication Created"), HttpStatus.OK);
-			}
-
-		}
-
-		return new ResponseEntity<>(new ApiResponse(false, "Affilication Not Created"), HttpStatus.BAD_REQUEST);
-
-	}
+//	public ResponseEntity<?> createAffliation(AffiliationRequest request) {
+//
+//		if (request.getName() != null) {
+//
+//			Optional<Affliation> existingAffliation = request.getId() != null
+//					? affiliationRepository.findById(request.getId())
+//					: Optional.empty();
+//
+//			if (!existingAffliation.isPresent() && affiliationRepository.existsByName(request.getName())) {
+//				return new ResponseEntity<>(new ApiResponse(false, "Affilication Exists"), HttpStatus.BAD_REQUEST);
+//			}
+//
+//			Affliation afflition = existingAffliation.isPresent() ? existingAffliation.get()
+//					: new Affliation();
+//			
+//			afflition.setName(request.getName());
+//			afflition.setShortName(request.getShortName() != null ? request.getShortName() : null);
+//			//get AffiliationHierrachies else set to null
+//			afflition.setAffiliationHierrachy(request.getAffiliationHierrachy() != null ? request.getAffiliationHierrachy(): null);
+//			
+//		
+//			
+//			Affliation result = affiliationRepository.save(afflition);
+//
+//			if (result != null) {
+//				return new ResponseEntity<>(new ApiResponse(true, "Affilication Created"), HttpStatus.OK);
+//			}
+//
+//		}
+//
+//		return new ResponseEntity<>(new ApiResponse(false, "Affilication Not Created"), HttpStatus.BAD_REQUEST);
+//
+//	}
 
 	public ResponseEntity<?> deleteAffliation(AffiliationRequest request) {
 

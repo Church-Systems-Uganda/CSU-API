@@ -1,12 +1,15 @@
 package csu.payload.admin.affiliation;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import csu.model.admin.AffiliationHierrachy;
+import csu.model.admin.Position;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,6 +18,7 @@ import jakarta.validation.constraints.Size;
 public class AffiliationRequest {
 	
 	private Long id;
+
 	@NotBlank
 	@Size(max = 100)
 	private String name;
@@ -25,17 +29,19 @@ public class AffiliationRequest {
 	// mean one affiliation can have many hierrachies
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "affiliation_id", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "affiliation", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<AffiliationHierrachy> affiliationHierrachy;
 
-	
-	
+	@ManyToMany(mappedBy = "affiliations")
+	private Set<Position> position = new HashSet<>();
+
 	public AffiliationRequest(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
-			Set<AffiliationHierrachy> affiliationHierrachy) {
+			Set<AffiliationHierrachy> affiliationHierrachy, Set<Position> position) {
 		super();
 		this.name = name;
 		this.shortName = shortName;
 		this.affiliationHierrachy = affiliationHierrachy;
+		this.position = position;
 	}
 
 	public Long getId() {
@@ -70,7 +76,15 @@ public class AffiliationRequest {
 		this.affiliationHierrachy = affiliationHierrachy;
 	}
 
+	public Set<Position> getPosition() {
+		return position;
+	}
 
+	public void setPosition(Set<Position> position) {
+		this.position = position;
+	}
+
+	
 	
 
 }

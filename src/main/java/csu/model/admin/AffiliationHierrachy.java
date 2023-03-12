@@ -16,6 +16,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 
+
+
 @Entity
 public class AffiliationHierrachy extends UserDateAudit {
 
@@ -25,7 +27,9 @@ public class AffiliationHierrachy extends UserDateAudit {
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY,cascade = { CascadeType.ALL })
-    @JoinColumn(name = "affiliation_id", nullable = false)
+
+	//name of column =affiliation
+    @JoinColumn(name = "affiliation", nullable = false)
 	private Affliation affliation;
 
 	private String name;

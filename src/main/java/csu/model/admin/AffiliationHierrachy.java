@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 
 
@@ -25,34 +26,32 @@ public class AffiliationHierrachy extends UserDateAudit {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY,cascade = { CascadeType.ALL })
+
 
 	//name of column =affiliation
-    @JoinColumn(name = "affiliation", nullable = false)
+	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    @JoinColumn(name = "affiliation-ID", nullable = false)
 	private Affliation affliation;
 
 	private String name;
 
 	private Integer level;
 
-	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-	@JoinTable(name = "hierarchy_position", joinColumns = { @JoinColumn(name = "hierarchy_id") }, inverseJoinColumns = {
-	@JoinColumn(name = "position_id") })
+	@OneToMany(mappedBy = "hierarchy", cascade  = CascadeType.ALL)
 	private Set<Position> levelHead = new HashSet<>();
 
 	public AffiliationHierrachy() {
 		super();
 	}
 
-	public AffiliationHierrachy(@NotNull Affliation affliation, String name, Integer level, Set<Position> levelHead) {
+	public AffiliationHierrachy(Affliation affliation, String name, Integer level, Set<Position> levelHead) {
 		super();
 		this.affliation = affliation;
 		this.name = name;
 		this.level = level;
 		this.levelHead = levelHead;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -92,17 +91,6 @@ public class AffiliationHierrachy extends UserDateAudit {
 	public void setLevelHead(Set<Position> levelHead) {
 		this.levelHead = levelHead;
 	}
-
-	 // add helper methods to manage positions
-    public void addPosition(Position position) {
-    	levelHead.add(position);
-        position.getHierarchies().add(this);
-    }
-
-    public void removePosition(Position position) {
-    	levelHead.remove(position);
-        position.getHierarchies().remove(this);
-    }
 
 	
 }

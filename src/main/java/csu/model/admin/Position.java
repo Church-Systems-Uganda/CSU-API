@@ -31,7 +31,7 @@ public class Position extends DateAudit {
 	private String shortName;
 
 	 @ManyToMany(mappedBy = "levelHead")
-	 private Set<AffiliationHierrachy> hierarchies = new HashSet<AffiliationHierrachy>();
+	 private Set<AffiliationHierrachy> hierarchy = new HashSet<AffiliationHierrachy>();
 	 
 	public Position() {
 		super();

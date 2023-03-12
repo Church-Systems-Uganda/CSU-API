@@ -12,30 +12,28 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 
 public class AffiliationHierrachyRequest {
 
 	private Long id;
 
-	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY,cascade = { CascadeType.ALL })
-    @JoinColumn(name = "affiliation_id", nullable = false)
+
+
+	//name of column =affiliation
+	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    @JoinColumn(name = "affiliation-ID", nullable = false)
 	private Affliation affliation;
 
 	private String name;
 
 	private Integer level;
 
-	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-	@JoinTable(name = "hierarchy_position", joinColumns = { @JoinColumn(name = "hierarchy_id") }, inverseJoinColumns = {
-	@JoinColumn(name = "position_id") })
+	@OneToMany(mappedBy = "hierarchy", cascade  = CascadeType.ALL)
 	private Set<Position> levelHead = new HashSet<>();
 
-	
-	
-	public AffiliationHierrachyRequest(@NotNull Affliation affliation, String name, Integer level,
-			Set<Position> levelHead) {
+	public AffiliationHierrachyRequest(Affliation affliation, String name, Integer level, Set<Position> levelHead) {
 		super();
 		this.affliation = affliation;
 		this.name = name;

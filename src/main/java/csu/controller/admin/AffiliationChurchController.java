@@ -22,17 +22,17 @@ public class AffiliationChurchController {
 
 	@Autowired
 	AffiliationChurchService affiliationChurchService;
-
-	@GetMapping("/church")
-	public List<AffiliationChurchPayload> getAllChurches() {
-		return affiliationChurchService.getAllChurches();
-	}
-
-	@PostMapping("/create-Church")
-	public ResponseEntity<?> createChurch(@Valid @RequestBody AffiliationChurchRequest request){
-		
-		return affiliationChurchService.createChurch(request);
-	}
+//
+//	@GetMapping("/church")
+//	public List<AffiliationChurchPayload> getAllChurches() {
+//		return affiliationChurchService.getAllChurches();
+//	}
+//
+//	@PostMapping("/create-Church")
+//	public ResponseEntity<?> createChurch(@Valid @RequestBody AffiliationChurchRequest request){
+//		
+//		return affiliationChurchService.createChurch(request);
+//	}
 	
 	@PostMapping("/delete-church")
 	public ResponseEntity<?> deleteChurch(@RequestBody AffiliationChurchRequest request) {

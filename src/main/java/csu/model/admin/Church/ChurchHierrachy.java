@@ -26,6 +26,16 @@ public class ChurchHierrachy extends DateAudit {
 	@JoinColumn(name = "position_id", nullable = true)
 	private Position levelHead;
 
+//	@ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "parent_id", nullable = true)
+//    private ChurchHierrachy parent;
+//
+//    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<ChurchHierrachy> children = new HashSet<>();
+//	
+//	
+	
+	
 	public ChurchHierrachy(long tier, Position levelHead) {
 		super();
 		Tier = tier;
@@ -67,5 +77,29 @@ public class ChurchHierrachy extends DateAudit {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+//	public ChurchHierachy getParent() {
+//        return parent;
+//    }
+//
+//    public void setParent(ChurchHierarchy parent) {
+//        this.parent = parent;
+//    }
+//
+//    public Set<ChurchHierarchy> getChildren() {
+//        return children;
+//    }
+//
+//    public void setChildren(Set<ChurchHierarchy> children) {
+//        this.children = children;
+//    }
+//
+//    public void addChild(ChurchHierarchy child) {
+//        this.children.add(child);
+//        child.setParent(this);
+//    }
+//
+//    public void removeChild(ChurchHierarchy child) {
+//        this.children.remove(child);
+//        child.setParent(null);
+//    }
 }

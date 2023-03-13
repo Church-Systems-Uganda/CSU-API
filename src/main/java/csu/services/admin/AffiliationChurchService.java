@@ -26,58 +26,58 @@ public class AffiliationChurchService {
 
 	// get all churches
 
-	public List<AffiliationChurchPayload> getAllChurches() {
-
-		List<AffiliationChurchPayload> church = new ArrayList<>();
-
-		for (AffiliationChurch affiliationChurch : affiliationChurchRepository.findAll()) {
-
-			AffiliationChurchPayload payload = new AffiliationChurchPayload();
-
-			payload.setId(affiliationChurch.getId());
-			payload.setAffiliationHierrachy(affiliationChurch.getAffiliationHierrachy());
-			payload.setName(affiliationChurch.getName());
-
-			church.add(payload);
-
-		}
-		return church;
-	}
+//	public List<AffiliationChurchPayload> getAllChurches() {
+//
+//		List<AffiliationChurchPayload> church = new ArrayList<>();
+//
+//		for (AffiliationChurch affiliationChurch : affiliationChurchRepository.findAll()) {
+//
+//			AffiliationChurchPayload payload = new AffiliationChurchPayload();
+//
+//			payload.setId(affiliationChurch.getId());
+//			payload.setAffiliationHierrachy(affiliationChurch.getAffiliationHierrachy());
+//			payload.setName(affiliationChurch.getName());
+//
+//			church.add(payload);
+//
+//		}
+//		return church;
+//	}
 
 	
-	// church creation
-	public ResponseEntity<?> createChurch(AffiliationChurchRequest request) {
-
-		if (request.getName() != null) {
-		
-
-			Optional<AffiliationChurch> existingAffiliationChurch = request.getId() != null
-					? affiliationChurchRepository.findById(request.getId())
-					: Optional.empty();
-
-			if (!existingAffiliationChurch.isPresent() && affiliationChurchRepository.existsByName(request.getName())) {
-				return new ResponseEntity<>(new ApiResponse(false, "church Exists"), HttpStatus.BAD_REQUEST);
-			}
-
-			AffiliationChurch affiliationChurch = existingAffiliationChurch.isPresent() ? existingAffiliationChurch.get()
-					: new AffiliationChurch();
-			
-			affiliationChurch.setName(request.getName());
-			affiliationChurch.setId(request.getId());
-			affiliationChurch.setAffiliationHierrachy(request.getAffiliationHierrachy());
-		
-					
-			AffiliationChurch result = affiliationChurchRepository.save(affiliationChurch);
-
-			if (result != null) {
-				return new ResponseEntity<>(new ApiResponse(true, "affiliationHierrachy Created"), HttpStatus.OK);
-			}
-
-		}
-
-		return new ResponseEntity<>(new ApiResponse(false, "affiliationHierrachy Not Created"), HttpStatus.BAD_REQUEST);
-
-	}
+//	// church creation
+//	public ResponseEntity<?> createChurch(AffiliationChurchRequest request) {
+//
+//		if (request.getName() != null) {
+//		
+//
+//			Optional<AffiliationChurch> existingAffiliationChurch = request.getId() != null
+//					? affiliationChurchRepository.findById(request.getId())
+//					: Optional.empty();
+//
+//			if (!existingAffiliationChurch.isPresent() && affiliationChurchRepository.existsByName(request.getName())) {
+//				return new ResponseEntity<>(new ApiResponse(false, "church Exists"), HttpStatus.BAD_REQUEST);
+//			}
+//
+//			AffiliationChurch affiliationChurch = existingAffiliationChurch.isPresent() ? existingAffiliationChurch.get()
+//					: new AffiliationChurch();
+//			
+//			affiliationChurch.setName(request.getName());
+//			affiliationChurch.setId(request.getId());
+//			affiliationChurch.setAffiliationHierrachy(request.getAffiliationHierrachy());
+//		
+//					
+//			AffiliationChurch result = affiliationChurchRepository.save(affiliationChurch);
+//
+//			if (result != null) {
+//				return new ResponseEntity<>(new ApiResponse(true, "affiliationHierrachy Created"), HttpStatus.OK);
+//			}
+//
+//		}
+//
+//		return new ResponseEntity<>(new ApiResponse(false, "affiliationHierrachy Not Created"), HttpStatus.BAD_REQUEST);
+//
+//	}
 
 	
 

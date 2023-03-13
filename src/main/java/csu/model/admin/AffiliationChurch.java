@@ -1,7 +1,12 @@
 package csu.model.admin;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
+import csu.model.admin.Church.ChurchHierrachy;
 import csu.model.audit.UserDateAudit;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
@@ -27,18 +33,19 @@ public class AffiliationChurch extends UserDateAudit {
 	private String name;
 
 	//church affiliation, a single church belongs to one affiliation
-	@OneToOne(cascade = CascadeType.All)
-private Affliation churchAffiliation;
+	@ManyToOne
+	@JoinColumn(name = "affiliation_id", nullable = false)
+	private Affliation affiliation;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "affiliation_hierrachy_id", nullable = false)
-	private AffiliationHierrachy affiliationHierrachy;
+	@OneToMany(mappedBy = "church", cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<ChurchHierrachy> hierarchies = new HashSet<>();
 
-
-	public AffiliationChurch(@NotBlank @Size(max = 100) String name, AffiliationHierrachy affiliationHierrachy) {
-		
+	public AffiliationChurch(@NotBlank @Size(max = 100) String name, Affliation affiliation,
+			Set<ChurchHierrachy> hierarchies) {
+	
 		this.name = name;
-		this.affiliationHierrachy = affiliationHierrachy;
+		this.affiliation = affiliation;
+		this.hierarchies = hierarchies;
 	}
 
 	public AffiliationChurch() {
@@ -61,13 +68,33 @@ private Affliation churchAffiliation;
 		this.name = name;
 	}
 
-	public AffiliationHierrachy getAffiliationHierrachy() {
-		return affiliationHierrachy;
+	public Affliation getAffiliation() {
+		return affiliation;
 	}
 
-	public void setAffiliationHierrachy(AffiliationHierrachy affiliationHierrachy) {
-		this.affiliationHierrachy = affiliationHierrachy;
+	public void setAffiliation(Affliation affiliation) {
+		this.affiliation = affiliation;
 	}
+
+	public Set<ChurchHierrachy> getHierarchies() {
+		return hierarchies;
+	}
+
+	public void setHierarchies(Set<ChurchHierrachy> hierarchies) {
+		this.hierarchies = hierarchies;
+	}
+
 
 	
+	
+//	public void addHierarchy(ChurchHierrachy hierarchy) {
+//        this.hierarchies.add(hierarchy);
+//        hierarchy.setChurch(this);
+//    }
+//    
+//    public void removeHierarchy(ChurchHierrachy hierarchy) {
+//        this.hierarchies.remove(hierarchy);
+//        hierarchy.setChurch(null);
+//    }
+//	
 }

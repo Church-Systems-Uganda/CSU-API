@@ -1,5 +1,6 @@
 package csu.model.admin.Church;
 
+import csu.model.admin.AffiliationChurch;
 import csu.model.admin.Position;
 import csu.model.audit.DateAudit;
 import jakarta.persistence.Entity;
@@ -17,7 +18,7 @@ public class ChurchHierrachy extends DateAudit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String name;
 
 	private long Tier;
@@ -26,16 +27,10 @@ public class ChurchHierrachy extends DateAudit {
 	@JoinColumn(name = "position_id", nullable = true)
 	private Position levelHead;
 
-//	@ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "parent_id", nullable = true)
-//    private ChurchHierrachy parent;
-//
-//    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private Set<ChurchHierrachy> children = new HashSet<>();
-//	
-//	
-	
-	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_id", nullable = true)
+	private AffiliationChurch affiliationChurch;
+
 	public ChurchHierrachy(long tier, Position levelHead) {
 		super();
 		Tier = tier;
@@ -77,29 +72,13 @@ public class ChurchHierrachy extends DateAudit {
 	public void setName(String name) {
 		this.name = name;
 	}
-//	public ChurchHierachy getParent() {
-//        return parent;
-//    }
-//
-//    public void setParent(ChurchHierarchy parent) {
-//        this.parent = parent;
-//    }
-//
-//    public Set<ChurchHierarchy> getChildren() {
-//        return children;
-//    }
-//
-//    public void setChildren(Set<ChurchHierarchy> children) {
-//        this.children = children;
-//    }
-//
-//    public void addChild(ChurchHierarchy child) {
-//        this.children.add(child);
-//        child.setParent(this);
-//    }
-//
-//    public void removeChild(ChurchHierarchy child) {
-//        this.children.remove(child);
-//        child.setParent(null);
-//    }
+
+	public AffiliationChurch getAffiliationChurch() {
+		return affiliationChurch;
+	}
+
+	public void setAffiliationChurch(AffiliationChurch affiliationChurch) {
+		this.affiliationChurch = affiliationChurch;
+	}
+
 }

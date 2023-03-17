@@ -32,26 +32,20 @@ public class Position extends DateAudit {
 	@Size(max = 50)
 	private String shortName;
 
-	 @ManyToOne(fetch = FetchType.LAZY)
-	 @JoinColumn(name = "hierarchy_id", nullable=false)
-	 private AffiliationHierrachy hierarchy;
-	 
-	 @ManyToMany(mappedBy = "levelHead")
-	 private Set<Affliation> affiliations = new HashSet<>();
-	 
-	 
-	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "hierarchy_id", nullable = false)
+	private AffiliationHierrachy hierarchy;
+
 	public Position() {
 		super();
 	}
 
 	public Position(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
-			AffiliationHierrachy hierarchy, Set<Affliation> affiliations) {
-	
+			AffiliationHierrachy hierarchy) {
+
 		this.name = name;
 		this.shortName = shortName;
 		this.hierarchy = hierarchy;
-		this.affiliations = affiliations;
 	}
 
 	public Long getId() {
@@ -85,15 +79,5 @@ public class Position extends DateAudit {
 	public void setHierarchy(AffiliationHierrachy hierarchy) {
 		this.hierarchy = hierarchy;
 	}
-
-	public Set<Affliation> getAffiliations() {
-		return affiliations;
-	}
-
-	public void setAffiliations(Set<Affliation> affiliations) {
-		this.affiliations = affiliations;
-	}
-	
-
 
 }

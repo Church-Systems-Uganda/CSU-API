@@ -18,35 +18,26 @@ import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/api/Membership")
-
 public class MinistryController {
 
 	@Autowired
-	MinistryService ministryService;
+	MinistryService ministryService; // inject MinistryService instance into controller
 
-	//get all ministriy
-
+	// handle HTTP GET request to retrieve all ministries
 	@GetMapping("/getMinistries")
 	public List<MinistryPayload> getAllMinistries() {
-		return ministryService.getAllMinistries();
+		return ministryService.getAllMinistries(); // delegate to ministryService to retrieve all ministries
 	}
 	
-	//post mapping to create
-	
+	// handle HTTP POST request to create a new ministry
 	@PostMapping("/create-ministry")
 	public ResponseEntity<?> createMinistry(@Valid @RequestBody MinistryRequest request) {
-
-		return ministryService.createMinistry(request);
-
+		return ministryService.createMinistry(request); // delegate to ministryService to create a new ministry
 	}
 	
-	//delete function
-    @PostMapping("/delete-ministry")
-    public ResponseEntity<?> deleteMinistry(@RequestBody MinistryRequest request) {
-
-	return ministryService.deleteMinistry(request);
-
+	// handle HTTP POST request to delete a ministry
+	@PostMapping("/delete-ministry")
+	public ResponseEntity<?> deleteMinistry(@RequestBody MinistryRequest request) {
+		return ministryService.deleteMinistry(request); // delegate to ministryService to delete a ministry
 	}
-	
-		
-	}
+}

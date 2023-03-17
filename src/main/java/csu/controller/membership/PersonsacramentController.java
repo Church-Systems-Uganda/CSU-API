@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import csu.payload.membership.ministy.MinistryRequest;
 import csu.payload.membership.personsacrament.PersonsacramentPayload;
 import csu.payload.membership.personsacrament.PersonsacramentRequest;
 import csu.services.membership.PersonsacramentService;

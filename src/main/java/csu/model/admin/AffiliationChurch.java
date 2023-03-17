@@ -37,7 +37,7 @@ public class AffiliationChurch extends UserDateAudit {
 	@JoinColumn(name = "affiliation_id", nullable = false)
 	private Affliation affiliation;
 
-	@OneToMany(mappedBy = "church", cascade = CascadeType.ALL,orphanRemoval = true)
+	@OneToMany(mappedBy = "affiliationChurch", cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<ChurchHierrachy> hierarchies = new HashSet<>();
 
 	public AffiliationChurch(@NotBlank @Size(max = 100) String name, Affliation affiliation,

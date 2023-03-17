@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import csu.model.finaceProjects.ChurchExpenditure;
 import csu.payload.financeProjects.churchExpenditure.ChurchExpenditurePayload;
@@ -13,6 +14,7 @@ import csu.payload.financeProjects.churchExpenditure.ChurchExpenditureRequest;
 import csu.payload.general.ApiResponse;
 import csu.repository.financeProject.ChurchExpenditureRepository;
 
+@Service
 public class ChurchExpenditureService {
 
     @Autowired

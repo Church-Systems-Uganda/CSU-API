@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping; // Import Spring framework annotation for specifying request mapping
 
-import csu.payload.membership.ministy.MinistryRequest;
 import csu.payload.membership.sacrament.SacramentPayload;
 import csu.payload.membership.sacrament.SacramentRequest;
 import csu.services.membership.SacramentService;

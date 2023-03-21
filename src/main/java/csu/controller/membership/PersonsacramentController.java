@@ -9,45 +9,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import csu.payload.membership.ministy.MinistryRequest;
 import csu.payload.membership.personsacrament.PersonsacramentPayload;
 import csu.payload.membership.personsacrament.PersonsacramentRequest;
 import csu.services.membership.PersonsacramentService;
 import jakarta.validation.Valid;
 
 @Controller
-
 @RequestMapping("/api/Membership")
-
 public class PersonsacramentController {
 	
-	//service
+	// Autowired PersonsacramentService to handle requests
 	PersonsacramentService personsacramentService;
-	
-	
-	//create a function to get all person sacraments
-	
+
+	// Function to get all person sacraments
 	@GetMapping("/getPersonscraments")
 	public List<PersonsacramentPayload> getAllPersonsacraments() {
 		return personsacramentService.getAllPersonsacraments();
 	}
 	
-	
-	//create a function to create person sacraments
-
+	// Function to create a person sacrament
 	@PostMapping("/create-Personscraments")
 	public ResponseEntity<?> createPersonsacrament(@Valid @RequestBody PersonsacramentRequest request) {
-
 		return personsacramentService.createMinistry(request);
-
 	}
 
-	//delete function
-	
+	// Function to delete a person sacrament
     @PostMapping("/delete-personscraments")
     public ResponseEntity<?> deletePersonsacrament(@RequestBody PersonsacramentRequest request) {
-
-	return personsacramentService.deletePersonsacrament(null);
-
+		return personsacramentService.deletePersonsacrament(null);
 	}
 }

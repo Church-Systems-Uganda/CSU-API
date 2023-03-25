@@ -1,6 +1,5 @@
 package csu.controller.admin;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,35 +13,37 @@ import org.springframework.web.bind.annotation.RestController;
 
 import csu.payload.admin.affiliationHierrachy.AffiliationHierrachyPayload;
 import csu.payload.admin.affiliationHierrachy.AffiliationHierrachyRequest;
-
 import csu.services.admin.AffiliationHierrachyService;
 import jakarta.validation.Valid;
 
+/**
+ * Controller for managing affiliation hierarchies.
+ */
 @RestController
 @RequestMapping("/api/admin")
-public class AffiliationHierrachyController {
+public class AffiliationHierarchyController {
 
-	
 	@Autowired
-	AffiliationHierrachyService  affiliationHierrachyService;
-	
-	@GetMapping("/affiliation_Hierrachy")
-	public List<AffiliationHierrachyPayload> getAllAffiliationHierrachy() {
-		return affiliationHierrachyService.getAllAffiliationHierrachy();
+	AffiliationHierrachyService affiliationHierarchyService;
+
+	/**
+	 * Get a list of all affiliation hierarchies.
+	 *
+	 * @return the list of all affiliation hierarchies
+	 */
+	@GetMapping("/affiliation-hierarchy")
+	public List<AffiliationHierrachyPayload> getAllAffiliationHierarchy() {
+		return affiliationHierarchyService.getAllAffiliationHierarchy();
 	}
 
-
-//	
-//	@PostMapping("/create-AffiliationHierrachy")
-//	public ResponseEntity<?> createAffiliationHierrachy(@Valid @RequestBody AffiliationHierrachyRequest request) {
-//	    return affiliationHierrachyService.createAffiliationHierrachy(request);
-//	}
-//	
-
-	@PostMapping("/delete-AffiliationHierrachy")
-	public ResponseEntity<?> deletePosition(@RequestBody AffiliationHierrachyRequest request) {
-
-		return affiliationHierrachyService.deleteAffiliationHierrachy(request);
-
+	/**
+	 * Delete an affiliation hierarchy.
+	 *
+	 * @param request the request containing the ID of the affiliation hierarchy to delete
+	 * @return the response entity indicating the result of the deletion operation
+	 */
+	@PostMapping("/delete-affiliation-hierarchy")
+	public ResponseEntity<?> deleteAffiliationHierarchy(@RequestBody AffiliationHierrachyRequest request) {
+		return affiliationHierarchyService.deleteAffiliationHierarchy(request);
 	}
 }

@@ -31,7 +31,7 @@ public class AffiliationHierrachy extends UserDateAudit {
 	//name of column =affiliation
 	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinColumn(name = "affiliation-ID", nullable = false)
-	private Affliation affliation;
+	private Affiliation affliation;
 
 	private String name;
 
@@ -44,7 +44,7 @@ public class AffiliationHierrachy extends UserDateAudit {
 		super();
 	}
 
-	public AffiliationHierrachy(Affliation affliation, String name, Integer level, Set<Position> levelHead) {
+	public AffiliationHierrachy(Affiliation affliation, String name, Integer level, Set<Position> levelHead) {
 		super();
 		this.affliation = affliation;
 		this.name = name;
@@ -60,11 +60,11 @@ public class AffiliationHierrachy extends UserDateAudit {
 		this.id = id;
 	}
 
-	public Affliation getAffliation() {
+	public Affiliation getAffliation() {
 		return affliation;
 	}
 
-	public void setAffliation(Affliation affliation) {
+	public void setAffliation(Affiliation affliation) {
 		this.affliation = affliation;
 	}
 

@@ -1,6 +1,6 @@
 package csu.payload.membership.sacrament;
 
-import csu.model.admin.Affliation;
+import csu.model.admin.Affiliation;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -18,7 +18,7 @@ public class SacramentPayload {
     @ManyToOne(fetch = FetchType.LAZY)
 
 	@JoinColumn(name = "affliation_id", nullable = true)
-    private Affliation affliation;
+    private Affiliation affliation;
 
 
 
@@ -76,13 +76,13 @@ public class SacramentPayload {
 
 
 
-    public Affliation getAffliation() {
+    public Affiliation getAffliation() {
         return affliation;
     }
 
 
 
-    public void setAffliation(Affliation affliation) {
+    public void setAffliation(Affiliation affliation) {
         this.affliation = affliation;
     }
 }

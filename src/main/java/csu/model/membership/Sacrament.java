@@ -1,6 +1,6 @@
 package csu.model.membership;
 
-import csu.model.admin.Affliation;
+import csu.model.admin.Affiliation;
 import csu.model.admin.AffiliationChurch;
 import csu.model.audit.DateAudit;
 import jakarta.persistence.Entity;
@@ -29,16 +29,16 @@ public class Sacrament extends DateAudit{
      
     @ManyToOne(fetch = FetchType.LAZY)
 
-	@JoinColumn(name = "affliation_id", nullable = true)
-    private Affliation affliation;
+	@JoinColumn(name = "affiliation_id", nullable = true)
+    private Affiliation affiliation;
 
 
 
-    public Sacrament(String name, String prerequisite, String tier, Affliation affliation) {
+    public Sacrament(String name, String prerequisite, String tier, Affiliation affiliation) {
         this.name = name;
         this.prerequisite = prerequisite;
         this.tier = tier;
-        this.affliation = affliation;
+        this.affiliation = affiliation;
     }
 
    
@@ -96,14 +96,14 @@ public class Sacrament extends DateAudit{
 
 
 
-    public Affliation getAffliation() {
-        return affliation;
+    public Affiliation getAffliation() {
+        return affiliation;
     }
 
 
 
-    public void setAffliation(Affliation affliation) {
-        this.affliation = affliation;
+    public void setAffliation(Affiliation affiliation) {
+        this.affiliation = affiliation;
     }
 
 

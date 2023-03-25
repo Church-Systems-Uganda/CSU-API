@@ -3,7 +3,7 @@ package csu.payload.admin.affiliationHierrachy;
 import java.util.HashSet;
 import java.util.Set;
 
-import csu.model.admin.Affliation;
+import csu.model.admin.Affiliation;
 import csu.model.admin.Position;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
@@ -24,7 +24,7 @@ public class AffiliationHierrachyRequest {
 	//name of column =affiliation
 	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinColumn(name = "affiliation-ID", nullable = false)
-	private Affliation affliation;
+	private Affiliation affiliation;
 
 	private String name;
 
@@ -33,9 +33,9 @@ public class AffiliationHierrachyRequest {
 	@OneToMany(mappedBy = "hierarchy", cascade  = CascadeType.ALL)
 	private Set<Position> levelHead = new HashSet<>();
 
-	public AffiliationHierrachyRequest(Affliation affliation, String name, Integer level, Set<Position> levelHead) {
+	public AffiliationHierrachyRequest(Affiliation affiliation, String name, Integer level, Set<Position> levelHead) {
 		super();
-		this.affliation = affliation;
+		this.affiliation = affiliation;
 		this.name = name;
 		this.level = level;
 		this.levelHead = levelHead;
@@ -49,12 +49,12 @@ public class AffiliationHierrachyRequest {
 		this.id = id;
 	}
 
-	public Affliation getAffliation() {
-		return affliation;
+	public Affiliation getAffliation() {
+		return affiliation;
 	}
 
-	public void setAffliation(Affliation affliation) {
-		this.affliation = affliation;
+	public void setAffliation(Affiliation affliation) {
+		this.affiliation = affliation;
 	}
 
 	public String getName() {

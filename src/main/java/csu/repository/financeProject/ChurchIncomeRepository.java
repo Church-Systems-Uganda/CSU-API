@@ -1,5 +1,10 @@
 package csu.repository.financeProject;
 
-public class ChurchIncomeRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import csu.model.finaceProjects.ChurchIncome;
+
+public interface ChurchIncomeRepository extends JpaRepository<ChurchIncome,Long>{
+
     
 }

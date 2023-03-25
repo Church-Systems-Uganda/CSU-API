@@ -10,12 +10,14 @@ import csu.services.admin.church.ChurchHierrachyService;
 @RequestMapping("/api/admin")
 public class ChurchHierrachyController {
 
+    // Autowire an instance of ChurchHierrachyService
     @Autowired
     ChurchHierrachyService churchHierrachyService;
 
+    // This method is currently commented out and not functional
 //    @GetMapping("/ChurchHierrachy")
-//	public List<ChurchHierrachyPayload> getAllChurchHierrachy() {
-//		return ChurchHierrachyService.getAllChurchHierrachy();
-//	}
-    
+//    public List<ChurchHierrachyPayload> getAllChurchHierrachy() {
+//        return ChurchHierrachyService.getAllChurchHierrachy();
+//    }
+
 }

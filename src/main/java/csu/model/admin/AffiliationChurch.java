@@ -1,5 +1,6 @@
 package csu.model.admin;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,83 +24,77 @@ import jakarta.validation.constraints.Size;
 @Table(name = "churches", uniqueConstraints = { @UniqueConstraint(columnNames = { "name" }) })
 public class AffiliationChurch extends UserDateAudit {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotBlank
-    @Size(max = 100)
-    private String name;
+	@NotBlank
+	@Size(max = 100)
+	private String name;
 
-    // Church affiliation, a single church belongs to one affiliation
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "affiliation_id", nullable = false)
-    private Affiliation affiliation;
+	//church affiliation, a single church belongs to one affiliation
+	@ManyToOne
+	@JoinColumn(name = "affiliation_id", nullable = false)
+	private Affliation affiliation;
 
-    @OneToMany(mappedBy = "affiliationChurch", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "affiliationChurch", cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<ChurchHierrachy> hierarchies = new HashSet<>();
 
-    public AffiliationChurch() {
-        super();
-    }
+	public AffiliationChurch(@NotBlank @Size(max = 100) String name, Affliation affiliation,
+			Set<ChurchHierrachy> hierarchies) {
+	
+		this.name = name;
+		this.affiliation = affiliation;
+		this.hierarchies = hierarchies;
+	}
 
-    public AffiliationChurch(@NotBlank @Size(max = 100) String name, Affiliation affiliation,
-            Set<ChurchHierrachy> hierarchies) {
-        this.name = name;
-        this.affiliation = affiliation;
-        this.hierarchies = hierarchies;
-    }
+	public AffiliationChurch() {
+		super();
+	}
 
-    // Getters and setters
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Affiliation getAffiliation() {
-        return affiliation;
-    }
+	public Affliation getAffiliation() {
+		return affiliation;
+	}
 
-    public void setAffiliation(Affiliation affiliation) {
-        this.affiliation = affiliation;
-    }
+	public void setAffiliation(Affliation affiliation) {
+		this.affiliation = affiliation;
+	}
 
-    public Set<ChurchHierrachy> getHierarchies() {
-        return hierarchies;
-    }
+	public Set<ChurchHierrachy> getHierarchies() {
+		return hierarchies;
+	}
 
-    public void setHierarchies(Set<ChurchHierrachy> hierarchies) {
-        this.hierarchies = hierarchies;
-    }
+	public void setHierarchies(Set<ChurchHierrachy> hierarchies) {
+		this.hierarchies = hierarchies;
+	}
 
-    /**
-     * Adds a new hierarchy to the church
-     * 
-     * @param hierarchy The hierarchy to add
-     */
-    public void addHierarchy(ChurchHierrachy hierarchy) {
-        this.hierarchies.add(hierarchy);
-        hierarchy.setChurch(this);
-    }
 
-    /**
-     * Removes a hierarchy from the church
-     * 
-     * @param hierarchy The hierarchy to remove
-     */
-    public void removeHierarchy(ChurchHierrachy hierarchy) {
-        this.hierarchies.remove(hierarchy);
-        hierarchy.setChurch(null);
-    }
+	
+	
+//	public void addHierarchy(ChurchHierrachy hierarchy) {
+//        this.hierarchies.add(hierarchy);
+//        hierarchy.setChurch(this);
+//    }
+//    
+//    public void removeHierarchy(ChurchHierrachy hierarchy) {
+//        this.hierarchies.remove(hierarchy);
+//        hierarchy.setChurch(null);
+//    }
+//	
 }

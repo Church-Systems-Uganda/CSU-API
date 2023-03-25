@@ -16,29 +16,44 @@ import csu.services.admin.AffiliationService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/admin/affiliations")
 public class AffiliationController {
 
-	@Autowired
-	AffiliationService affiliationService;
+    // Autowire the AffiliationService
+    @Autowired
+    private AffiliationService affiliationService;
 
-	@GetMapping("/affiliations")
-	public List<AffiliationPayload> getAllAffiliations() {
-		return affiliationService.getAllAffiliations();
-	}
+    /**
+     * Get a list of all affiliations
+     * @return List of AffiliationPayload objects
+     */
+    @GetMapping
+    public List<AffiliationPayload> getAllAffiliations() {
+        // Call the getAllAffiliations method in the AffiliationService
+        List<AffiliationPayload> affiliations = affiliationService.getAllAffiliations();
+        // Return the list of affiliations
+        return affiliations;
+    }
 
-//	@PostMapping("/create-affiliation")
-//	public ResponseEntity<?> createAffliation(@Valid @RequestBody AffiliationRequest request) {
-//
-//		return affiliationService.createAffliation(request);
-//
-//	}
+//    @PostMapping("/create-affiliation")
+//    public ResponseEntity<?> createAffiliation(@Valid @RequestBody AffiliationRequest request) {
+//        // Call the createAffiliation method in the AffiliationService
+//        ResponseEntity<?> response = affiliationService.createAffiliation(request);
+//        // Return the response from the service
+//        return response;
+//    }
 
-	@PostMapping("/delete-affiliation")
-	public ResponseEntity<?> deleteAffliation(@RequestBody AffiliationRequest request) {
-
-		return affiliationService.deleteAffliation(request);
-
-	}
+    /**
+     * Delete an affiliation based on the request payload
+     * @param request The AffiliationRequest payload in the request body
+     * @return ResponseEntity with message and HTTP status code
+     */
+    @PostMapping("/delete-affiliation")
+    public ResponseEntity<?> deleteAffiliation(@RequestBody AffiliationRequest request) {
+        // Call the deleteAffiliation method in the AffiliationService
+        ResponseEntity<?> response = affiliationService.deleteAffiliation(request);
+        // Return the response from the service
+        return response;
+    }
 
 }

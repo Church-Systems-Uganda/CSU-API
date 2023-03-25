@@ -79,7 +79,7 @@ public class AffiliationService {
 //
 //	}
 
-	public ResponseEntity<?> deleteAffliation(AffiliationRequest request) {
+	public ResponseEntity<?> deleteAffiliation(AffiliationRequest request) {
 
 		if (request.getId() != null) {
 

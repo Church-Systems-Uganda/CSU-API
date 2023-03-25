@@ -1,6 +1,6 @@
 package csu.payload.membership.sacrament;
 
-import csu.model.admin.Affliation;
+import csu.model.admin.Affiliation;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -18,19 +18,19 @@ public class SacramentRequest {
     @ManyToOne(fetch = FetchType.LAZY)
 
 	@JoinColumn(name = "affliation_id", nullable = true)
-    private Affliation affliation;
+    private Affiliation affiliation;
 
 
 
    
 
-	public SacramentRequest(Long id, String name, String prerequisite, String tier, Affliation affliation) {
+	public SacramentRequest(Long id, String name, String prerequisite, String tier, Affiliation affliation) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.prerequisite = prerequisite;
 		this.tier = tier;
-		this.affliation = affliation;
+		this.affiliation = affiliation;
 	}
 
 
@@ -83,13 +83,13 @@ public class SacramentRequest {
 
 
 
-    public Affliation getAffliation() {
-        return affliation;
+    public Affiliation getAffliation() {
+        return affiliation;
     }
 
 
 
-    public void setAffliation(Affliation affliation) {
-        this.affliation = affliation;
+    public void setAffliation(Affiliation affliation) {
+        this.affiliation = affliation;
     }
 }

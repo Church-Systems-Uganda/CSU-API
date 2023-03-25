@@ -4,27 +4,34 @@ import csu.model.general.RoleName;
 import jakarta.validation.constraints.*;
 
 public class SignUpRequest {
+    
+    // The user's first name
 	@NotBlank
 	@Size(min = 2, max = 40)
 	private String firstname;
 
+    // The user's last name
 	@NotBlank
 	@Size(min = 2, max = 40)
 	private String surname;
 
+    // The user's chosen username
 	@NotBlank
 	@Size(min = 3, max = 15)
 	private String username;
 
+    // The user's email address
 	@NotBlank
 	@Size(max = 40)
 	@Email
 	private String email;
 
+    // The user's chosen password
 	@NotBlank
 	@Size(min = 6, max = 20)
 	private String password;
 
+    // The role assigned to the user
 	private RoleName roleName;
 
 	public SignUpRequest() {

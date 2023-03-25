@@ -3,7 +3,7 @@ package csu.payload.admin.affiliationHierrachy;
 import java.util.HashSet;
 import java.util.Set;
 
-import csu.model.admin.Affliation;
+import csu.model.admin.Affiliation;
 import csu.model.admin.Position;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
@@ -26,7 +26,7 @@ public class AffiliationHierrachyPayload {
 	//name of column =affiliation
 	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinColumn(name = "affiliation-ID", nullable = false)
-	private Affliation affliation;
+	private Affiliation affiliation;
 
 	private String name;
 
@@ -46,12 +46,12 @@ public class AffiliationHierrachyPayload {
 		this.id = id;
 	}
 
-	public Affliation getAffliation() {
-		return affliation;
+	public Affiliation getAffliation() {
+		return affiliation;
 	}
 
-	public void setAffliation(Affliation affliation) {
-		this.affliation = affliation;
+	public void setAffliation(Affiliation affiliation) {
+		this.affiliation = affiliation;
 	}
 
 	public String getName() {

@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import csu.model.admin.Affliation;
+import csu.model.admin.Affiliation;
 import csu.payload.admin.affiliation.AffiliationPayload;
 import csu.payload.admin.affiliation.AffiliationRequest;
 import csu.payload.general.ApiResponse;
@@ -28,7 +28,7 @@ public class AffiliationService {
 
 		List<AffiliationPayload> affiliations = new ArrayList<>();
 
-		for (Affliation affliation : affiliationRepository.findAll()) {
+		for (Affiliation affliation : affiliationRepository.findAll()) {
 
 			AffiliationPayload payload = new AffiliationPayload();
 
@@ -54,11 +54,11 @@ public class AffiliationService {
 //					: Optional.empty();
 //
 //			if (!existingAffliation.isPresent() && affiliationRepository.existsByName(request.getName())) {
-//				return new ResponseEntity<>(new ApiResponse(false, "Affilication Exists"), HttpStatus.BAD_REQUEST);
+//				return new ResponseEntity<>(new ApiResponse(false, "Affiliation Exists"), HttpStatus.BAD_REQUEST);
 //			}
 //
-//			Affliation afflition = existingAffliation.isPresent() ? existingAffliation.get()
-//					: new Affliation();
+//			Affiliation affiliation = existingAffliation.isPresent() ? existingAffliation.get()
+//					: new Affiliation();
 //			
 //			afflition.setName(request.getName());
 //			afflition.setShortName(request.getShortName() != null ? request.getShortName() : null);
@@ -67,15 +67,15 @@ public class AffiliationService {
 //			
 //		
 //			
-//			Affliation result = affiliationRepository.save(afflition);
+//			Affiliation result = affiliationRepository.save(affiliation);
 //
 //			if (result != null) {
-//				return new ResponseEntity<>(new ApiResponse(true, "Affilication Created"), HttpStatus.OK);
+//				return new ResponseEntity<>(new ApiResponse(true, "Affiliation Created"), HttpStatus.OK);
 //			}
 //
 //		}
 //
-//		return new ResponseEntity<>(new ApiResponse(false, "Affilication Not Created"), HttpStatus.BAD_REQUEST);
+//		return new ResponseEntity<>(new ApiResponse(false, "Affiliation Not Created"), HttpStatus.BAD_REQUEST);
 //
 //	}
 

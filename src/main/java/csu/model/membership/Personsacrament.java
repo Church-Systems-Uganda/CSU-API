@@ -5,6 +5,7 @@ import java.sql.Date;
 import csu.model.admin.AffiliationChurch;
 import csu.model.audit.DateAudit;
 import csu.model.general.Person;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -17,8 +18,9 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "personSacrement", uniqueConstraints = { @UniqueConstraint(columnNames = { "name" }) })
-
 public class Personsacrament extends DateAudit{
+
+    // Define fields for Person Sacrament entity
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -26,8 +28,8 @@ public class Personsacrament extends DateAudit{
     private Date date;
     private String tier;
 
+    // Define relationship between Person Sacrament entity and other entities
     @ManyToOne(fetch = FetchType.LAZY)
-
 	@JoinColumn(name = "person_id", nullable = true)
     private Person person;
 
@@ -37,6 +39,7 @@ public class Personsacrament extends DateAudit{
     @JoinColumn(name = "church_id", nullable = true)
     private AffiliationChurch church;
 
+    // Define constructor for Person Sacrament entity
     public Personsacrament(String name, Date date, String tier, Person person, Sacrament sacrement, AffiliationChurch church) {
         this.name = name;
         this.date = date;
@@ -46,6 +49,7 @@ public class Personsacrament extends DateAudit{
         this.church = church;
     }
 
+    // Define getters and setters for Person Sacrament entity fields
     public Long getId() {
         return id;
     }
@@ -101,6 +105,4 @@ public class Personsacrament extends DateAudit{
     public void setChurch(AffiliationChurch church) {
         this.church = church;
     }
-    
-
 }

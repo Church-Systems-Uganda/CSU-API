@@ -34,6 +34,12 @@ public class ChurchIncomePayload {
 		this.church = church;
 	}
 
+
+	public ChurchIncomePayload(AffiliationChurch church) {
+		super();
+		this.church = church;
+	}
+
 	
 	
 	

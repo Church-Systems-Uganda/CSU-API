@@ -90,7 +90,7 @@ public class AffiliationChurch extends UserDateAudit {
      */
     public void addHierarchy(ChurchHierrachy hierarchy) {
         this.hierarchies.add(hierarchy);
-        hierarchy.setChurch(this);
+        hierarchy.setAffiliationChurch(this);
     }
 
     /**
@@ -100,6 +100,6 @@ public class AffiliationChurch extends UserDateAudit {
      */
     public void removeHierarchy(ChurchHierrachy hierarchy) {
         this.hierarchies.remove(hierarchy);
-        hierarchy.setChurch(null);
+        hierarchy.setAffiliationChurch(null);
     }
 }

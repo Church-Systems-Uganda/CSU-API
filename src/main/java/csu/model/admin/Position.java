@@ -10,7 +10,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -18,6 +17,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
+// Define a unique constraint on the name column
 @Table(name = "positions", uniqueConstraints = { @UniqueConstraint(columnNames = { "name" }) })
 public class Position extends DateAudit {
 
@@ -32,6 +32,8 @@ public class Position extends DateAudit {
 	@Size(max = 50)
 	private String shortName;
 
+	// Define a many-to-one relationship with AffiliationHierrachy, with lazy loading
+	// enabled
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "hierarchy_id", nullable = false)
 	private AffiliationHierrachy hierarchy;
@@ -42,11 +44,12 @@ public class Position extends DateAudit {
 
 	public Position(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
 			AffiliationHierrachy hierarchy) {
-
 		this.name = name;
 		this.shortName = shortName;
 		this.hierarchy = hierarchy;
 	}
+
+	// Getters and setters
 
 	public Long getId() {
 		return id;
@@ -79,5 +82,4 @@ public class Position extends DateAudit {
 	public void setHierarchy(AffiliationHierrachy hierarchy) {
 		this.hierarchy = hierarchy;
 	}
-
 }

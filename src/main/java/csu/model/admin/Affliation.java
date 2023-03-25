@@ -34,12 +34,7 @@ public class Affliation extends UserDateAudit {
 	@Size(max = 50)
 	private String shortName;
 
-	// mean one affiliation can have many hierrachies
-
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "levelHead", cascade = CascadeType.ALL, orphanRemoval = true)
-//	private Set<AffiliationHierrachy> affiliationHierrachies;
-
+	// One affiliation can have many churches
 	@OneToMany(mappedBy = "affiliation", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<AffiliationChurch> churches = new HashSet<>();
 

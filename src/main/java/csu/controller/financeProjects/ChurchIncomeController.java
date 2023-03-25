@@ -4,11 +4,15 @@ package csu.controller.financeProjects;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import csu.payload.financeProjects.churchIncome.ChurchIncomePayload;
+import csu.payload.financeProjects.churchIncome.ChurchIncomeRequest;
 import csu.services.financeProjects.ChurchIncomeService;
 
 
@@ -22,7 +26,7 @@ ChurchIncomeService churchincomeservice;
 
 //logic
 
-//get all projects
+//get all churchIncomes
 
 @GetMapping("/getchurchincome")
 
@@ -31,9 +35,14 @@ ChurchIncomeService churchincomeservice;
 	}
 
 
-//create and edit projects
+//create and edit churchIncomes
 
-//delete project
+//delete churchIncomes
+@PostMapping("/delete-churchexpenditure")
+public ResponseEntity<?> deleteMinistry(@RequestBody ChurchIncomeRequest request) {
 
+return churchincomeservice.deleteChurchIncome(request);
+
+}
     
 }

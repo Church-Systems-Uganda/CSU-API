@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import csu.model.admin.AffiliationHierrachy;
-import csu.model.admin.Affliation;
+import csu.model.admin.Affiliation;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
@@ -29,12 +29,12 @@ public class PositionRequest {
 	 private AffiliationHierrachy hierarchy;
 	 
 	 @ManyToMany(mappedBy = "levelHead")
-	 private Set<Affliation> affiliations = new HashSet<>();
+	 private Set<Affiliation> affiliations = new HashSet<>();
 
 	 
 	 
 	public PositionRequest(@NotBlank @Size(max = 100) String name, @Size(max = 50) String shortName,
-			AffiliationHierrachy hierarchy, Set<Affliation> affiliations) {
+			AffiliationHierrachy hierarchy, Set<Affiliation> affiliations) {
 		super();
 		this.name = name;
 		this.shortName = shortName;
@@ -74,11 +74,11 @@ public class PositionRequest {
 		this.hierarchy = hierarchy;
 	}
 
-	public Set<Affliation> getAffiliations() {
+	public Set<Affiliation> getAffiliations() {
 		return affiliations;
 	}
 
-	public void setAffiliations(Set<Affliation> affiliations) {
+	public void setAffiliations(Set<Affiliation> affiliations) {
 		this.affiliations = affiliations;
 	}
 

@@ -17,80 +17,78 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 
-
-
 @Entity
-public class AffiliationHierrachy extends UserDateAudit {
+public class Hierarchy extends UserDateAudit {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    // A hierarchy belongs to an affiliation
+    @ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    @JoinColumn(name = "affiliation_ID", nullable = false)
+    private Affiliation affiliation;
 
+    // Name of the hierarchy
+    @NotNull
+    private String name;
 
-	//name of column =affiliation
-	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinColumn(name = "affiliation-ID", nullable = false)
-	private Affliation affliation;
+    // Level of the hierarchy
+    private Integer level;
 
-	private String name;
+    // Positions who are the heads of this hierarchy
+    @OneToMany(mappedBy = "hierarchy", cascade = CascadeType.ALL)
+    private Set<Position> levelHead = new HashSet<>();
 
-	private Integer level;
+    public Hierarchy() {
+        super();
+    }
 
-	@OneToMany(mappedBy = "hierarchy", cascade  = CascadeType.ALL)
-	private Set<Position> levelHead = new HashSet<>();
+    public Hierarchy(Affiliation affiliation, String name, Integer level, Set<Position> levelHead) {
+        super();
+        this.affiliation = affiliation;
+        this.name = name;
+        this.level = level;
+        this.levelHead = levelHead;
+    }
 
-	public AffiliationHierrachy() {
-		super();
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public AffiliationHierrachy(Affliation affliation, String name, Integer level, Set<Position> levelHead) {
-		super();
-		this.affliation = affliation;
-		this.name = name;
-		this.level = level;
-		this.levelHead = levelHead;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Affiliation getAffiliation() {
+        return affiliation;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setAffiliation(Affiliation affiliation) {
+        this.affiliation = affiliation;
+    }
 
-	public Affliation getAffliation() {
-		return affliation;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setAffliation(Affliation affliation) {
-		this.affliation = affliation;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Integer getLevel() {
+        return level;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
 
-	public Integer getLevel() {
-		return level;
-	}
+    public Set<Position> getLevelHead() {
+        return levelHead;
+    }
 
-	public void setLevel(Integer level) {
-		this.level = level;
-	}
-
-	public Set<Position> getLevelHead() {
-		return levelHead;
-	}
-
-	public void setLevelHead(Set<Position> levelHead) {
-		this.levelHead = levelHead;
-	}
-
-	
+    public void setLevelHead(Set<Position> levelHead) {
+        this.levelHead = levelHead;
+    }
 }

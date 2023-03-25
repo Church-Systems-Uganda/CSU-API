@@ -21,7 +21,7 @@ import jakarta.validation.Valid;
  */
 @RestController
 @RequestMapping("/api/admin")
-public class AffiliationHierarchyController {
+public class AffiliationHierrachyController {
 
 	@Autowired
 	AffiliationHierrachyService affiliationHierarchyService;
@@ -33,7 +33,7 @@ public class AffiliationHierarchyController {
 	 */
 	@GetMapping("/affiliation-hierarchy")
 	public List<AffiliationHierrachyPayload> getAllAffiliationHierarchy() {
-		return affiliationHierarchyService.getAllAffiliationHierarchy();
+		return affiliationHierarchyService.getAllAffiliationHierrachy();
 	}
 
 	/**
@@ -44,6 +44,6 @@ public class AffiliationHierarchyController {
 	 */
 	@PostMapping("/delete-affiliation-hierarchy")
 	public ResponseEntity<?> deleteAffiliationHierarchy(@RequestBody AffiliationHierrachyRequest request) {
-		return affiliationHierarchyService.deleteAffiliationHierarchy(request);
+		return affiliationHierarchyService.deleteAffiliationHierrachy(request);
 	}
 }

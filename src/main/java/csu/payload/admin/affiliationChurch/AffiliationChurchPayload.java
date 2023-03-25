@@ -3,8 +3,8 @@ package csu.payload.admin.affiliationChurch;
 import java.util.HashSet;
 import java.util.Set;
 
+import csu.model.admin.Affiliation;
 import csu.model.admin.AffiliationHierrachy;
-import csu.model.admin.Affliation;
 import csu.model.admin.Church.ChurchHierrachy;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
@@ -28,7 +28,7 @@ public class AffiliationChurchPayload {
 	//church affiliation, a single church belongs to one affiliation
 	@ManyToOne
 	@JoinColumn(name = "affiliation_id", nullable = false)
-	private Affliation affiliation;
+	private Affiliation affiliation;
 
 	@OneToMany(mappedBy = "church", cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<ChurchHierrachy> hierarchies = new HashSet<>();
@@ -53,11 +53,11 @@ public class AffiliationChurchPayload {
 		this.name = name;
 	}
 
-	public Affliation getAffiliation() {
+	public Affiliation getAffiliation() {
 		return affiliation;
 	}
 
-	public void setAffiliation(Affliation affiliation) {
+	public void setAffiliation(Affiliation affiliation) {
 		this.affiliation = affiliation;
 	}
 

@@ -3,6 +3,7 @@ package csu.model.finaceProjects;
 import java.time.LocalDate;
 
 import csu.model.admin.AffiliationChurch;
+import csu.payload.financeProjects.churchIncome.ChurchIncomePayload;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -84,6 +85,10 @@ public class ChurchIncome {
 	}
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+	public void add(ChurchIncomePayload churchIncomePayload) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

@@ -1,44 +1,33 @@
 package csu.controller.admin;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import csu.payload.admin.affiliationChurch.AffiliationChurchPayload;
 import csu.payload.admin.affiliationChurch.AffiliationChurchRequest;
-import csu.payload.admin.affiliationHierrachy.AffiliationHierrachyRequest;
 import csu.services.admin.AffiliationChurchService;
-import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/admin/affiliation-churches")
 public class AffiliationChurchController {
 
-	@Autowired
-	AffiliationChurchService affiliationChurchService;
-//
-//	@GetMapping("/church")
-//	public List<AffiliationChurchPayload> getAllChurches() {
-//		return affiliationChurchService.getAllChurches();
-//	}
-//
-//	@PostMapping("/create-Church")
-//	public ResponseEntity<?> createChurch(@Valid @RequestBody AffiliationChurchRequest request){
-//		
-//		return affiliationChurchService.createChurch(request);
-//	}
-	
-	@PostMapping("/delete-church")
-	public ResponseEntity<?> deleteChurch(@RequestBody AffiliationChurchRequest request) {
+    // Autowire the AffiliationChurchService
+    @Autowired
+    private AffiliationChurchService affiliationChurchService;
 
-		return affiliationChurchService.deleteAffiliationChurch(request);
-
-	}
-	
+    /**
+     * Delete an affiliation church based on the request payload
+     * @param request The AffiliationChurchRequest payload in the request body
+     * @return ResponseEntity with message and HTTP status code
+     */
+    @DeleteMapping
+    public ResponseEntity<?> deleteAffiliationChurch(@RequestBody AffiliationChurchRequest request) {
+        // Call the deleteAffiliationChurch method in the AffiliationChurchService
+        ResponseEntity<?> response = affiliationChurchService.deleteAffiliationChurch(request);
+        // Return the response from the service
+        return response;
+    }
 }

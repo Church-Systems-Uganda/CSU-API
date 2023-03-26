@@ -1,0 +1,256 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+// A Book class to store book information
+class Book {
+    private int id;
+    private String title;
+    private String author;
+    private int yearPublished;
+    private boolean isAvailable;
+
+    public Book(int id, String title, String author, int yearPublished) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.yearPublished = yearPublished;
+        this.isAvailable = true;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getYearPublished() {
+        return yearPublished;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", yearPublished=" + yearPublished +
+                ", isAvailable=" + isAvailable +
+                '}';
+    }
+}
+
+// A Library class to manage books and borrowing/returning
+class Library {
+    private List<Book> books;
+
+    public Library() {
+        this.books = new ArrayList<>();
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
+    }
+
+    public void removeBook(Book book) {
+        books.remove(book);
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void borrowBook(int id) {
+        for (Book book : books) {
+            if (book.getId() == id) {
+                if (book.isAvailable()) {
+                    book.setAvailable(false);
+                    System.out.println("Book borrowed successfully!");
+                    return;
+                } else {
+                    System.out.println("This book is not available at the moment.");
+                    return;
+                }
+            }
+        }
+        System.out.println("Book not found.");
+    }
+
+    public void returnBook(int id) {
+        for (Book book : books) {
+            if (book.getId() == id) {
+                if (!book.isAvailable()) {
+                    book.setAvailable(true);
+                    System.out.println("Book returned successfully!");
+                    return;
+                } else {
+                    System.out.println("This book is already available.");
+                    return;
+                }
+            }
+        }
+        System.out.println("Book not found.");
+    }
+}
+
+// A class to test the library system
+public class LibrarySystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Library library = new Library();
+
+        // Add some books to the library
+        library.addBook(new Book(1, "The Great Gatsby", "F. Scott Fitzgerald", 1925));
+        library.addBook(new Book(2, "To Kill a Mockingbird", "Harper Lee", 1960));
+        library.addBook(new Book(3, "1984", "George Orwell", 1949));
+        library.addBook(new Book(4, "The Catcher in the Rye", "J.D. Salinger", 1951));
+
+        // Main loop for the library system
+        while (true) {
+            System.out.println("\nWelcome to the library! What would you like to do?");
+            System.out.println("1. Borrow a book");
+            System.out.println("2. Return a book");
+            System.out.println("3. List all books");
+            System.out.println("4. Exit");
+
+            int choice = scanner.nextInt
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Library {
+    private Map<String, List<Book>> booksByAuthor;
+    private Map<String, List<Book>> booksByTitle;
+    private List<Book> checkedOutBooks;
+
+    public Library() {
+        booksByAuthor = new HashMap<>();
+        booksByTitle = new HashMap<>();
+        checkedOutBooks = new ArrayList<>();
+    }
+
+    public void addBook(Book book) {
+        // Add book to booksByAuthor
+        String author = book.getAuthor();
+        if (!booksByAuthor.containsKey(author)) {
+            booksByAuthor.put(author, new ArrayList<>());
+        }
+        booksByAuthor.get(author).add(book);
+
+        // Add book to booksByTitle
+        String title = book.getTitle();
+        if (!booksByTitle.containsKey(title)) {
+            booksByTitle.put(title, new ArrayList<>());
+        }
+        booksByTitle.get(title).add(book);
+    }
+
+    public void removeBook(Book book) {
+        // Remove book from booksByAuthor
+        String author = book.getAuthor();
+        if (booksByAuthor.containsKey(author)) {
+            booksByAuthor.get(author).remove(book);
+            if (booksByAuthor.get(author).isEmpty()) {
+                booksByAuthor.remove(author);
+            }
+        }
+
+        // Remove book from booksByTitle
+        String title = book.getTitle();
+        if (booksByTitle.containsKey(title)) {
+            booksByTitle.get(title).remove(book);
+            if (booksByTitle.get(title).isEmpty()) {
+                booksByTitle.remove(title);
+            }
+        }
+    }
+
+    public List<Book> searchByAuthor(String author) {
+        if (booksByAuthor.containsKey(author)) {
+            return booksByAuthor.get(author);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public List<Book> searchByTitle(String title) {
+        if (booksByTitle.containsKey(title)) {
+            return booksByTitle.get(title);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public void checkOut(Book book) {
+        if (booksByAuthor.containsValue(book) || booksByTitle.containsValue(book)) {
+            booksByAuthor.get(book.getAuthor()).remove(book);
+            booksByTitle.get(book.getTitle()).remove(book);
+            checkedOutBooks.add(book);
+        } else {
+            System.out.println("Book not found in library.");
+        }
+    }
+
+    public void checkIn(Book book) {
+        if (checkedOutBooks.contains(book)) {
+            addBook(book);
+            checkedOutBooks.remove(book);
+        } else {
+            System.out.println("Book not checked out.");
+        }
+    }
+}
+
+public class Book {
+    private String title;
+    private String author;
+
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Library library = new Library();
+
+        Book book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald");
+        Book book2 = new Book("To Kill a Mockingbird", "Harper Lee");
+        Book book3 = new Book("1984", "George Orwell");
+
+        library.addBook(book1);
+        library.addBook(book2);
+        library.addBook(book3);
+
+        List<Book> booksByAuthor = library.searchByAuthor("Harper Lee");
+        System.out.println("Books by Harper Lee:");
+        for (Book book : booksByAuthor) {
+            System.out.println(book.getTitle());
+        }
+
+        library

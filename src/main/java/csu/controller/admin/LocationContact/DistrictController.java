@@ -1,4 +1,4 @@
-package csu.controller.admin.LocationContact;
+package csu.controller.admin.locationContact;
 
 import java.util.List;
 
@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import csu.model.admin.LocationContact.District;
+import csu.repository.locationContact.DistrictRepository;
 
 public class DistrictController {
 	@Autowired
-    private DistrictRepository ditrictRepository;
+    private DistrictRepository districtRepository;
 
     // GET method to retrieve all countries
     @GetMapping("/")
@@ -51,7 +52,7 @@ public class DistrictController {
         }
         existingDistrict.setName(district.getName());
         District updated = districtRepository.save(existingDistrict);
-        return new ResponseEntity<>(updatedDistrict, HttpStatus.OK);
+        return new ResponseEntity<>(district, HttpStatus.OK);
     }
 
     // DELETE method to delete a country by its id

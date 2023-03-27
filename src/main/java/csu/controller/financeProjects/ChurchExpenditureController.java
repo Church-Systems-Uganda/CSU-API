@@ -29,7 +29,7 @@ public List<ChurchExpenditurePayload> getAllchurchExpenditures() {
 
 //delete function
 @PostMapping("/delete-churchexpenditure")
-public ResponseEntity<?> deleteMinistry(@RequestBody ChurchExpenditureRequest request) {
+public ResponseEntity<?> deleteChurchExpenditure(@RequestBody ChurchExpenditureRequest request) {
 
 return churchexpenditureservice.deleteChurchExpenditure(request);
 

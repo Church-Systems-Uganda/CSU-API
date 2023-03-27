@@ -38,8 +38,8 @@ ChurchIncomeService churchincomeservice;
 //create and edit churchIncomes
 
 //delete churchIncomes
-@PostMapping("/delete-churchexpenditure")
-public ResponseEntity<?> deleteMinistry(@RequestBody ChurchIncomeRequest request) {
+@PostMapping("/delete-churchincome")
+public ResponseEntity<?> deleteChurchIncome(@RequestBody ChurchIncomeRequest request) {
 
 return churchincomeservice.deleteChurchIncome(request);
 

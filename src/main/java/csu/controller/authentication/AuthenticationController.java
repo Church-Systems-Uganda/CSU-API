@@ -48,7 +48,7 @@ public class AuthenticationController {
 
 	}
 	
-	//get userbyid 
+	//get user by id 
    
 	@GetMapping("/Users/{id}")
 	public ResponseEntity<?> getUserById(@PathVariable("id") Long id) {

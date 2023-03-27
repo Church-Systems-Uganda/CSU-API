@@ -16,7 +16,7 @@ import csu.services.admin.AffiliationService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/admin/affiliations")
+@RequestMapping("/api/admin")
 public class AffiliationController {
 
     // Autowire the AffiliationService
@@ -27,7 +27,7 @@ public class AffiliationController {
      * Get a list of all affiliations
      * @return List of AffiliationPayload objects
      */
-    @GetMapping
+    @GetMapping("/affiliations")
     public List<AffiliationPayload> getAllAffiliations() {
         // Call the getAllAffiliations method in the AffiliationService
         List<AffiliationPayload> affiliations = affiliationService.getAllAffiliations();
@@ -35,19 +35,15 @@ public class AffiliationController {
         return affiliations;
     }
 
-//    @PostMapping("/create-affiliation")
-//    public ResponseEntity<?> createAffiliation(@Valid @RequestBody AffiliationRequest request) {
-//        // Call the createAffiliation method in the AffiliationService
-//        ResponseEntity<?> response = affiliationService.createAffiliation(request);
-//        // Return the response from the service
-//        return response;
-//    }
+    @PostMapping("/create-affiliation")
+    public ResponseEntity<?> createAffiliation(@Valid @RequestBody AffiliationRequest request) {
+        // Call the createAffiliation method in the AffiliationService
+        ResponseEntity<?> response = affiliationService.createAffliation(request);
+        // Return the response from the service
+        return response;
+    }
 
-    /**
-     * Delete an affiliation based on the request payload
-     * @param request The AffiliationRequest payload in the request body
-     * @return ResponseEntity with message and HTTP status code
-     */
+   
     @PostMapping("/delete-affiliation")
     public ResponseEntity<?> deleteAffiliation(@RequestBody AffiliationRequest request) {
         // Call the deleteAffiliation method in the AffiliationService

@@ -45,39 +45,35 @@ public class AffiliationService {
 	/*
 	 * Creating an affiliation
 	 */
-//	public ResponseEntity<?> createAffliation(AffiliationRequest request) {
-//
-//		if (request.getName() != null) {
-//
-//			Optional<Affliation> existingAffliation = request.getId() != null
-//					? affiliationRepository.findById(request.getId())
-//					: Optional.empty();
-//
-//			if (!existingAffliation.isPresent() && affiliationRepository.existsByName(request.getName())) {
-//				return new ResponseEntity<>(new ApiResponse(false, "Affiliation Exists"), HttpStatus.BAD_REQUEST);
-//			}
-//
-//			Affiliation affiliation = existingAffliation.isPresent() ? existingAffliation.get()
-//					: new Affiliation();
-//			
-//			afflition.setName(request.getName());
-//			afflition.setShortName(request.getShortName() != null ? request.getShortName() : null);
-//			//get AffiliationHierrachies else set to null
-//			afflition.setAffiliationHierrachy(request.getAffiliationHierrachy() != null ? request.getAffiliationHierrachy(): null);
-//			
-//		
-//			
-//			Affiliation result = affiliationRepository.save(affiliation);
-//
-//			if (result != null) {
-//				return new ResponseEntity<>(new ApiResponse(true, "Affiliation Created"), HttpStatus.OK);
-//			}
-//
-//		}
-//
-//		return new ResponseEntity<>(new ApiResponse(false, "Affiliation Not Created"), HttpStatus.BAD_REQUEST);
-//
-//	}
+	public ResponseEntity<?> createAffliation(AffiliationRequest request) {
+		if (request.getName() != null) {
+
+			Optional<Affiliation> existingAffliation = request.getId() != null
+					? affiliationRepository.findById(request.getId())
+					: Optional.empty();
+
+			if (!existingAffliation.isPresent() && affiliationRepository.existsByName(request.getName())) {
+				return new ResponseEntity<>(new ApiResponse(false, "Affilication Exists"), HttpStatus.BAD_REQUEST);
+			}
+
+			Affiliation afflition = existingAffliation.isPresent() ? existingAffliation.get()
+					: new Affiliation();
+			afflition.setId(request.getId());
+			afflition.setName(request.getName());
+			afflition.setShortName(request.getShortName());
+			
+			Affiliation result = affiliationRepository.save(afflition);
+
+			if (result != null) {
+				System.out.println("Affiliation created");
+				return new ResponseEntity<>(new ApiResponse(true, "Affiliation Created"), HttpStatus.OK);
+			}
+
+		}
+		System.out.println("Not Created created");
+		return new ResponseEntity<>(new ApiResponse(false, "Affiliation Not Created"), HttpStatus.BAD_REQUEST);
+		
+	}
 
 	public ResponseEntity<?> deleteAffiliation(AffiliationRequest request) {
 

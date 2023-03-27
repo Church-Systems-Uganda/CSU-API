@@ -3,6 +3,7 @@ package csu.services.authentication;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -138,6 +139,27 @@ public class AuthenticationService {
 		return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
 
 	}
+
 	
+	public ResponseEntity<?> getUserById(Long id) {
+	    Optional<User> optionalUser = userRepository.findById(id);
+	    if (!optionalUser.isPresent()) {
+	        return new ResponseEntity<>(new ApiResponse(false, "User not found with id: " + id), HttpStatus.NOT_FOUND);
+	    }
+	    User user = optionalUser.get();
+	    
+	    return new ResponseEntity<>(new ApiResponse(false, "User results present"), HttpStatus.OK);
+
+	}
+	public ResponseEntity<?> getUserByUsername(String username) {
+	    Optional<User> optionalUser = userRepository.findByUsername(username);
+	    if (!optionalUser.isPresent()) {
+	        return new ResponseEntity<>(new ApiResponse(false, "User not found with username: " + username), HttpStatus.NOT_FOUND);
+	    }
+	    User user = optionalUser.get();
+	    
+	    return new ResponseEntity<>(new ApiResponse(false, "User results present"), HttpStatus.OK);
+	}
+
 	
 }

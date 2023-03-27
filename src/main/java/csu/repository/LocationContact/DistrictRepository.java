@@ -1,4 +1,4 @@
-package csu.repository.LocationContact;
+package csu.repository.locationContact;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

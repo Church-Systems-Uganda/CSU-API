@@ -39,7 +39,9 @@ ChurchIncomeService churchincomeservice;
 
 //delete churchIncomes
 @PostMapping("/delete-churchincome")
+
 public ResponseEntity<?> deleteChurchIncome(@RequestBody ChurchIncomeRequest request) {
+
 
 return churchincomeservice.deleteChurchIncome(request);
 

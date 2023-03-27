@@ -1,4 +1,4 @@
-package csu.payload.admin.LocationContact;
+package csu.payload.admin.locationContact;
 
 
 

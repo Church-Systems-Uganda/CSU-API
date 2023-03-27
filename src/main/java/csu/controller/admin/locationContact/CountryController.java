@@ -1,4 +1,4 @@
-package csu.controller.admin.LocationContact;
+package csu.controller.admin.locationContact;
 
 import csu.model.admin.LocationContact.Country;
 

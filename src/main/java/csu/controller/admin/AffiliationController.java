@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 import csu.payload.admin.affiliation.AffiliationPayload;
 import csu.payload.admin.affiliation.AffiliationRequest;
 import csu.services.admin.AffiliationService;
-import csu.services.admin.PathVariable;
+
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/admin")
 public class AffiliationController {
 
-    // Autowire the AffiliationService
+   
     @Autowired
     private AffiliationService affiliationService;
 

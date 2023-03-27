@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import csu.model.admin.Affiliation;
 import csu.payload.admin.affiliation.AffiliationPayload;
@@ -104,5 +105,6 @@ public class AffiliationService {
 	    return new ResponseEntity<>(affiliationPayload, HttpStatus.OK);
 	}
 
+	
 
 }

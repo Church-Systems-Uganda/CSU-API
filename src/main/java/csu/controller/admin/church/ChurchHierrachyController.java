@@ -1,7 +1,9 @@
 package csu.controller.admin.church;
 
-import csu.model.admin.LocationContact.Country;
-import csu.repository.CountryRepository;
+import csu.payload.admin.churchHierrachy.ChurcHierrachyPayload;
+import csu.payload.admin.churchHierrachy.ChurchHierrachyRequest;
+import csu.payload.general.ApiResponse;
+import csu.services.admin.church.ChurchHierrachyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,56 +12,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/countries")
-public class CountryController {
-    
+@RequestMapping("/api/admin/")
+public class ChurchHierrachyController {
+
     @Autowired
-    private CountryRepository countryRepository;
+    ChurchHierrachyService churchHierrachyService;
 
-    // GET method to retrieve all countries
-    @GetMapping("/")
-    public ResponseEntity<List<Country>> getAllCountries() {
-        List<Country> countries = countryRepository.findAll();
-        return new ResponseEntity<>(countries, HttpStatus.OK);
+    @GetMapping("/churchhierrachy")
+    public List<ChurcHierrachyPayload> getAllChurchHierrachies() {
+        return churchHierrachyService.getAllChurchHierrachies();
     }
 
-    // GET method to retrieve a country by its id
-    @GetMapping("/{id}")
-    public ResponseEntity<Country> getCountryById(@PathVariable Long id) {
-        Country country = countryRepository.findById(id).orElse(null);
-        if (country == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(country, HttpStatus.OK);
+    @PostMapping("/create_churchHierracchy")
+    public ResponseEntity<?> createChurchHierrachy(@RequestBody ChurchHierrachyRequest request) {
+        return churchHierrachyService.createChurcHierrachy(request);
     }
 
-    // POST method to create a new country
-    @PostMapping("/")
-    public ResponseEntity<Country> createCountry(@RequestBody Country country) {
-        Country savedCountry = countryRepository.save(country);
-        return new ResponseEntity<>(savedCountry, HttpStatus.CREATED);
+    @DeleteMapping("/hierrachy")
+    public ResponseEntity<?> deleteChurchHierrachy(@RequestBody ChurchHierrachyRequest request) {
+        return churchHierrachyService.deleteChurchHierrachy(request);
     }
 
-    // PUT method to update an existing country
-    @PutMapping("/{id}")
-    public ResponseEntity<Country> updateCountry(@PathVariable Long id, @RequestBody Country country) {
-        Country existingCountry = countryRepository.findById(id).orElse(null);
-        if (existingCountry == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        existingCountry.setName(country.getName());
-        Country updatedCountry = countryRepository.save(existingCountry);
-        return new ResponseEntity<>(updatedCountry, HttpStatus.OK);
-    }
-
-    // DELETE method to delete a country by its id
-    @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteCountry(@PathVariable Long id) {
-        Country country = countryRepository.findById(id).orElse(null);
-        if (country == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        countryRepository.delete(country);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 }

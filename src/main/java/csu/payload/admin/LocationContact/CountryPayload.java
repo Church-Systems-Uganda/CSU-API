@@ -1,4 +1,6 @@
-package src.main.java.csu.payload.admin.LocationContact;
+package csu.payload.admin.LocationContact;
+
+
 
 public class CountryPayload {
     private Long id;
@@ -26,11 +28,10 @@ public class CountryPayload {
 		this.name = name;
 	}
 
-    // Constructor that takes in a name parameter
-	public Country(String name) {
+	public CountryPayload() {
 		super();
-		this.name = name;
 	}
+
 
 
 }

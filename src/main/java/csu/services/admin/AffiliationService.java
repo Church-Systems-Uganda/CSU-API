@@ -76,9 +76,7 @@ public class AffiliationService {
 	}
 
 	public ResponseEntity<?> deleteAffiliation(AffiliationRequest request) {
-
 		if (request.getId() != null) {
-
 			try {
 				affiliationRepository.deleteById(request.getId());
 
@@ -92,5 +90,19 @@ public class AffiliationService {
 		return new ResponseEntity<>(new ApiResponse(false, "Affilication Not Deleted"), HttpStatus.BAD_REQUEST);
 
 	}
+	
+	public ResponseEntity<?> getAffiliationById(Long id) {
+	    Optional<Affiliation> optionalAffiliation = affiliationRepository.findById(id);
+	    if (!optionalAffiliation.isPresent()) {
+	        return new ResponseEntity<>(new ApiResponse(false, "Affiliation not found with ID: " + id), HttpStatus.NOT_FOUND);
+	    }
+	    Affiliation affiliation = optionalAffiliation.get();
+	    AffiliationPayload affiliationPayload = new AffiliationPayload();
+	    affiliationPayload.setId(affiliation.getId());
+	    affiliationPayload.setName(affiliation.getName());
+	    affiliationPayload.setShortName(affiliation.getShortName());
+	    return new ResponseEntity<>(affiliationPayload, HttpStatus.OK);
+	}
+
 
 }

@@ -3,6 +3,7 @@ package csu.controller.admin;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import csu.payload.admin.affiliation.AffiliationPayload;
 import csu.payload.admin.affiliation.AffiliationRequest;
 import csu.services.admin.AffiliationService;
+import csu.services.admin.PathVariable;
 import jakarta.validation.Valid;
 
 @RestController
@@ -52,4 +54,11 @@ public class AffiliationController {
         return response;
     }
 
+  //get affiliation by id
+  	@GetMapping("/affiliation/{id}")
+      public ResponseEntity<?> getAffiliationById(@org.springframework.web.bind.annotation.PathVariable("id") Long id) {
+          ResponseEntity<?> affiliation = affiliationService.getAffiliationById(id);
+
+          return new ResponseEntity<>(affiliation, HttpStatus.OK);
+      }
 }

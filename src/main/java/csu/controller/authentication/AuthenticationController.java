@@ -1,5 +1,7 @@
 package csu.controller.authentication;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import csu.payload.authentication.GetAllUsersPayload;
 import csu.payload.authentication.LoginRequest;
 import csu.payload.authentication.SignUpRequest;
 import csu.services.authentication.AuthenticationService;
@@ -21,6 +24,14 @@ public class AuthenticationController {
 	@Autowired
 	AuthenticationService authenticationService;
 
+	
+	//getting user
+	
+	 @GetMapping("/GetAllUsers")
+	  public List<GetAllUsersPayload> getAllusers() {
+	      return authenticationService.getAllusers();
+	  }
+	 
 	/*
 	 * Creating a new User
 	 */
@@ -35,4 +46,9 @@ public class AuthenticationController {
 		return authenticationService.authenticateUser(loginRequest);
 
 	}
+	
+	//get all users
+   
+ 
+	
 }

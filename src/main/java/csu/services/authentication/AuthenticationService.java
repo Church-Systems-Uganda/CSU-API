@@ -1,6 +1,8 @@
 package csu.services.authentication;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,13 +16,18 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import csu.exception.AppException;
+import csu.model.admin.Affiliation;
+import csu.model.finaceProjects.ChurchExpenditure;
 import csu.model.general.Person;
 import csu.model.general.Role;
 import csu.model.general.RoleName;
 import csu.model.general.User;
+import csu.payload.admin.affiliation.AffiliationPayload;
+import csu.payload.authentication.GetAllUsersPayload;
 import csu.payload.authentication.JwtAuthenticationResponse;
 import csu.payload.authentication.LoginRequest;
 import csu.payload.authentication.SignUpRequest;
+import csu.payload.financeProjects.churchExpenditure.ChurchExpenditurePayload;
 import csu.payload.general.ApiResponse;
 import csu.repository.general.PersonRepository;
 import csu.repository.general.RoleRepository;
@@ -47,6 +54,21 @@ public class AuthenticationService {
 
 	@Autowired
 	JwtTokenProvider tokenProvider;
+	
+	public List<GetAllUsersPayload> getAllusers() {
+		
+		List<GetAllUsersPayload> users = new ArrayList<>();
+		
+		for (User user : userRepository.findAll()){
+			
+			GetAllUsersPayload getuser = new GetAllUsersPayload();
+			getuser.setEmail(user.getEmail());
+			getuser.setUsername(user.getUsername());
+		
+			users.add(getuser);
+		}
+		return users;
+	}
 
 	public ResponseEntity<?> registerUser(SignUpRequest signUpRequest) {
 
@@ -116,4 +138,6 @@ public class AuthenticationService {
 		return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
 
 	}
+	
+	
 }

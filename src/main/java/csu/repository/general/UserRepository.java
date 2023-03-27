@@ -10,7 +10,7 @@ import csu.model.general.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-	Optional<User> findAll(String email);
+	
 
 	Optional<User> findByEmail(String email);
 

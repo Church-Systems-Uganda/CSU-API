@@ -31,6 +31,7 @@ public class AuthenticationController {
 	  public List<GetAllUsersPayload> getAllusers() {
 	      return authenticationService.getAllusers();
 	  }
+	 
 	/*
 	 * Creating a new User
 	 */

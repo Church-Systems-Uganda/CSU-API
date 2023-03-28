@@ -1,27 +1,28 @@
 package csu.services.admin.locationContact;
 
+
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
-import src.main.java.csu.controller.admin.locationContact.Autowired;
-import src.main.java.csu.controller.admin.locationContact.Country;
-import src.main.java.csu.controller.admin.locationContact.CountryRepository;
-import src.main.java.csu.controller.admin.locationContact.DeleteMapping;
-import src.main.java.csu.controller.admin.locationContact.GetMapping;
-import src.main.java.csu.controller.admin.locationContact.HttpStatus;
-import src.main.java.csu.controller.admin.locationContact.PathVariable;
-import src.main.java.csu.controller.admin.locationContact.PostMapping;
-import src.main.java.csu.controller.admin.locationContact.PutMapping;
-import src.main.java.csu.controller.admin.locationContact.RequestBody;
-import src.main.java.csu.controller.admin.locationContact.ResponseEntity;
+import csu.model.admin.locationContact.Country;
+import csu.repository.locationContact.CountryRepository;
+
 
 @Service
 public class CountryService {
 	 @Autowired
 	    private CountryRepository countryRepository;
 	    // GET method to retrieve all countries
-	    @GetMapping("/")
+	    @GetMapping("/getAllCountries")
 	    public ResponseEntity<List<Country>> getAllCountries() {
 	        List<Country> countries = countryRepository.findAll();
 	        return new ResponseEntity<>(countries, HttpStatus.OK);

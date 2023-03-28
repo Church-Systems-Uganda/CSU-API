@@ -1,44 +1,45 @@
-package src.main.java.csu.services.admin.locationContact;
+package csu.services.admin.locationContact;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-import src.main.java.csu.controller.admin.locationContact.Autowired;
-import src.main.java.csu.controller.admin.locationContact.DeleteMapping;
-import src.main.java.csu.controller.admin.locationContact.GetMapping;
-import src.main.java.csu.controller.admin.locationContact.HttpStatus;
-import src.main.java.csu.controller.admin.locationContact.LoactionsPayload;
-import src.main.java.csu.controller.admin.locationContact.Location;
-import src.main.java.csu.controller.admin.locationContact.LocationService;
-import src.main.java.csu.controller.admin.locationContact.ParishesPayload;
-import src.main.java.csu.controller.admin.locationContact.PathVariable;
-import src.main.java.csu.controller.admin.locationContact.PostMapping;
-import src.main.java.csu.controller.admin.locationContact.RequestBody;
-import src.main.java.csu.controller.admin.locationContact.ResponseEntity;
-import src.main.java.csu.controller.admin.locationContact.location;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import csu.repository.locationContact.LocationRepository;
+import csu.model.admin.locationContact.Location;
+import csu.payload.admin.locationContact.LocationPayload;
+import csu.payload.admin.locationContact.ParishPayload;
+
 
 @Service
 public class LocationService {
 	@Autowired 
-	private LocationService locationService;
-	//get all Parishes
+	private LocationRepository locationRepository;
+	
 	
 	   @GetMapping("/locations")
-	    public List<LoactionsPayload> getAllLocations() {
-	        // Call the getAllAffiliations method in the AffiliationService
-	        List<ParishesPayload> locations = locationsService.getAllParishes();
-	        // Return the list of affiliations
+	    public List<Location> getAllLocations() {
+	        List<Location> locations = locationRepository.findAll();
 	        return locations;
 	    }
 	   
-	   //create a region
-	   @PostMapping("/")
-	    public ResponseEntity<location> createLocation(@RequestBody Location location) {
+	  
+	   @PostMapping("/create-location")
+	    public ResponseEntity<Location> createLocation(@RequestBody Location location) {
 	        Location savedlocation = locationRepository.save(location);
-	        return new ResponseEntity<>(savedLocation, HttpStatus.CREATED);
+	        return new ResponseEntity<>(HttpStatus.CREATED);
 	    }
 	    
-	  //delete a region
+	 
 	    @DeleteMapping("/{id}")
 	    public ResponseEntity<HttpStatus> deleteLocation(@PathVariable Long id) {
 	    	Location location = locationRepository.findById(id).orElse(null);
@@ -51,7 +52,7 @@ public class LocationService {
 	    
 	 // get region by id
 	    @GetMapping("/{id}")
-	    public ResponseEntity<location> getLocationById(@PathVariable Long id) {
+	    public ResponseEntity<Location> getLocationById(@PathVariable Long id) {
 	    	Location location = locationRepository.findById(id).orElse(null);
 	        if (location == null) {
 	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);

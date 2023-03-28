@@ -14,10 +14,6 @@ import csu.services.admin.locationContact.ParishService;
 
 @RestController
 
-
-public class ParishController {
-	
-
 @RequestMapping("/api/v1/parishes")
 public class ParishController {
 

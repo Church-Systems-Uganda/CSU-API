@@ -25,7 +25,7 @@ public class ParishController {
 	        List<ParishPayload> parishes = parishService.getAllParishes();
 
 	        // Return the list of Parishes
-	        return regions;
+	        return parishes;
 	    }
 	
 	//create a region

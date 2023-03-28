@@ -1,4 +1,4 @@
-package csu.controllers.admin;
+package csu.controller.admin.church;
 
 import java.util.List;
 

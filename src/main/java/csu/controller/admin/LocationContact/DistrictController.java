@@ -1,4 +1,4 @@
-package csu.controller.admin.locationContact;
+package csu.controller.admin.LocationContact;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import csu.model.admin.LocationContact.District;
-import csu.repository.locationContact.DistrictRepository;
+import csu.repository.LocationContact.DistrictRepository;
 
 public class DistrictController {
 	@Autowired

@@ -1,11 +1,10 @@
 package csu.services.admin.church;
 
-import csu.model.admin.Church.ChurchHierrachy;
+
 import csu.model.admin.Church.ChurchLeadership;
 import csu.payload.admin.ChurchLeadership.ChurchLeadershipPayload;
 import csu.payload.admin.ChurchLeadership.ChurchLeadershipRequest;
-import csu.payload.admin.churchHierrachy.ChurcHierrachyPayload;
-import csu.payload.admin.churchHierrachy.ChurchHierrachyRequest;
+
 import csu.payload.general.ApiResponse;
 import csu.repository.admin.Church.ChurchLeadershipRepository;
 

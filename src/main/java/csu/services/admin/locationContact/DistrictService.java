@@ -1,7 +1,8 @@
-package src.main.java.csu.services.admin.locationContact;
+package csu.services.admin.locationContact;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 import src.main.java.csu.controller.admin.locationContact.Autowired;
 import src.main.java.csu.controller.admin.locationContact.DeleteMapping;
@@ -14,6 +15,14 @@ import src.main.java.csu.controller.admin.locationContact.PostMapping;
 import src.main.java.csu.controller.admin.locationContact.PutMapping;
 import src.main.java.csu.controller.admin.locationContact.RequestBody;
 import src.main.java.csu.controller.admin.locationContact.ResponseEntity;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import csu.model.admin.locationContact.District;
+import csu.payload.admin.locationContact.DistrictPayload;
+import csu.repository.locationContact.DistrictRepository;
+
 
 @Service
 public class DistrictService {
@@ -45,6 +54,7 @@ public class DistrictService {
         return new ResponseEntity<>(savedDistrict, HttpStatus.CREATED);
     }
 
+
     // PUT method to update an existing country
     @PutMapping("/{id}")
     public ResponseEntity<District> updateDistrict(@PathVariable Long id, @RequestBody District district) {
@@ -67,6 +77,17 @@ public class DistrictService {
         districtRepository.delete(district);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
+					DistrictPayload payload = new DistrictPayload();
+					payload.setId(district.getId());
+					payload.setName(district.getName());
+					
+					districts.add(payload);
+
+				}
+				return districts;
+			}
 
 
 }

@@ -1,4 +1,5 @@
-package src.main.java.csu.services.admin.locationContact;
+package csu.services.admin.locationContact;
+
 
 public class ParishService {
 

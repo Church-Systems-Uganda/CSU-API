@@ -1,7 +1,14 @@
-package src.main.java.csu.services.admin.locationContact;
+package csu.services.admin.locationContact;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import csu.model.admin.locationContact.District;
+import csu.payload.admin.locationContact.DistrictPayload;
+import csu.repository.locationContact.DistrictRepository;
 
 @Service
 public class DistrictService {
@@ -21,10 +28,10 @@ public class DistrictService {
 					payload.setId(district.getId());
 					payload.setName(district.getName());
 					
-					district.add(payload);
+					districts.add(payload);
 
 				}
-				return district;
+				return districts;
 			}
 
 }

@@ -23,5 +23,15 @@ public class PersonChurchMinistryService {
         return Optional.ofNullable(em.find(PersonChurchMinistrypayload.class, id));
     }
 
-   
+    public PersonChurchMinistrypayload create(PersonChurchMinistrypayload payload) {
+        em.persist(payload);
+        return payload;
+    }
+
+    public void deleteById(Long id) {
+        Optional<PersonChurchMinistrypayload> optionalPayload = getById(id);
+        optionalPayload.ifPresent(em::remove);
+    }
+    
+    // Additional methods can be added as necessary
 }

@@ -18,7 +18,7 @@ public class ChurchHierrachyController {
     @Autowired
     ChurchHierrachyService churchHierrachyService;
 
-    @GetMapping("/churchhierrachy")
+    @GetMapping("/get-churchhierrachy")
     public List<ChurcHierrachyPayload> getAllChurchHierrachies() {
         return churchHierrachyService.getAllChurchHierrachies();
     }
@@ -28,7 +28,7 @@ public class ChurchHierrachyController {
         return churchHierrachyService.createChurcHierrachy(request);
     }
 
-    @DeleteMapping("/hierrachy")
+    @DeleteMapping("/delete_hierrachy")
     public ResponseEntity<?> deleteChurchHierrachy(@RequestBody ChurchHierrachyRequest request) {
         return churchHierrachyService.deleteChurchHierrachy(request);
     }

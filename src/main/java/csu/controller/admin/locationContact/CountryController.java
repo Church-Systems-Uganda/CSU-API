@@ -19,7 +19,6 @@ import csu.repository.locationContact.CountryRepository;
 public class CountryController {
 	 @Autowired
 	    private CountryRepository countryRepository;
-
 	    // GET method to retrieve all countries
 	    @GetMapping("/")
 	    public ResponseEntity<List<Country>> getAllCountries() {

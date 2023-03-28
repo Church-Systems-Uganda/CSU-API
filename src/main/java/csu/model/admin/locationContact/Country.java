@@ -1,6 +1,7 @@
 // Package declaration indicating the package of the class
 package csu.model.admin.locationContact;
 
+import csu.payload.admin.locationContact.CountryPayload;
 // Import statements for necessary classes and annotations
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -52,5 +53,10 @@ public class Country {
     // Default constructor
 	public Country() {
 		super();
+	}
+
+	public void add(CountryPayload countryPayload) {
+		// TODO Auto-generated method stub
+		
 	}
 }

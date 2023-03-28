@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import csu.model.admin.Affiliation;
 import csu.model.membership.Ministry;
+import csu.payload.admin.affiliation.AffiliationPayload;
 import csu.payload.general.ApiResponse;
 import csu.payload.membership.ministy.MinistryPayload;
 import csu.payload.membership.ministy.MinistryRequest;
@@ -84,4 +86,18 @@ public class MinistryService {
 	}
 
 	// additional CRUD operations can be added here
+	
+	public ResponseEntity<?> getAffiliationById(Long id) {
+	    Optional<Affiliation> optionalAffiliation = affiliationRepository.findById(id);
+	    if (!optionalAffiliation.isPresent()) {
+	        return new ResponseEntity<>(new ApiResponse(false, "Affiliation not found with ID: " + id), HttpStatus.NOT_FOUND);
+	    }
+	    Affiliation affiliation = optionalAffiliation.get();
+	    AffiliationPayload affiliationPayload = new AffiliationPayload();
+	    affiliationPayload.setId(affiliation.getId());
+	    affiliationPayload.setName(affiliation.getName());
+	    affiliationPayload.setShortName(affiliation.getShortName());
+	    return new ResponseEntity<>(affiliationPayload, HttpStatus.OK);
+	}
+	
 }

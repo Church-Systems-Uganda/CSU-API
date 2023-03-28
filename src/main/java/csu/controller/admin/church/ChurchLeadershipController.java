@@ -10,3 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+@RestController
+@RequestMapping("/api/admin/")
+public class ChurchLeadershipController {
+
+    @Autowired
+    ChurchLeadershipService churchLeadershipService;
+
+    @GetMapping("/church_leadership")
+    public List<ChurchLeadershipPayload> getAllChurchLeaderships() {
+        return churchLeadershipService.getAllChurchLeaderships();
+    }

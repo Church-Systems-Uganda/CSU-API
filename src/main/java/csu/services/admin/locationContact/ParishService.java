@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import csu.model.admin.locationContact.Country;
 import csu.model.admin.locationContact.Parish;
+import csu.payload.admin.locationContact.CountryPayload;
 import csu.payload.admin.locationContact.ParishPayload;
 import csu.repository.locationContact.ParishRepository;
 
@@ -27,12 +29,21 @@ public class ParishService {
 	//get all Parishes
 	
 	   @GetMapping("/Parishes")
-	    public List<Parish> getAllParishes() {
-	        // Call the getAllAffiliations method in the AffiliationService
-	        List<Parish> parishes = parishRepository.findAll();
-	        // Return the list of affiliations
+	    public List<ParishPayload> getAllParishes() {
+	          List<ParishPayload> parishes = new ArrayList<>();
+	        
+	        for (Parish parish : parishRepository.findAll()) {
+	        
+	        ParishPayload ParishPayload = new ParishPayload();
+
+	       ParishPayload.setId(parish.getId());
+			//CountryPayload.setChurch(country.getChurch());
+
+			parish.add(ParishPayload);
+	        }
 	        return parishes;
-	    }
+	    
+	   }
 	   
 	 //create a region
 	   @PostMapping("/create-parish")

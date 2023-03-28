@@ -44,4 +44,9 @@ public class Parish {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public Parish save(Parish parish) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

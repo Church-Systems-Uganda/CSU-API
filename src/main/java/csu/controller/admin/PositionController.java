@@ -24,27 +24,18 @@ public class PositionController {
 	@Autowired
 	PositionService  positionService;
 
-	/**
-	 * Get a list of all positions
-	 * @return a list of PositionPayload objects representing the positions
-	 */
 	@GetMapping("/positions")
 	public List<PositionPayload> getAllPositions() {
 		return positionService.getAllPositions();
 	}
 
-	// This endpoint is currently not in use, so it's been commented out
-//	@PostMapping("/create-position")
-//	public ResponseEntity<?> createPosition(@Valid @RequestBody PositionRequest request){
-//		
-//		return positionService.createPosition(request);
-//	}
+//	 This endpoint is currently not in use, so it's been commented out
+	@PostMapping("/create-position")
+	public ResponseEntity<?> createPosition(@Valid @RequestBody PositionRequest request){
+		
+		return positionService.createOrUpdatePosition(request);
+	}
 	
-	/**
-	 * Delete a position
-	 * @param request a PositionRequest object containing the id of the position to be deleted
-	 * @return a ResponseEntity with the appropriate status code
-	 */
 	@PostMapping("/delete-position")
 	public ResponseEntity<?> deletePosition(@RequestBody PositionRequest request) {
 		return positionService.deletePosition(request);

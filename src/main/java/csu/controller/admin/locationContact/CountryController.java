@@ -55,5 +55,16 @@ public class CountryController {
 	        return new ResponseEntity<>(country, HttpStatus.OK);
 	    }
 	    
+	 // DELETE method to delete a country by its id
+	    @DeleteMapping("/{id}")
+	    public ResponseEntity<HttpStatus> deleteCountry(@PathVariable Long id) {
+	        Country country = countryRepository.findById(id).orElse(null);
+	        if (country == null) {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+	        countryRepository.delete(country);
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    }
+	    
 	    
 }

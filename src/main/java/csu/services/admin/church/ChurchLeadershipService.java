@@ -1,8 +1,10 @@
 package csu.services.admin.church;
 
+import csu.model.admin.Church.ChurchHierrachy;
 import csu.model.admin.Church.ChurchLeadership;
 import csu.payload.admin.ChurchLeadership.ChurchLeadershipPayload;
 import csu.payload.admin.ChurchLeadership.ChurchLeadershipRequest;
+import csu.payload.admin.churchHierrachy.ChurcHierrachyPayload;
 import csu.repository.admin.Church.ChurchLeadershipRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,19 @@ public class ChurchLeadershipService {
 
     public List<ChurchLeadershipPayload> getAllChurchLeaderships() {
         List<ChurchLeadershipPayload> churchLeadershipPayload = new ArrayList<>();
-        // Convert ChurchLeadership objects to ChurchLeadershipPayload objects
-        return ChurchLeadershipMapper.mapToPayloads(churchLeaderships);
+        
+        for (ChurchLeadership churchLeadership : churchLeadershipRepository.findAll()) {
+
+			ChurchLeadershipPayload payload = new ChurchLeadershipPayload();
+			payload.setId(churchLeadership.getId());
+			payload.setMinistry(churchLeadership.getMinistry());
+			payload.setChurchHierrachy(churchLeadership.getChurchHierrachy());
+
+
+			churchLeadershipPayload.add(payload);
+		}
+
+		return churchLeadershipPayload;
     }
 
     public ResponseEntity<?> createChurchLeadership(ChurchLeadershipRequest request) {

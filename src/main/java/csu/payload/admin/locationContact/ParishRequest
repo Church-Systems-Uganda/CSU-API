@@ -6,7 +6,7 @@ public class ParishRequest{
 	    
     private String name;
 
- public RegionRequest(String name) {
+ public ParishRequest(String name) {
      
      this.name = name;
  }

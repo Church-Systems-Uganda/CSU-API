@@ -21,9 +21,11 @@ public class RegionController {
 	
 	   @GetMapping("/Regions")
 	    public List<RegionPayload> getAllRegions() {
-	        // Call the getAllAffiliations method in the AffiliationService
+			
+	        // Call the get regions method in the RegionService
 	        List<RegionPayload> regions = regionService.getAllRegions();
-	        // Return the list of affiliations
+
+	        // Return the list of regions
 	        return regions;
 	    }
 	

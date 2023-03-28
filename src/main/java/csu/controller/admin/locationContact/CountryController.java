@@ -42,4 +42,18 @@ public class CountryController {
 	        Country savedCountry = countryRepository.save(country);
 	        return new ResponseEntity<>(savedCountry, HttpStatus.CREATED);
 	    }
+	    
+	    // PUT method to update an existing country
+	    @PutMapping("/{id}")
+	    public ResponseEntity<Country> updateCountry(@PathVariable Long id, @RequestBody Country country) {
+	        Country existingCountry = countryRepository.findById(id).orElse(null);
+	        if (existingCountry == null) {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+	        existingCountry.setName(country.getName());
+	        Country updated = countryRepository.save(existingCountry);
+	        return new ResponseEntity<>(country, HttpStatus.OK);
+	    }
+	    
+	    
 }

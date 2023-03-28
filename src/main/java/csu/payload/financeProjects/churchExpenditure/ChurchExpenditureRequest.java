@@ -7,7 +7,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 public class ChurchExpenditureRequest {
-    private Long id;
+    
+	private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "project_id", nullable = true)

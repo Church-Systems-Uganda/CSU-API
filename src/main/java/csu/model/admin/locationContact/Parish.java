@@ -2,6 +2,7 @@ package csu.model.admin.locationContact;
 
 
 
+import csu.payload.admin.locationContact.ParishPayload;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -48,5 +49,10 @@ public class Parish {
 	public Parish save(Parish parish) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void add(ParishPayload parishPayload) {
+		// TODO Auto-generated method stub
+		
 	}
 }

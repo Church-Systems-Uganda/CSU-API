@@ -85,19 +85,19 @@ public class MinistryService {
 		return new ResponseEntity<>(new ApiResponse(false, "Error while processing request"), HttpStatus.BAD_REQUEST);
 	}
 
-	// additional CRUD operations can be added here
+	// find ministry by id
 	
-	public ResponseEntity<?> getAffiliationById(Long id) {
-	    Optional<Affiliation> optionalAffiliation = affiliationRepository.findById(id);
-	    if (!optionalAffiliation.isPresent()) {
-	        return new ResponseEntity<>(new ApiResponse(false, "Affiliation not found with ID: " + id), HttpStatus.NOT_FOUND);
+	public ResponseEntity<?> getMinistryById(Long id) {
+	    Optional<Ministry> optionalMinistry = ministryRepository.findById(id);
+	    if (!optionalMinistry.isPresent()) {
+	        return new ResponseEntity<>(new ApiResponse(false, "Ministry not found with ID: " + id), HttpStatus.NOT_FOUND);
 	    }
-	    Affiliation affiliation = optionalAffiliation.get();
-	    AffiliationPayload affiliationPayload = new AffiliationPayload();
-	    affiliationPayload.setId(affiliation.getId());
-	    affiliationPayload.setName(affiliation.getName());
-	    affiliationPayload.setShortName(affiliation.getShortName());
-	    return new ResponseEntity<>(affiliationPayload, HttpStatus.OK);
+	    Ministry ministry = optionalMinistry.get();
+	    MinistryPayload ministryPayload = new MinistryPayload();
+	    ministryPayload.setId(ministry.getId());
+	    ministryPayload.setName(ministry.getName());
+	    ministryPayload.setChurch(ministry.getChurch());
+	    return new ResponseEntity<>(ministryPayload, HttpStatus.OK);
 	}
 	
 }

@@ -1,4 +1,4 @@
-package csu.controller.admin.locationContact;
+package csu.controller.admin.LocationContact;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

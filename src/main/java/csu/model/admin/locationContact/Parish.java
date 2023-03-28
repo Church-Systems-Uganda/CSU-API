@@ -39,4 +39,9 @@ public class Parish {
 		super();
 		this.name = name;
 	}
+
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

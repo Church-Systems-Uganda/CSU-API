@@ -3,6 +3,13 @@ package csu.services.admin.locationContact;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import csu.model.admin.locationContact.Parish;
+import csu.payload.admin.locationContact.ParishPayload;
+import csu.repository.locationContact.ParishRepository;
+
 @Service
 public class ParishService {
 	

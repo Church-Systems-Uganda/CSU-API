@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 
 public class CountryController {
 	 @Autowired
-	    private CountryService countryService;
+	    CountryService countryService;
 
 	    @GetMapping("/countries")
 	    public List<CountryPayload> getAllCountries() {
@@ -43,17 +43,6 @@ public class CountryController {
 	   
 	    @PostMapping("/delete-country")
 	    public ResponseEntity<?> deleteCountry(@RequestBody CountryRequest request) {
-	        // Call the deleteAffiliation method in the AffiliationService
-	        ResponseEntity<?> response = countryService.deleteCountry(request);
-	        // Return the response from the service
-	        return response;
+	        return countryService.createCountry(request);
 	    }
-
-	  //get affiliation by id
-	  	@GetMapping("/country/{id}")
-	      public ResponseEntity<?> getCountryById(@org.springframework.web.bind.annotation.PathVariable("id") Long id) {
-	          ResponseEntity<?> country = countryService.getCountryById(id);
-
-	          return new ResponseEntity<>(country, HttpStatus.OK);
-	      }
 }

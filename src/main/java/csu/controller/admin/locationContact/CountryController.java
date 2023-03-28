@@ -25,4 +25,14 @@ public class CountryController {
 	        List<Country> countries = countryRepository.findAll();
 	        return new ResponseEntity<>(countries, HttpStatus.OK);
 	    }
+	    
+	    // GET method to retrieve a country by its id
+	    @GetMapping("/{id}")
+	    public ResponseEntity<Country> getCountryById(@PathVariable Long id) {
+	        Country country = countryRepository.findById(id).orElse(null);
+	        if (country == null) {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+	        return new ResponseEntity<>(country, HttpStatus.OK);
+	    }
 }

@@ -35,7 +35,7 @@ public class ParishService {
 		return regions;
 	}
 	
-		//create a region
-		//delete a region
-		// get region by id
+		//create a parish
+		//delete a parish
+		// get parish by id
 }

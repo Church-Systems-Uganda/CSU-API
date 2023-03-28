@@ -22,7 +22,7 @@ ProjectService projectService;
 
 //get all projets
 
-@GetMapping("/projets")
+@GetMapping("/get_projets")
 	public List<ProjectsPayload> getAllProjects(){
 		return projectService.getAllProjects();
 	}

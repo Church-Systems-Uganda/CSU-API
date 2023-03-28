@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import csu.model.membership.Ministry;
 import csu.model.membership.Personsacrament;
 import csu.payload.general.ApiResponse;
+import csu.payload.membership.ministy.MinistryPayload;
 import csu.payload.membership.personsacrament.PersonsacramentPayload;
 import csu.payload.membership.personsacrament.PersonsacramentRequest;
 import csu.repository.membership.PersonsacramentRepository;
@@ -100,4 +102,18 @@ public class PersonsacramentService {
 		return new ResponseEntity<>(new ApiResponse(false, "Error while processing request"), HttpStatus.BAD_REQUEST);
 
 	}
+	
+	// find Personsacrament  by id
+	
+		public ResponseEntity<?> getPersonsacramentById(Long id) {
+		    Optional<Personsacrament> optionalPersonsacrament = personsacramentRepository.findById(id);
+		    if (!optionalPersonsacrament.isPresent()) {
+		        return new ResponseEntity<>(new ApiResponse(false, "Personsacrament not found with ID: " + id), HttpStatus.NOT_FOUND);
+		    }
+		    Personsacrament personsacrament = optionalPersonsacrament.get();
+		    PersonsacramentPayload personsacramentPayload = new PersonsacramentPayload();
+		    personsacramentPayload.setId(personsacrament.getId());
+		   
+		    return new ResponseEntity<>(personsacramentPayload, HttpStatus.OK);
+		}
 }

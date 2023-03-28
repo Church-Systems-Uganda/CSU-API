@@ -1,6 +1,7 @@
 package csu.services.admin.locationContact;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,18 +15,32 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import csu.model.admin.locationContact.Country;
+import csu.payload.admin.locationContact.CountryPayload;
+import csu.payload.admin.locationContact.CountryRequest;
 import csu.repository.locationContact.CountryRepository;
+import jakarta.validation.Valid;
 
 
 @Service
 public class CountryService {
 	 @Autowired
-	    private CountryRepository countryRepository;
+	 
+	    CountryRepository countryRepository;
 	    // GET method to retrieve all countries
 	    @GetMapping("/getAllCountries")
-	    public ResponseEntity<List<Country>> getAllCountries() {
-	        List<Country> countries = countryRepository.findAll();
-	        return new ResponseEntity<>(countries, HttpStatus.OK);
+	    public List<CountryPayload> getAllCountries() {
+	    	List<CountryPayload> countries = new ArrayList<>();
+	        
+	    	for (Country country : countryRepository.findAll()) {
+	    		
+	    		CountryPayload CountryPayload = new CountryPayload();
+
+				CountryPayload.setId(country.getId());
+				//CountryPayload.setChurch(country.getChurch());
+
+				country.add(CountryPayload);
+			}
+	        return countries;
 	    }
 	    
 	    // GET method to retrieve a country by its id
@@ -40,8 +55,8 @@ public class CountryService {
 	    
 	 // POST method to create a new country
 	    @PostMapping("/")
-	    public ResponseEntity<Country> createCountry(@RequestBody Country country) {
-	        Country savedCountry = countryRepository.save(country);
+	    public ResponseEntity<Country> createCountry(@RequestBody @Valid CountryRequest request) {
+	        Country savedCountry = countryRepository.saveAll(request);
 	        return new ResponseEntity<>(savedCountry, HttpStatus.CREATED);
 	    }
 	    

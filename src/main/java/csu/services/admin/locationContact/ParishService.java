@@ -3,6 +3,13 @@ package csu.services.admin.locationContact;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import csu.model.admin.locationContact.Parish;
+import csu.payload.admin.locationContact.ParishPayload;
+import csu.repository.locationContact.ParishRepository;
+
 @Service
 public class ParishService {
 	
@@ -17,14 +24,14 @@ public class ParishService {
 
 			for (Parish parish : parishRepository.findAll()) {
 
-				ParishPayload payload = new ParishPayload();
-				payload.setId(parish.getId());
-				payload.setName(parish.getName());
+				ParishPayload parishpayload = new ParishPayload();
+				parishpayload.setId(parish.getId());
+				parishpayload.setName(parish.getName());
 				
-				parish.add(payload);
+				parishes.add(parishpayload);
 
 			}
-			return parish;
+			return parishes;
 		}
 
 }

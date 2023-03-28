@@ -18,12 +18,11 @@ import csu.services.admin.locationContact.ParishService;
 public class ParishController {
 
     @Autowired
-    private ParishService parishService;
+    private ParishService parishservice;
 
     @GetMapping
-    public ResponseEntity<List<ParishPayload>> getAllParishes() {
-        List<ParishPayload> parishes = parishService.getAllParishes();
-        return new ResponseEntity<>(parishes, HttpStatus.OK);
+    public List<ParishPayload> getAllParishes() {
+    	return parishservice.getAllParishes();
     }
 
 }

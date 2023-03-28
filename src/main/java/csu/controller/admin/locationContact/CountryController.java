@@ -35,4 +35,11 @@ public class CountryController {
 	        }
 	        return new ResponseEntity<>(country, HttpStatus.OK);
 	    }
+	    
+	 // POST method to create a new country
+	    @PostMapping("/")
+	    public ResponseEntity<Country> createCountry(@RequestBody Country country) {
+	        Country savedCountry = countryRepository.save(country);
+	        return new ResponseEntity<>(savedCountry, HttpStatus.CREATED);
+	    }
 }

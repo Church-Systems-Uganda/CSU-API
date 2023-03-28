@@ -46,4 +46,9 @@ public class PersonChurchMinistryRequest {
 		public PersonChurch getPersonChurch() {
 			return personChurch;
 		}
+		
+		public void setPersonChurch(PersonChurch personChurch) {
+			this.personChurch = personChurch;
+		}
+	    
 }

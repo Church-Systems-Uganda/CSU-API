@@ -23,6 +23,10 @@ public class PersonChurchMinistryController {
     }
 
     
-   
+    public PersonChurchMinistrypayload create(PersonChurchMinistrypayload payload) {
+        return service.create(payload);
+    }
+
+    
     // Additional methods can be added as necessary
 }

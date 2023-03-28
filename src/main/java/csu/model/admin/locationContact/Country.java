@@ -1,5 +1,5 @@
 // Package declaration indicating the package of the class
-package csu.model.admin.LocationContact;
+package csu.model.admin.locationContact;
 
 // Import statements for necessary classes and annotations
 import jakarta.persistence.Entity;

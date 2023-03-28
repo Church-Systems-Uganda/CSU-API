@@ -1,0 +1,9 @@
+package csu.repository.locationContact;
+
+public interface ParishRepository extends JpaRepository<Parish, Long> {
+
+
+	Boolean existsByName(String name);
+	
+
+}

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import csu.payload.admin.affiliation.AffiliationPayload;
 import csu.payload.admin.locationContact.RegionPayload;
 import csu.services.admin.locationContact.RegionService;
 
@@ -21,7 +20,7 @@ public class RegionController {
 	
 	   @GetMapping("/Regions")
 	    public List<RegionPayload> getAllRegions() {
-			
+
 	        // Call the get regions method in the RegionService
 	        List<RegionPayload> regions = regionService.getAllRegions();
 

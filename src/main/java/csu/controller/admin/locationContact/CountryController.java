@@ -1,4 +1,5 @@
-package csu.controller.admin.locationContact;
+package csu.controller.admin.LocationContact;
+
 
 import java.util.List;
 

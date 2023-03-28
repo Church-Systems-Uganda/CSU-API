@@ -24,14 +24,14 @@ public class ParishService {
 
 			for (Parish parish : parishRepository.findAll()) {
 
-				ParishPayload payload = new ParishPayload();
-				payload.setId(parish.getId());
-				payload.setName(parish.getName());
+				ParishPayload parishpayload = new ParishPayload();
+				parishpayload.setId(parish.getId());
+				parishpayload.setName(parish.getName());
 				
-				parish.add(payload);
+				parishes.add(parishpayload);
 
 			}
-			return parish;
+			return parishes;
 		}
 
 }

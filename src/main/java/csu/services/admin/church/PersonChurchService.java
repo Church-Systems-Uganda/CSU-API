@@ -46,38 +46,33 @@ public class PersonChurchService {
 	}
 
 //	// create
-//	
-//	public ResponseEntity<?> createPersonChurch(PersonChurchRequest request) {
-//
-//		if (request.getChurch() != null) {
-//
-//			Optional<PersonChurch> existingPersonChurch = request.getId() != null
-//					? personChurchRepository.findById(request.getId())
-//					: Optional.empty();
-//
-//			if (!existingPersonChurch.isPresent() && existingPersonChurch.existsByName(request.getName())) {
-//				return new ResponseEntity<>(new ApiResponse(false, "churchHierrachy Exists"), HttpStatus.BAD_REQUEST);
-//			}
-//
-//			ChurchHierrachy churchHierrachy = existingchurchHierrachy.isPresent() ? existingchurchHierrachy.get()
-//					: new ChurchHierrachy();
-//			
-//			churchHierrachy.setName(request.getName());
-//			
-//
-//			ChurchHierrachy result = churchHierrachyRepository.save(churchHierrachy);
-//
-//			if (result != null) {
-//				return new ResponseEntity<>(new ApiResponse(true, "churchHierrachy Created"), HttpStatus.OK);
-//			}
-//
-//		}
-//
-//		return new ResponseEntity<>(new ApiResponse(false, "churchHierrachy Not Created"), HttpStatus.BAD_REQUEST);
-//
-//	}
+	public ResponseEntity<?> createPersonChurch(PersonChurchRequest request) {
 
-//	
+	    if (request.getChurch() != null && request.getPerson() != null) {
+
+	        Optional<PersonChurch> existingPersonChurch = request.getId() != null
+	                ? personChurchRepository.findById(request.getId())
+	                : Optional.empty();
+
+	        if (existingPersonChurch.isPresent()) {
+	            return new ResponseEntity<>(new ApiResponse(false, "Person Church already exists"), HttpStatus.BAD_REQUEST);
+	        }
+
+	        PersonChurch personChurch = new PersonChurch();
+	        personChurch.setChurch(request.getChurch());
+	        personChurch.setPerson(request.getPerson());
+
+	        PersonChurch result = personChurchRepository.save(personChurch);
+
+	        if (result != null) {
+	            return new ResponseEntity<>(new ApiResponse(true, "Person Church created"), HttpStatus.OK);
+	        }
+
+	    }
+
+	    return new ResponseEntity<>(new ApiResponse(false, "Person Church not created"), HttpStatus.BAD_REQUEST);
+	}
+
 	// delete
 
 	public ResponseEntity<?> deletePersonChurch(PersonChurchRequest request) {

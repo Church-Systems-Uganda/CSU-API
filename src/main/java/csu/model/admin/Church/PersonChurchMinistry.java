@@ -37,7 +37,7 @@ public class PersonChurchMinistry {
 	}
 
 	public PersonChurchMinistry(String status,   Ministry ministry, PersonChurch personChurch/* ,Department department*/ ) {
-		super();
+	
 		Status = status;
 		this.ministry = ministry;
 		this.personChurch = personChurch;

@@ -68,10 +68,6 @@ public class PersonsacramentService {
 			personsacrament.setTier(request.getTier());
 			
 
-			//
-
-			
-
 			Personsacrament result = personsacramentRepository.save(personsacrament);
 
 			if (result != null) {

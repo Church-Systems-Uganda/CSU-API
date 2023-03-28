@@ -40,6 +40,9 @@ public class Personsacrament extends DateAudit{
     private AffiliationChurch church;
 
     // Define constructor for Person Sacrament entity
+    
+    
+    
     public Personsacrament(String name, Date date, String tier, Person person, Sacrament sacrement, AffiliationChurch church) {
         this.name = name;
         this.date = date;
@@ -49,7 +52,19 @@ public class Personsacrament extends DateAudit{
         this.church = church;
     }
 
-    // Define getters and setters for Person Sacrament entity fields
+    public Personsacrament(Long id, String name, Date date, String tier, Person person, Sacrament sacrement,
+			AffiliationChurch church) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.date = date;
+		this.tier = tier;
+		this.person = person;
+		this.sacrement = sacrement;
+		this.church = church;
+	}
+
+	// Define getters and setters for Person Sacrament entity fields
     public Long getId() {
         return id;
     }

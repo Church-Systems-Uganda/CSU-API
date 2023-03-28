@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import csu.model.admin.Church.ChurchHierrachy;
 import csu.model.admin.Church.PersonChurch;
 import csu.payload.admin.PersonChurch.PersonChurchPayload;
+import csu.payload.admin.PersonChurch.PersonChurchRequest;
 import csu.payload.admin.churchHierrachy.ChurcHierrachyPayload;
 import csu.payload.admin.churchHierrachy.ChurchHierrachyRequest;
 import csu.payload.general.ApiResponse;
@@ -46,15 +47,15 @@ public class PersonChurchService {
 
 //	// create
 //	
-//	public ResponseEntity<?> createChurcHierrachy(ChurchHierrachyRequest request) {
+//	public ResponseEntity<?> createPersonChurch(PersonChurchRequest request) {
 //
-//		if (request.getName() != null) {
+//		if (request.getChurch() != null) {
 //
-//			Optional<ChurchHierrachy> existingchurchHierrachy = request.getId() != null
-//					? churchHierrachyRepository.findById(request.getId())
+//			Optional<PersonChurch> existingPersonChurch = request.getId() != null
+//					? personChurchRepository.findById(request.getId())
 //					: Optional.empty();
 //
-//			if (!existingchurchHierrachy.isPresent() && churchHierrachyRepository.existsByName(request.getName())) {
+//			if (!existingPersonChurch.isPresent() && existingPersonChurch.existsByName(request.getName())) {
 //				return new ResponseEntity<>(new ApiResponse(false, "churchHierrachy Exists"), HttpStatus.BAD_REQUEST);
 //			}
 //
@@ -75,27 +76,27 @@ public class PersonChurchService {
 //		return new ResponseEntity<>(new ApiResponse(false, "churchHierrachy Not Created"), HttpStatus.BAD_REQUEST);
 //
 //	}
-//
+
 //	
-//	// delete
-//
-//	public ResponseEntity<?> deleteChurchHierrachy(ChurchHierrachyRequest request) {
-//
-//		if (request.getId() != null) {
-//
-//			try {
-//				churchHierrachyRepository.deleteById(request.getId());
-//
-//				return new ResponseEntity<>(new ApiResponse(true, "ChurchHierrachy Deleted"), HttpStatus.OK);
-//			} catch (Exception e) {
-//				// TODO: handle exception
-//			}
-//
-//		}
-//
-//		return new ResponseEntity<>(new ApiResponse(false, "ChurchHierrachy Not Deleted"), HttpStatus.BAD_REQUEST);
-//
-//	}
-//	
+	// delete
+
+	public ResponseEntity<?> deletePersonChurch(PersonChurchRequest request) {
+
+		if (request.getId() != null) {
+
+			try {
+				personChurchRepository.deleteById(request.getId());
+
+				return new ResponseEntity<>(new ApiResponse(true, "person Church Deleted"), HttpStatus.OK);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
+		}
+
+		return new ResponseEntity<>(new ApiResponse(false, "person Church Not Deleted"), HttpStatus.BAD_REQUEST);
+
+	}
+
 	
 }

@@ -1,6 +1,7 @@
 package csu.model.admin.locationContact;
 
 import csu.model.general.Person;
+import csu.payload.admin.locationContact.LocationPayload;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -38,5 +39,67 @@ public class Location {
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "region_id", nullable = true)
 	private Region region;
+
+	public Location(Person person, District district, Country country, Region region) {
+		super();
+		this.person = person;
+		this.district = district;
+		this.country = country;
+		this.region = region;
+	}
+
+	public Location(Long id, Person person, District district, Country country, Region region) {
+		super();
+		this.id = id;
+		this.person = person;
+		this.district = district;
+		this.country = country;
+		this.region = region;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	public District getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(District district) {
+		this.district = district;
+	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
+	public Region getRegion() {
+		return region;
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
+	}
+
+	public void add(LocationPayload payload) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

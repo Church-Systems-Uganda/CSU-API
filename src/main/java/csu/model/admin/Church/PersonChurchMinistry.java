@@ -38,10 +38,18 @@ public class PersonChurchMinistry {
 
 	public PersonChurchMinistry(String status,   Ministry ministry, PersonChurch personChurch/* ,Department department*/ ) {
 	
-		Status = status;
+		setStatus(status);
 		this.ministry = ministry;
 		this.personChurch = personChurch;
 		// this.department = department;
+	}
+
+	public String getStatus() {
+		return Status;
+	}
+
+	public void setStatus(String status) {
+		Status = status;
 	}
     
     

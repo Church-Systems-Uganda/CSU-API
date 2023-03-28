@@ -10,5 +10,5 @@ import jakarta.validation.Valid;
 public interface CountryRepository extends JpaRepository<Country,Long> {
 	Boolean existsByName(String name);
 
-	Country saveAll(@Valid CountryRequest request);
+//	Country saveAll(@Valid CountryRequest request);
 }

@@ -14,21 +14,5 @@ import csu.services.admin.locationContact.RegionService;
 @RequestMapping("/api/admin/")
 public class RegionController {
 
-	@Autowired 
-	private RegionService regionService;
-	//get all regions
 	
-	   @GetMapping("/Regions")
-	    public List<RegionPayload> getAllRegions() {
-
-	        // Call the get regions method in the RegionService
-	        List<RegionPayload> regions = regionService.getAllRegions();
-
-	        // Return the list of regions
-	        return regions;
-	    }
-	
-	//create a region
-	//delete a region
-	// get region by id
 }

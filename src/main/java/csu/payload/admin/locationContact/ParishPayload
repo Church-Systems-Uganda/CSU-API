@@ -6,7 +6,7 @@ public class ParishPayload{
     
     private String name;
 
-    public RegionPayload() {
+    public ParishPayload() {
 		super();
 	}
 

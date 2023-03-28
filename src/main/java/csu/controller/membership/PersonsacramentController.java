@@ -2,6 +2,7 @@ package csu.controller.membership;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,4 +39,12 @@ public class PersonsacramentController {
     public ResponseEntity<?> deletePersonsacrament(@RequestBody PersonsacramentRequest request) {
 		return personsacramentService.deletePersonsacrament(null);
 	}
+    
+  //get affiliation by id
+  	@GetMapping("/personsacrament/{id}")
+      public ResponseEntity<?> getPersonsacramentById(@org.springframework.web.bind.annotation.PathVariable("id") Long id) {
+          ResponseEntity<?> personsacrament = personsacramentService.getPersonsacramentById(id);
+
+          return new ResponseEntity<>(personsacrament, HttpStatus.OK);
+      }
 }

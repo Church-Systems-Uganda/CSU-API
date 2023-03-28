@@ -37,7 +37,7 @@ public class ParishController {
 	    }
 	// get region by id
 	    @GetMapping("/{id}")
-	    public ResponseEntity<Parish> getParishById(@PathVariable Long id) {
+	    public ResponseEntity<parish> getParishById(@PathVariable Long id) {
 	    	Parish parish = parishRepository.findById(id).orElse(null);
 	        if (parish == null) {
 	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);

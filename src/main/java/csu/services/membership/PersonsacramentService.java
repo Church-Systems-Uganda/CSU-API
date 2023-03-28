@@ -113,7 +113,9 @@ public class PersonsacramentService {
 		    Personsacrament personsacrament = optionalPersonsacrament.get();
 		    PersonsacramentPayload personsacramentPayload = new PersonsacramentPayload();
 		    personsacramentPayload.setId(personsacrament.getId());
-		   
+		    personsacramentPayload.setName(personsacrament.getName());
+		    personsacramentPayload.setPerson(personsacrament.getPerson());
+		    personsacramentPayload.setSacrement(personsacrament.getSacrement());
 		    return new ResponseEntity<>(personsacramentPayload, HttpStatus.OK);
 		}
 }

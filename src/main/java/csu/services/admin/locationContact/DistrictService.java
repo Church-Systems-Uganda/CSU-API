@@ -1,26 +1,19 @@
 package csu.services.admin.locationContact;
 
-import java.util.ArrayList;
 import java.util.List;
 
-
-import src.main.java.csu.controller.admin.locationContact.Autowired;
-import src.main.java.csu.controller.admin.locationContact.DeleteMapping;
-import src.main.java.csu.controller.admin.locationContact.District;
-import src.main.java.csu.controller.admin.locationContact.DistrictRepository;
-import src.main.java.csu.controller.admin.locationContact.GetMapping;
-import src.main.java.csu.controller.admin.locationContact.HttpStatus;
-import src.main.java.csu.controller.admin.locationContact.PathVariable;
-import src.main.java.csu.controller.admin.locationContact.PostMapping;
-import src.main.java.csu.controller.admin.locationContact.PutMapping;
-import src.main.java.csu.controller.admin.locationContact.RequestBody;
-import src.main.java.csu.controller.admin.locationContact.ResponseEntity;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import csu.model.admin.locationContact.District;
-import csu.payload.admin.locationContact.DistrictPayload;
 import csu.repository.locationContact.DistrictRepository;
 
 
@@ -77,17 +70,5 @@ public class DistrictService {
         districtRepository.delete(district);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-
-					DistrictPayload payload = new DistrictPayload();
-					payload.setId(district.getId());
-					payload.setName(district.getName());
-					
-					districts.add(payload);
-
-				}
-				return districts;
-			}
-
 
 }

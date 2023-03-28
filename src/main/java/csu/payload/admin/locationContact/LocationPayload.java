@@ -1,9 +1,9 @@
-package src.main.java.csu.payload.admin.locationContact;
+package csu.payload.admin.locationContact;
 
 import csu.model.general.Person;
-import src.main.java.csu.model.admin.locationContact.Country;
-import src.main.java.csu.model.admin.locationContact.District;
-import src.main.java.csu.model.admin.locationContact.Region;
+import csu.model.admin.locationContact.Country;
+import csu.model.admin.locationContact.District;
+import csu.model.admin.locationContact.Region;
 
 public class LocationPayload {
 

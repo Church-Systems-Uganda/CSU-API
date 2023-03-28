@@ -1,4 +1,4 @@
-package csu.model.admin.LocationContact;
+package csu.model.admin.locationContact;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,8 +1,8 @@
-package csu.repository.LocationContact;
+package csu.repository.locationContact;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import csu.model.admin.LocationContact.Country;
+import csu.model.admin.locationContact.Country;
 
 
 public interface CountryRepository extends JpaRepository<Country,Long> {

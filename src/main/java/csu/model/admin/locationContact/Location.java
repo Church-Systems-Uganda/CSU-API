@@ -1,4 +1,4 @@
-package csu.model.admin.LocationContact;
+package csu.model.admin.locationContact;
 
 import csu.model.general.Person;
 import jakarta.persistence.Entity;

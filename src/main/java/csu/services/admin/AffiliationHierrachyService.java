@@ -142,41 +142,38 @@ public class AffiliationHierrachyService {
 	}
 	
 	
-//
-//	public ResponseEntity<?> createAffiliationHierrachy(AffiliationHierrachyRequest request) {
-//		if (request.getName() == null) {
-//			return new ResponseEntity<>(new ApiResponse(false, "Name is required"), HttpStatus.BAD_REQUEST);
-//		}
-//
-//		Optional<AffiliationHierrachy> existingAffiliationHierrachy = request.getId() != null
-//				? affiliationHierrachyRepository.findById(request.getId())
-//				: Optional.empty();
-//
-//		if (!existingAffiliationHierrachy.isPresent()
-//				&& affiliationHierrachyRepository.existsByName(request.getName())) {
-//			return new ResponseEntity<>(new ApiResponse(false, "Affiliation Hierrachy already exists"),
-//					HttpStatus.BAD_REQUEST);
-//		}
-//
-//		AffiliationHierrachy affiliationHierrachy = existingAffiliationHierrachy.isPresent()
-//				? existingAffiliationHierrachy.get()
-//				: new AffiliationHierrachy();
-//
-//		affiliationHierrachy.setId(request.getId());
-//		affiliationHierrachy.setAffliation(request.getAffliation());
-//		affiliationHierrachy.setName(request.getName());
-//		affiliationHierrachy.setLevel(request.getLevel());
-//		affiliationHierrachy.setLevelHead(request.getLevelHead());
-//		
-//
-//		affiliationHierrachyRepository.save(affiliationHierrachy);
-//
-//		return new ResponseEntity<>(new ApiResponse(true, "Affiliation Hierrachy created"), HttpStatus.OK);
-//	}
 
-	
-	
-	
+	public ResponseEntity<?> createAffiliationHierrachy(AffiliationHierrachyRequest request) {
+		if (request.getName() == null) {
+			return new ResponseEntity<>(new ApiResponse(false, "Name is required"), HttpStatus.BAD_REQUEST);
+		}
+
+		Optional<AffiliationHierrachy> existingAffiliationHierrachy = request.getId() != null
+				? affiliationHierrachyRepository.findById(request.getId())
+				: Optional.empty();
+
+		if (!existingAffiliationHierrachy.isPresent()
+				&& affiliationHierrachyRepository.existsByName(request.getName())) {
+			return new ResponseEntity<>(new ApiResponse(false, "Affiliation Hierrachy already exists"),
+					HttpStatus.BAD_REQUEST);
+		}
+
+		AffiliationHierrachy affiliationHierrachy = existingAffiliationHierrachy.isPresent()
+				? existingAffiliationHierrachy.get()
+				: new AffiliationHierrachy();
+
+		affiliationHierrachy.setId(request.getId());
+		affiliationHierrachy.setAffliation(request.getAffliation());
+		affiliationHierrachy.setName(request.getName());
+		affiliationHierrachy.setLevel(request.getLevel());
+		affiliationHierrachy.setLevelHead(request.getLevelHead());
+		
+
+		affiliationHierrachyRepository.save(affiliationHierrachy);
+
+		return new ResponseEntity<>(new ApiResponse(true, "Affiliation Hierrachy created"), HttpStatus.OK);
+	}
+
 	
 	public ResponseEntity<?> deleteAffiliationHierrachy(AffiliationHierrachyRequest request) {
 		if (request.getId() == null) {

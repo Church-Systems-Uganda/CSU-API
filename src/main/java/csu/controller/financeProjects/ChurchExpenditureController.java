@@ -21,7 +21,7 @@ public class ChurchExpenditureController {
 	ChurchExpenditureService churchexpenditureservice;
 //get all churchExpenditure
 
-@GetMapping("/getchurchexpenditure")
+@GetMapping("/getChurchExpenditure")
 public List<ChurchExpenditurePayload> getAllchurchExpenditures() {
     return churchexpenditureservice.getAllchurchExpenditures();
 }

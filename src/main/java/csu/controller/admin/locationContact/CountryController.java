@@ -32,17 +32,17 @@ public class CountryController {
 	        return countries;
 	    }
 
-	    @PostMapping("/create-country")
-	    public ResponseEntity<?> createCountry(@Valid @RequestBody CountryRequest request) {
-	        // Call the createAffiliation method in the AffiliationService
-	        ResponseEntity<?> response = countryService.createCountry(request);
-	        // Return the response from the service
-	        return response;
-	    }
+//	    @PostMapping("/create-country")
+//	    public ResponseEntity<?> createCountry(@Valid @RequestBody CountryRequest request) {
+//	        // Call the createAffiliation method in the AffiliationService
+//	        ResponseEntity<?> response = countryService.createCountry(request);
+//	        // Return the response from the service
+//	        return response;
+//	    }
 
-	   
-	    @PostMapping("/delete-country")
-	    public ResponseEntity<?> deleteCountry(@RequestBody CountryRequest request) {
-	        return countryService.createCountry(request);
-	    }
+//	   
+//	    @PostMapping("/delete-country")
+//	    public ResponseEntity<?> deleteCountry(@RequestBody CountryRequest request) {
+//	        return countryService.createCountry(request);
+//	    }
 }

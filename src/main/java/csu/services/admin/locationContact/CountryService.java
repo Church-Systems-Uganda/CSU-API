@@ -2,6 +2,7 @@ package csu.services.admin.locationContact;
 
 
 import java.util.ArrayList;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,12 +21,10 @@ import csu.payload.admin.locationContact.CountryRequest;
 import csu.repository.locationContact.CountryRepository;
 import jakarta.validation.Valid;
 
-
 @Service
 public class CountryService {
 	 @Autowired
-	 
-	    CountryRepository countryRepository;
+	 private CountryRepository countryRepository;
 	    // GET method to retrieve all countries
 	    @GetMapping("/getAllCountries")
 	    public List<CountryPayload> getAllCountries() {
@@ -54,11 +53,7 @@ public class CountryService {
 	    }
 	    
 	 // POST method to create a new country
-	    @PostMapping("/")
-	    public ResponseEntity<Country> createCountry(@RequestBody @Valid CountryRequest request) {
-	        Country savedCountry = countryRepository.saveAll(request);
-	        return new ResponseEntity<>(savedCountry, HttpStatus.CREATED);
-	    }
+	
 	    
 	    // PUT method to update an existing country
 	    @PutMapping("/{id}")

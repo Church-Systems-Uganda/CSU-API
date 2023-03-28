@@ -27,6 +27,9 @@ public class PersonChurchMinistryController {
         return service.create(payload);
     }
 
+    public void deleteById(@PathParam("id") Long id) {
+        service.deleteById(id);
+    }
     
     // Additional methods can be added as necessary
 }

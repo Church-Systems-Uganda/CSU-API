@@ -17,5 +17,12 @@ public class PersonChurchMinistryController {
     }
 
     
+    public PersonChurchMinistrypayload getById(@PathParam("id") Long id) {
+        Optional<PersonChurchMinistrypayload> optionalPayload = service.getById(id);
+        return optionalPayload.orElse(null);
+    }
+
     
+   
+    // Additional methods can be added as necessary
 }

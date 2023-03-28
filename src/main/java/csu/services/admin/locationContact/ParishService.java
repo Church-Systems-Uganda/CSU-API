@@ -1,4 +1,4 @@
-package src.main.java.csu.services.admin.locationContact;
+package csu.services.admin.locationContact;
 
 import java.util.ArrayList;
 import java.util.List;

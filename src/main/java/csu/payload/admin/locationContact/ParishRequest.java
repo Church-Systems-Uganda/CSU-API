@@ -1,4 +1,5 @@
-package src.main.java.csu.payload.admin.locationContact;
+package csu.payload.admin.locationContact;
+
 
 public class ParishRequest {
 	private Long id;

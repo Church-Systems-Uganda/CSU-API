@@ -5,14 +5,18 @@ import csu.model.admin.Church.ChurchLeadership;
 import csu.payload.admin.ChurchLeadership.ChurchLeadershipPayload;
 import csu.payload.admin.ChurchLeadership.ChurchLeadershipRequest;
 import csu.payload.admin.churchHierrachy.ChurcHierrachyPayload;
+import csu.payload.admin.churchHierrachy.ChurchHierrachyRequest;
+import csu.payload.general.ApiResponse;
 import csu.repository.admin.Church.ChurchLeadershipRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ChurchLeadershipService {
@@ -37,30 +41,59 @@ public class ChurchLeadershipService {
 		return churchLeadershipPayload;
     }
 
-    public ResponseEntity<?> createChurchLeadership(ChurchLeadershipRequest request) {
-        // Validate request
-        ChurchLeadershipValidator.validateCreateRequest(request);
+ // create
+	
+ 	public ResponseEntity<?> createChurchLeadership(ChurchLeadershipRequest request) {
 
-        // Convert request to ChurchLeadership object
-        ChurchLeadership churchLeadership = ChurchLeadershipMapper.mapToEntity(request);
+ 		if (request.getId() != null) {
 
-        // Save ChurchLeadership object to database
-        churchLeadershipRepository.save(churchLeadership);
+ 			Optional<ChurchLeadership> existingchurchLeadership = request.getId() != null
+ 					? churchLeadershipRepository.findById(request.getId())
+ 					: Optional.empty();
 
-        return ResponseEntity.ok().build();
-    }
+ 			if (!existingchurchLeadership.isPresent() && churchLeadershipRepository.existsById(request.getId())) {
+ 				return new ResponseEntity<>(new ApiResponse(false, "churchLeadership Exists"), HttpStatus.BAD_REQUEST);
+ 			}
 
-    public ResponseEntity<?> deleteChurchLeadership(ChurchLeadershipRequest request) {
-        // Validate request
-        ChurchLeadershipValidator.validateDeleteRequest(request);
+ 			ChurchLeadership churchLeadership = existingchurchLeadership.isPresent() ? existingchurchLeadership.get()
+ 					: new ChurchLeadership();
+ 			
+ 			churchLeadership.setId(request.getId());
+ 			
 
-        // Find ChurchLeadership object by ID
-        ChurchLeadership churchLeadership = churchLeadershipRepository.findById(request.getId())
-                .orElseThrow();
+ 			ChurchLeadership result = churchLeadershipRepository.save(churchLeadership);
 
-        // Delete ChurchLeadership object from database
-        churchLeadershipRepository.delete(churchLeadership);
+ 			if (result != null) {
+ 				return new ResponseEntity<>(new ApiResponse(true, "churchLeadership Created"), HttpStatus.OK);
+ 			}
 
-        return ResponseEntity.ok().build();
-    }
-}
+ 		}
+
+ 		return new ResponseEntity<>(new ApiResponse(false, "churchLeadership Not Created"), HttpStatus.BAD_REQUEST);
+
+ 	}
+
+ 	
+ 	// delete
+
+ 	public ResponseEntity<?> deleteChurchLeadership(ChurchLeadershipRequest request) {
+
+ 		if (request.getId() != null) {
+
+ 			try {
+ 				churchLeadershipRepository.deleteById(request.getId());
+
+ 				return new ResponseEntity<>(new ApiResponse(true, "ChurchLeadership Deleted"), HttpStatus.OK);
+ 			} catch (Exception e) {
+ 				// TODO: handle exception
+ 			}
+
+ 		}
+
+ 		return new ResponseEntity<>(new ApiResponse(false, "ChurchLeadership Not Deleted"), HttpStatus.BAD_REQUEST);
+
+ 	}
+
+ }
+
+    
